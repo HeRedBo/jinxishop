@@ -1,0 +1,56 @@
+<layout name="Index/header_footer" />
+<div class="main-div">
+    <form name="main_form" method="POST" action="__SELF__" enctype="multipart/form-data" >
+    	<input type="hidden" name="id" value="<?php echo $data['id']; ?>" />
+		<input type="hidden" name="old_brand_logo" value="<?php echo $data['brand_logo']; ?>" />
+		<input type="hidden" name="old_big_brand_logo" value="<?php echo $data['big_brand_logo']; ?>" />
+		<input type="hidden" name="old_mid_brand_logo" value="<?php echo $data['mid_brand_logo']; ?>" />
+		<input type="hidden" name="old_sm_brand_logo" value="<?php echo $data['sm_brand_logo']; ?>" />
+        <table cellspacing="1" cellpadding="3" width="100%">
+            <tr>
+                <td class="label">品牌名称：</td>
+                <td>
+                    <input  type="text" name="brand_name" value="<?php echo $data['brand_name']; ?>" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">品牌网站地址：</td>
+                <td>
+                    <input  type="text" name="site_url" value="<?php echo $data['site_url']; ?>" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">品牌logo：</td>
+                <td>
+                	<input type="file" name="brand_logo" /><br /> 
+                	<?php showImage($data['brand_logo'], 100); ?>                </td>
+            </tr>
+            <tr>
+                <td class="label">商品描述：</td>
+                <td>
+                    <input  type="text" name="goods_desc" value="<?php echo $data['goods_desc']; ?>" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">商品排序：</td>
+                <td>
+                    <input  type="text" name="sort" value="<?php echo $data['sort']; ?>" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">是否显示 0:不显示 1:显示：</td>
+                <td>
+                    <input  type="text" name="is_show" value="<?php echo $data['is_show']; ?>" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="99" align="center">
+                    <input type="submit" class="button" value=" 确定 " />
+                    <input type="reset" class="button" value=" 重置 " />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<script>
+</script>

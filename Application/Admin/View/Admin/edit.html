@@ -1,0 +1,57 @@
+<layout name="Index/header_footer" />
+<div class="main-div">
+    <form name="main_form" method="POST" action="__SELF__" enctype="multipart/form-data" >
+    	<input type="hidden" name="id" value="<?php echo $data['id']; ?>" />
+        <table cellspacing="1" cellpadding="3" width="100%">
+             <tr>
+                <td class="label">所在角色</td>
+                <td>
+                   <!-- <select name ="role_name">
+                       <option>请选择...</option>
+                   </select> -->
+                 <?php foreach ($roleData as $k => $v): ?>
+                        <?php 
+                            if(strpos(','.$rid.',',','.$v['id'].',') !==FALSE)
+                                $check = 'checked="checked"';
+                            else
+                                $check ='';
+                         ?>
+                       <input type="checkbox" {$check} name="role_id[]" value="{$v.id} "id="">{$v.role_name}
+                       <?php 
+                        if(($k +1)%3 ==0)
+                            echo "<br/>";
+
+                        ?>
+
+                 <?php endforeach ?>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">用户账号：</td>
+                <td>
+                    <input  type="text" name="username" value="<?php echo $data['username']; ?>" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">密码：</td>
+                <td>
+                    <input type="password" size="25" name="password"  />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">是否启用 1 启用 0：禁用：</td>
+                <td>
+                    <input  type="text" name="is_use" value="<?php echo $data['is_use']; ?>" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="99" align="center">
+                    <input type="submit" class="button" value=" 确定 " />
+                    <input type="reset" class="button" value=" 重置 " />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<script>
+</script>

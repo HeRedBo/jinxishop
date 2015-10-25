@@ -1,0 +1,88 @@
+<layout name="Index/header_footer" />
+<!-- 搜索的表单 -->
+<div class="form-div">
+  <form  name="searchForm">
+    <input type="hidden" name="p" value="1" />
+    <img src="__ADMIN_IMG__/icon_search.gif" width="26" height="22" border="0" alt="SEARCH" />
+    商品名称: <input name="goods_name" type="text" value="<?php echo I('get.goods_name'); ?>" id="goods_name" size="15">
+    价   格: <input type="text" name="start_price" value="<?php echo I('get.start_price'); ?>"  size="10"/> -- <input type="text" name="end_price" value="<?php echo I('get.end_price'); ?>" id="" size='10'/>
+    添加时间: 
+      <input type="text" name="start_addtime" id="start_addtime" value="<?php echo I('get.start_addtime') ?>" /> --
+      <input type="text" name="end_addtime" id="end_addtime" value="<?php echo I('get.end_addtime');  ?>" />
+    是否上架:  
+    <select name="is_on_sale" id="is_on_sale">
+      <option value="-1" <?php if(I('get.is_on_sale',1) == -1) echo 'selected="selected"'; ?> >全部</option>
+      <option value="1" <?php if(I('get.is_on_sale',-1) == 1) echo 'selected="selected"' ?> >是</option>
+      <option value="0" <?php if(I('get.is_on_sale',-1) == 0) echo 'selected="selected"' ?> >否</option>
+    </select>
+    是否删除：
+    <select name="is_delete" id="">
+      <option value="-1"<?php if(I('get.is_delete',-1) == -1) echo 'selected ="selected"' ?>  >全部</option>
+      <option value="1" <?php if(I('get.is_delete',-1) == 1) echo 'selected="selected"' ?>>是</option>
+      <option value="0" <?php if(I('get.is_delete',-1) == 0) echo 'selected="selected"' ?>>否</option>
+    </select>
+    <input type="submit" value=" 搜索 " class="button" /><br/>
+
+    排序方式:
+      <input onclick="parentNode.submit()" type="radio" name="odby" value="id_asc" <?php if(I('get.odby','id_asc')) echo 'checked="checked"'?> id="" />根据添加时间升序
+      <input onclick="parentNode.submit()" type="radio" name="odby" value="id_desc" <?php if(I('get.odby') == 'id_desc') echo 'checked="checked"' ?> id="" />根据添加时间降序
+      <input onclick="parentNode.submit()" type="radio" name="odby" value="price_asc" <?php if(I('get.odby') == 'price_asc') echo 'checked="checked"' ?>
+      id="" />根据价格升序
+      <input onclick="parentNode.submit()" type="radio" name="odby" value="price_desc" <?php if(I('get.odby') == 'price_desc') echo 'checked="checked"' ?> id="" />根据价格降序
+
+  </form>
+</div>
+
+<form method="post" action="__SELF__" name="listForm">
+
+<div class="list-div" id="listDiv">
+
+<table width="100%" cellspacing="1" cellpadding="2" id="list-table">
+  <tr>
+    <th>编号</th>
+    <th>商品名称</th>
+    <th>商品编号</th>
+    <th>缩略图</th>
+    <th>价格</th>
+    <th>库存</th>
+    <th>上架</th>
+    <th>删除</th>
+    <th>排序</th>
+    <th>添加时间</th>
+    <th>操作</th>
+  </tr>
+
+ <?php foreach ($data as $k => $v): ?>
+    <tr align="center" class="tron 0" id="0_6">
+    <td align="left" class="first-cell" ><?php echo $k+1; ?></td>
+    <td><?php echo $v['goods_name'];?></td>
+    <td><?php echo $v['goods_sn'] ?></td>
+    <td>
+      <?php echo $v['goods_thumb'] ? showImage($v['goods_thumb'],60) : showImage('no_picture.gif',60) ?>
+      <!-- <img style="width:60px;height:60px;" src="/Uploads/<?php echo $v['goods_thumb'] ? $v['goods_thumb'] : 'no_picture.gif' ?>"> -->
+      </td>
+    <td><?php echo $v['shop_price'] ?></td> 
+    <td><?php echo $v['goods_number'] ?></td>
+    <td><img src="__ADMIN_IMG__/<?php echo $v['is_on_sale'] ? 'yes':'no';  ?>.gif"></td>
+    <td><img src="__ADMIN_IMG__/<?php echo $v['is_delete'] ? 'yes':'no';  ?>.gif" alt="" /></td>
+    <td><?php echo $v['sort_num'] ?></td>
+    <td><?php echo date("Y-m-d H:i:d",$v['addtime']) ?></td>
+    <td width="24%" align= "center">
+      <a href="<?php echo U('edit?id='.$v['id'].'&page='.I('get.page',1)); ?>" title="编辑">编辑</a> |
+      <a href="<?php echo U('delete?id='.$v['id'].'&page='.I('get.page'))?>" title="移除" onclick="return confirm('确定要删除吗？');">移除</a>
+    </td>
+  </tr>
+ <?php endforeach;?>
+
+  </table>
+
+  <table cellspacing="0" id="page-table">
+  <tr>
+    <td nowrap="true" align="right" style="background-color: rgb(255, 255, 255);width: 99%" class="msdn">
+    <?php echo $page; ?>
+    </td>
+  </tr>
+</table>
+
+</div>
+</form>

@@ -1,0 +1,75 @@
+<layout name="Index/header_footer" />
+<div class="main-div">
+    <form name="main_form" method="POST" action="__SELF__" enctype="multipart/form-data">
+        <table cellspacing="1" cellpadding="3" width="100%">
+            <tr>
+                <td class="label">属性名称：</td>
+                <td>
+                    <input  type="text" name="attr_name" value="" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">选择商品类型：</td>
+                <td>
+                    <select name="type_id" id="">
+                        <option value="">请选择类型...</option>
+                        <?php foreach ($typeData as $k => $v):
+                            if($v['id'] == $typeId)
+                                $select ='selected ="selected"';
+                            else
+                                $select = '';
+                         ?>
+                            <option {$select} value="{$v.id}">{$v.type_name}</option>
+
+                        <?php endforeach; ?>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">属性的类型:</td>
+                <td>
+                    <input  type="radio" name="attr_type" value="0" checked="checked" id="attr_type0" />
+                    <label for="attr_type0">唯一属性</label>
+                    <input type="radio" name="attr_type" value="1"id="attr_type1"> 
+                    <label for="attr_type1">可选属性</label>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">属性值的录入方式：</td>
+                <td>
+                    <input  type="radio" name="attr_input_type" checked="checked" value="0" id="input_type0"/> 
+                    <label for="input_type0">手工输入</label>
+                    <input  type="radio" name="attr_input_type" value="1" id="input_type1" /> 
+                    <label for="input_type1">从下面列表选择(多个使用逗号隔开)</label>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">属性的可选值：</td>
+                <td>
+                    <textarea name="attr_option_values" id="" cols="60" rows="3"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="99" align="center">
+                    <input type="submit" class="button" value=" 确定 " />
+                    <input type="reset" class="button" value=" 重置 " />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<script>
+    $(document).ready(function() {
+        //先让可选列表输入状态为禁用状态
+        $("textarea[name='attr_value']").attr('disabled', true);
+        $("input[name='attr_input_type']").click(function() {
+           var ipType = $(this).val();
+           if(ipType==1)
+                $("textarea[name='attr_value']").attr('disabled', false);
+            else
+                $("textarea[name='attr_value']").attr('disabled', true);
+
+
+        });
+    });
+</script>

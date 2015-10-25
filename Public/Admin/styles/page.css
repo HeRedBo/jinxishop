@@ -1,0 +1,36 @@
+/*公共*/
+
+body {
+	font-size: 12px;font-family: verdana, arial, helvetica, sans-serif; padding-left: 25px;
+}
+
+/*css msdn style pagination*/
+/* #page{
+	width: 80%;
+	height: 30px;
+	border: 1px solid red;
+} */
+.clear{
+	clear:both;
+}
+#page p{
+	font-size: 12px;font-family: verdana, arial, helvetica, sans-serif;width: 44%;float: left;display: inline;
+}
+.msdn {
+	padding-right: 6px; padding-left: 0px; font-size: 12px; padding-bottom: 4px; color: #313031; padding-top: 4px; font-family: verdana,tahoma,arial,helvetica,sans-serif; background-color: #fff; text-align: right;float: right;
+}
+.msdn a {
+	border-right: #b7d8ee 1px solid; padding-right: 6px; border-top: #b7d8ee 1px solid; padding-left: 5px; padding-bottom: 4px; margin: 0px 3px; border-left: #b7d8ee 1px solid; color: #0030ce; padding-top: 5px; border-bottom: #b7d8ee 1px solid; text-decoration: none
+}
+.msdn a:hover {
+	border-right: #b7d8ee 1px solid; border-top: #b7d8ee 1px solid; border-left: #b7d8ee 1px solid; color: #0066a7; border-bottom: #b7d8ee 1px solid; background-color: #d2eaf6
+}
+.pagination a:active {
+	border-right: #b7d8ee 1px solid; border-top: #b7d8ee 1px solid; border-left: #b7d8ee 1px solid; color: #0066a7; border-bottom: #b7d8ee 1px solid; background-color: #d2eaf6
+}
+.msdn .current {
+	border-right: #b7d8ee 1px solid; padding-right: 6px; border-top: #b7d8ee 1px solid; padding-left: 5px; font-weight: bold; padding-bottom: 4px; margin: 0px 3px; border-left: #b7d8ee 1px solid; color: #444444; padding-top: 5px; border-bottom: #b7d8ee 1px solid; background-color: #d2eaf6
+}
+/* .msdn span.disabled {
+	display: none
+} */

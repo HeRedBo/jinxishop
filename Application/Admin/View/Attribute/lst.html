@@ -1,0 +1,47 @@
+<layout name="Index/header_footer" />
+<!-- 搜索 -->
+<div class="form-div search_form_div">
+    按照商品类型显示:
+    <select onchange="location.href='__ACTION__/type_id/'+this.value;">
+    	<option value="">请选择类型</option>
+    	<?php foreach ($typeData as $k => $v):
+    		if($v['id'] == $typeId)
+    			$select ='selected="selected"';
+    		else
+    			$select ='';
+    	 ?>
+    		<option {$select} value="{$v.id}">{$v.type_name}</option>
+    	<?php endforeach; ?>
+    </select>
+</div>
+<!-- 列表 -->
+<div class="list-div" id="listDiv">
+	<table cellpadding="3" cellspacing="1">
+    	<tr>
+    		<th >编号</th>
+            <th >属性名称</th>
+            <th >属性类型</th>
+            <th >属性值的录入方式</th>
+            <th >可选值列表</th>
+			<th width="60">操作</th>
+        </tr>
+		<?php foreach ($data as $k => $v): ?>            
+			<tr class="tron">
+				<td><?php echo $v['id']; ?></td>
+				<td><?php echo $v['attr_name']; ?></td>
+				<td><?php echo $v['attr_type'] ==1 ? '单选属性':'唯一属性'; ?></td>
+				<td><?php echo $v['attr_input_type'] ==1? '列表选择':'手工输入'; ?></td>
+				<td><?php echo $v['attr_option_values']; ?></td>
+		        <td align="center">
+		        	<a href="<?php echo U('edit?id='.$v['id'].'&p='.I('get.p')); ?>" title="编辑">编辑</a> |
+	                <a href="<?php echo U('delete?id='.$v['id'].'&p='.I('get.p').'&type_id='.$v['type_id']); ?>" onclick="return confirm('确定要删除吗？');" title="移除">移除</a> 
+		        </td>
+	        </tr>
+        <?php endforeach; ?> 
+		<?php if(preg_match('/\d/', $page)): ?>  
+        <tr><td align="right" nowrap="true" colspan="99" height="30"><?php echo $page; ?></td></tr> 
+        <?php endif; ?> 
+	</table>
+</div>
+<script>
+</script>

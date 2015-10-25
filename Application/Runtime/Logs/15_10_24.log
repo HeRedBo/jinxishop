@@ -1,0 +1,15 @@
+[ 2015-10-24T00:57:07+08:00 ] 127.0.0.1 /Admin/Goods/ajaxGetAttr/type_id/1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.004000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\shop\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SELECT COUNT(*) has FROM shop_privilege [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `shop_attribute` [ RunTime:0.007000s ]
+SQL: SELECT * FROM `shop_attribute` WHERE ( `type_id` = '1' )  [ RunTime:0.004000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-10-24T23:36:29+08:00 ] 127.0.0.1 /Admin/Goods/goods_number/id/2.html
+ERR: Think\Controller:assing方法不存在！
+

@@ -1,0 +1,291 @@
+[ 2015-10-19T11:00:11+08:00 ] 127.0.0.1 /Admin/Goods/lists
+ERR: 非法操作:lists
+
+[ 2015-10-19T11:02:24+08:00 ] 127.0.0.1 /Admin/Goods/ajaxGetAttr/type_id/1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\shop\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SELECT COUNT(*) has FROM shop_privilege [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `shop_attribute` [ RunTime:0.082004s ]
+SQL: SELECT * FROM `shop_attribute` WHERE ( `type_id` = '1' )  [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003000s ]
+
+[ 2015-10-19T11:05:07+08:00 ] 127.0.0.1 /Admin/Goods/ajaxGetAttr/type_id/1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\shop\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SELECT COUNT(*) has FROM shop_privilege [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `shop_attribute` [ RunTime:0.004001s ]
+SQL: SELECT * FROM `shop_attribute` WHERE ( `type_id` = '1' )  [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-10-19T12:06:17+08:00 ] 127.0.0.1 /Admin/Goods/ajaxGetAttr/type_id/1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\shop\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SELECT COUNT(*) has FROM shop_privilege [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `shop_attribute` [ RunTime:0.006000s ]
+SQL: SELECT * FROM `shop_attribute` WHERE ( `type_id` = '1' )  [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002001s ]
+
+[ 2015-10-19T12:19:23+08:00 ] 127.0.0.1 /Admin/Goods/ajaxGetAttr/type_id/1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\shop\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SELECT COUNT(*) has FROM shop_privilege [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `shop_attribute` [ RunTime:0.007000s ]
+SQL: SELECT * FROM `shop_attribute` WHERE ( `type_id` = '1' )  [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-10-19T12:22:14+08:00 ] 127.0.0.1 /Admin/Goods/ajaxGetAttr/type_id/2
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\shop\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SELECT COUNT(*) has FROM shop_privilege [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `shop_attribute` [ RunTime:0.076004s ]
+SQL: SELECT * FROM `shop_attribute` WHERE ( `type_id` = '2' )  [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002001s ]
+
+[ 2015-10-19T12:22:15+08:00 ] 127.0.0.1 /Admin/Goods/ajaxGetAttr/type_id/1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\shop\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SELECT COUNT(*) has FROM shop_privilege [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `shop_attribute` [ RunTime:0.004000s ]
+SQL: SELECT * FROM `shop_attribute` WHERE ( `type_id` = '1' )  [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-10-19T12:23:04+08:00 ] 127.0.0.1 /Admin/Goods/ajaxGetAttr/type_id/2
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\shop\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SELECT COUNT(*) has FROM shop_privilege [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `shop_attribute` [ RunTime:0.007000s ]
+SQL: SELECT * FROM `shop_attribute` WHERE ( `type_id` = '2' )  [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-10-19T12:23:06+08:00 ] 127.0.0.1 /Admin/Goods/ajaxGetAttr/type_id/1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\shop\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SELECT COUNT(*) has FROM shop_privilege [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `shop_attribute` [ RunTime:0.007001s ]
+SQL: SELECT * FROM `shop_attribute` WHERE ( `type_id` = '1' )  [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-10-19T12:24:57+08:00 ] 127.0.0.1 /Admin/Goods/ajaxGetAttr/type_id/2
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\shop\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SELECT COUNT(*) has FROM shop_privilege [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `shop_attribute` [ RunTime:0.005001s ]
+SQL: SELECT * FROM `shop_attribute` WHERE ( `type_id` = '2' )  [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-10-19T12:24:58+08:00 ] 127.0.0.1 /Admin/Goods/ajaxGetAttr/type_id/1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\shop\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SELECT COUNT(*) has FROM shop_privilege [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `shop_attribute` [ RunTime:0.005001s ]
+SQL: SELECT * FROM `shop_attribute` WHERE ( `type_id` = '1' )  [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-10-19T12:26:12+08:00 ] 127.0.0.1 /Admin/Goods/ajaxGetAttr/type_id/2
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\shop\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SELECT COUNT(*) has FROM shop_privilege [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `shop_attribute` [ RunTime:0.005000s ]
+SQL: SELECT * FROM `shop_attribute` WHERE ( `type_id` = '2' )  [ RunTime:0.001001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-10-19T12:26:13+08:00 ] 127.0.0.1 /Admin/Goods/ajaxGetAttr/type_id/1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\shop\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SELECT COUNT(*) has FROM shop_privilege [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `shop_attribute` [ RunTime:0.006001s ]
+SQL: SELECT * FROM `shop_attribute` WHERE ( `type_id` = '1' )  [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-10-19T15:05:20+08:00 ] 127.0.0.1 /Admin/Goods/ajaxGetAttr/type_id/1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\shop\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SELECT COUNT(*) has FROM shop_privilege [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `shop_attribute` [ RunTime:0.005001s ]
+SQL: SELECT * FROM `shop_attribute` WHERE ( `type_id` = '1' )  [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-10-19T15:06:12+08:00 ] 127.0.0.1 /Admin/Goods/ajaxGetAttr/type_id/1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\shop\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SELECT COUNT(*) has FROM shop_privilege [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `shop_attribute` [ RunTime:0.005000s ]
+SQL: SELECT * FROM `shop_attribute` WHERE ( `type_id` = '1' )  [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-10-19T15:43:17+08:00 ] 127.0.0.1 /Admin/Goods/ajaxGetAttr/type_id/1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\shop\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SELECT COUNT(*) has FROM shop_privilege [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `shop_attribute` [ RunTime:0.006000s ]
+SQL: SELECT * FROM `shop_attribute` WHERE ( `type_id` = '1' )  [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-10-19T21:14:53+08:00 ] 127.0.0.1 /Admin/Goods/ajaxGetAttr/type_id/1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\shop\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SELECT COUNT(*) has FROM shop_privilege [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `shop_attribute` [ RunTime:0.008000s ]
+SQL: SELECT * FROM `shop_attribute` WHERE ( `type_id` = '1' )  [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-10-19T21:16:16+08:00 ] 127.0.0.1 /Admin/Goods/ajaxGetAttr/type_id/1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\shop\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SELECT COUNT(*) has FROM shop_privilege [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `shop_attribute` [ RunTime:0.006001s ]
+SQL: SELECT * FROM `shop_attribute` WHERE ( `type_id` = '1' )  [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-10-19T21:16:37+08:00 ] 127.0.0.1 /Admin/Goods/ajaxGetAttr/type_id/1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\shop\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SELECT COUNT(*) has FROM shop_privilege [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `shop_attribute` [ RunTime:0.006001s ]
+SQL: SELECT * FROM `shop_attribute` WHERE ( `type_id` = '1' )  [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.034002s ]
+INFO: [ app_end ] --END-- [ RunTime:0.034002s ]
+
+[ 2015-10-19T21:17:08+08:00 ] 127.0.0.1 /Admin/Goods/ajaxGetAttr/type_id/1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\shop\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SELECT COUNT(*) has FROM shop_privilege [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `shop_attribute` [ RunTime:0.006000s ]
+SQL: SELECT * FROM `shop_attribute` WHERE ( `type_id` = '1' )  [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-10-19T21:18:21+08:00 ] 127.0.0.1 /Admin/Goods/ajaxGetAttr/type_id/1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003001s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\shop\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SELECT COUNT(*) has FROM shop_privilege [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `shop_attribute` [ RunTime:0.007000s ]
+SQL: SELECT * FROM `shop_attribute` WHERE ( `type_id` = '1' )  [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002001s ]
+
+[ 2015-10-19T21:32:52+08:00 ] 127.0.0.1 /Admin/Goods/ajaxGetAttr/type_id/2
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\shop\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SELECT COUNT(*) has FROM shop_privilege [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `shop_attribute` [ RunTime:0.005001s ]
+SQL: SELECT * FROM `shop_attribute` WHERE ( `type_id` = '2' )  [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-10-19T21:32:54+08:00 ] 127.0.0.1 /Admin/Goods/ajaxGetAttr/type_id/1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\shop\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SELECT COUNT(*) has FROM shop_privilege [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `shop_attribute` [ RunTime:0.006000s ]
+SQL: SELECT * FROM `shop_attribute` WHERE ( `type_id` = '1' )  [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-10-19T21:52:11+08:00 ] 127.0.0.1 /Admin/Goods/ajaxGetAttr/type_id/2
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\shop\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SELECT COUNT(*) has FROM shop_privilege [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `shop_attribute` [ RunTime:0.007000s ]
+SQL: SELECT * FROM `shop_attribute` WHERE ( `type_id` = '2' )  [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-10-19T21:52:13+08:00 ] 127.0.0.1 /Admin/Goods/ajaxGetAttr/type_id/1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\shop\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SELECT COUNT(*) has FROM shop_privilege [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `shop_attribute` [ RunTime:0.007000s ]
+SQL: SELECT * FROM `shop_attribute` WHERE ( `type_id` = '1' )  [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
