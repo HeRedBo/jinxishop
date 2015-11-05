@@ -133,7 +133,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="label"><input type="checkbox" name="is_promote" id="is_promote" onclick="if($(this).attr('checked')) $('.promote_price').removeAttr('disabled'); else $('.promote_price').attr('disabled','disabled');"><label for="is_promote">促销价：</label></td>
+                <td class="label"><input type="checkbox" value="1"  name="is_promote" id="is_promote" onclick="if($(this).attr('checked')) $('.promote_price').removeAttr('disabled'); else $('.promote_price').attr('disabled','disabled');"><label for="is_promote">促销价：</label></td>
                 <td>
                     <input class="promote_price" type="text" name="promote_price" value="0.00" disabled="disabled" />
                 </td>
@@ -156,7 +156,6 @@
                     <input  type="text" name="market_num" value="0" />
                 </td>
             </tr>
-            
             <tr>
                 <td class="label">SEO优化_描述：</td>
                 <td>
@@ -274,8 +273,8 @@
      $(this).removeClass('tab-back').addClass("tab-front");
  });
 
-$("#promote_start_time").datepicker(); 
-$("#promote_end_time").datepicker(); 
+$("#promote_start_time").datepicker({ dateFormat: "yy-mm-dd" }); 
+$("#promote_end_time").datepicker({ dateFormat: "yy-mm-dd" }); 
 UE.getEditor('goods_desc', {
 	"initialFrameWidth" : "100%",   // 宽
 	"initialFrameHeight" : 360,      // 高

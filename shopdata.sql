@@ -306,3 +306,15 @@ UPDATE shop_goods SET goods_ori = concat('Goods/',goods_ori),goods_img = concat(
 select substring(goods_ori,8
 ) from shop_goods;
 
+-------会员表
+DROP TABLE IF EXISTS shop_member;
+CREATE TABLE shop_member(
+	id mediumint unsigned not null auto_increment,
+	email varchar(60) not null comment '会员账号',
+	password char(32) not null comment '密码',
+	face varchar(150) not null default '' comment '头像',
+	addtime int unsigned not null comment '注册时间',
+	email_code char(32) not null default '' comment '邮件验证的验证码 会员验证通过之后 会把这个字段清空 如果这个字段为空说明会员已经通过email验证',
+	primary key (id)
+)engine= MyISAM default charset = utf8 comment '会员表';
+

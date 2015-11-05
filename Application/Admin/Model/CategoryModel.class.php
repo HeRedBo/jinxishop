@@ -109,7 +109,7 @@ class CategoryModel extends Model
 		{
 			$data = array();
 			//先取出所有的分类
-			$allCat = $this->select();
+			$allCat = $this->limit(8)->select();
 			//在从所有的分类中取出顶级分类
 			foreach ($allCat as $k => $v) 
 			{	
@@ -140,4 +140,5 @@ class CategoryModel extends Model
 		S('catData',$cat);
 		return $data;
 	}
+    
 }

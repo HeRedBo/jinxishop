@@ -420,10 +420,10 @@ class GoodsModel extends Model
 		array(
 			'is_on_sale'=> array('eq',1), // 上架
 			'is_delete' => array('eq',0), //没有删除
-			'is_promote'=> array('eq',1),
+			'is_promote'=> array('eq',1), //促销的商品
 			'promote_start_time' =>array('elt',$now),
 			'promote_end_time'   =>array('egt',$now),
-			))->limit($limit)->order('sort_num ASC')->select();
+		))->limit($limit)->order('sort_num ASC')->select();
 	}
 
 	//最新的商品
@@ -434,7 +434,7 @@ class GoodsModel extends Model
 			'is_on_sale'=> array('eq',1), // 上架
 			'is_delete' => array('eq',0), //没有删除
 			'is_new'=> array('eq',1),
-			))->limit($limit)->order('sort_num ASC')->select();
+		))->limit($limit)->order('sort_num ASC')->select();
 	}
 
 	//热销商品
@@ -451,11 +451,41 @@ class GoodsModel extends Model
 	// 精品
 	public function getBest($limit = 5)
 	{
-		return $this->field('id,goods_name,shop_price,goods_thumb')->where(
-		array(
+		return $this->field('id,goods_name,shop_price,goods_thumb')->where(array(
 			'is_on_sale'=> array('eq',1), // 上架
 			'is_delete' => array('eq',0), //没有删除
 			'is_best'=> array('eq',1),
-			))->limit($limit)->order('sort_num ASC')->select();
+		))->limit($limit)->order('sort_num ASC')->select();
+	}
+
+	/**
+	 * 计算会员价格
+	 * @param int $goodsId
+	 * @return string 
+	 * @author Red-Bo
+	 * @date 2015-11-05 00:47:19
+	 */
+	public function getMemberPrice($goodsId)
+	{
+		$now = time();
+		//先判断是否有促销
+		$price = $this->field('shop_price,is_promote,promote_price,promote_start_time,promote_end_time')->find($goodsId);
+		if($price['is_promote'] ==1 && ($price['promote_start_time'] < $now && $price['promote_end_time'] > $now ))
+		{
+			return $price['promote_price'];
+		}
+		//如果会员没有登陆直接使用本店价
+		$memberId = session('mid');
+		if(!$memberId)
+			return $price['shop_price'];
+		//就算会员价格
+		$mpModel = M('MemberPirce');
+		$mprice = $mpModel->field('price')->where(array('goods_id'=>array('eq',$goodsId),'level_id'=>array('eq',session('mid'))))->find();
+		// 如果会员有会员价格就直接使用会员价格
+		if($mprice)
+			return $mprice['price'];
+		else
+			//如果没有设置会员价格 就按照级别的折扣率来算
+			return session('rate') * $price['shop_price'];
 	}
 }

@@ -16,6 +16,7 @@ return array(
 	'IMG_maxSize' => '3M',
 	'IMG_exts'	  => array('jpg','pjpeg','bmp','gif','png','jpeg'),
 	'IMG_rootPath'=>'./Uploads/',
+	'IMG_URL'=>'/Uploads/',
 	/************ 修改I函数底层过滤时使用的函数 ***************/
 	'DEFAULT_FILTER'=>'trim,removeXSS',
 	/***********MD5 时复杂化加密***********/
@@ -42,4 +43,12 @@ return array(
 	
 	/*追踪信息*/
 	'SHOW_PAGE_TRACE' 		=>true,		//追踪信息 主要在开发阶段应用
+
+	/**************** 发邮件的参数配置 ******************/
+	'MAIL_ADDRESS' 	=> 'hhbjkd@163.com',
+	'MAIL_FROM'		=> '小波',
+	'MAIL_SMTP'		=> 'smtp.163.com',
+	'MAIL_LOGINNAME'=> 'hhbjkd',
+	'MAIL_PASSWORD' => 'hhbjkd19930228'
+
 );

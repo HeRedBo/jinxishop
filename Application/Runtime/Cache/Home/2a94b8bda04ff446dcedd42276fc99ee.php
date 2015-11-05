@@ -4,16 +4,15 @@
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 	<title><?php echo ($page_title); ?></title>
 	<meta name="keywords" content="<?php echo ($page_keywords); ?>"/>
+	<meta name="description" content="<?php echo ($page_description); ?>"/>
 	<link rel="stylesheet" href="/Public/Home/style/base.css" type="text/css">
 	<link rel="stylesheet" href="/Public/Home/style/global.css" type="text/css">
 	<link rel="stylesheet" href="/Public/Home/style/header.css" type="text/css">
 	<?php foreach ($page_css as $k => $v): ?>
 		<link rel="stylesheet" href="/Public/Home/style/<?php echo ($v); ?>.css" type="text/css">
 	<?php endforeach; ?>
-	<link rel="stylesheet" href="/Public/Home/style/index.css" type="text/css">
 	<link rel="stylesheet" href="/Public/Home/style/bottomnav.css" type="text/css">
 	<link rel="stylesheet" href="/Public/Home/style/footer.css" type="text/css">
-
 	<script type="text/javascript" src="/Public/Home/js/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript" src="/Public/Home/js/header.js"></script>
 	<?php foreach ($page_js as $k => $v): ?>
@@ -29,7 +28,7 @@
 			</div>
 			<div class="topnav_right fr">
 				<ul>
-					<li>您好，欢迎来到京西！[<a href="login.html">登录</a>] [<a href="register.html">免费注册</a>] </li>
+					<li id ="logininfo">您好，欢迎来到京西！[<a href='<?php echo U('Home/Member/login') ?>'>登录</a>] [<a href='<?php echo U('Home/Member/register') ?>'>免费注册</a>] </li>
 					<li class="line">|</li>
 					<li>我的订单</li>
 					<li class="line">|</li>
@@ -40,7 +39,7 @@
 		</div>
 	</div>
 	<!-- 顶部导航 end -->
-	
+	<div style="clear:both;"></div>
 	<!-- 内容 -->
 	
 <?php  $catModel = D('Admin/Category'); $catData = $catModel->newGetNavData() ?>
@@ -104,10 +103,7 @@
 						<div style="clear:both;"></div>
 						<div class="viewlist mt10">
 							<h3>最近浏览的商品：</h3>
-							<ul>
-								<li><a href=""><img src="/Public/Home/images/view_list1.jpg" alt="" /></a></li>
-								<li><a href=""><img src="/Public/Home/images/view_list2.jpg" alt="" /></a></li>
-								<li><a href=""><img src="/Public/Home/images/view_list3.jpg" alt="" /></a></li>
+							<ul id="recent_display_id">
 							</ul>
 						</div>
 					</dd>
@@ -188,6 +184,27 @@
 	</div>
 	<!-- 头部 end-->
 
+<script type="text/javascript">
+	var img_url = "<?php echo C('IMG_URL'); ?>";
+	// 获取商品最近浏览过的商品
+	$.ajax({
+		url: '<?php echo U('Home/Index/ajaxGetRecentDisplayGoods'); ?>',
+		type: 'GET',
+		dataType: 'json',
+		success : function(data)
+		{
+			var str = '';
+			// 把商品的信息显示在页面中
+			$(data).each(function(k,v){
+				str += '<li><a href="<?php echo U('Home/Index/goods/','',FALSE); ?>/id/'+v.id+'"><img src="'+img_url+v.goods_thumb+'" alt="'+v.goods_name+'"  title="'+v.goods_name+'" /></a></li>';
+
+			});
+			$('#recent_display_id').html(str);
+		}
+	});
+	
+	
+</script>
 <!-- 综合区域 start 包括幻灯展示，商城快报 -->
 	<div class="colligate w1210 bc mt10">
 		<!-- 幻灯区域 start -->
@@ -324,7 +341,7 @@
 			<h2>
 				<span class="on">疯狂抢购</span>
 				<span>热卖商品</span>
-				<span>推荐商品</span>
+				<span>精品推荐</span>
 				<span>新品上架</span>
 				<span class="last">猜您喜欢</span>
 			</h2>
@@ -333,41 +350,15 @@
 				<!-- 疯狂抢购 start-->
 				<div class="crazy">
 					<ul>
+						<?php foreach ($goodsPor as $k => $v): ?>
 						<li>
 							<dl>
-								<dt><a href=""><img src="/Public/Home/images/crazy1.jpg" alt="" /></a></dt>
-								<dd><a href="">惠普G4-1332TX 14英寸</a></dd>
-								<dd><span>售价：</span><strong> ￥2999.00</strong></dd>
+								<dt><a href="<?php echo U('goods?id='.$v['id']); ?>"><?php showImage($v['goods_thumb']); ?></a></dt>
+								<dd><a href="<?php echo U('goods?id='.$v['id']); ?>"><?php echo ($v["goods_name"]); ?></a></dd>
+								<dd><span>售价：</span><strong> ￥<?php echo ($v["promote_price"]); ?>元</strong></dd>
 							</dl>
 						</li>
-						<li>
-							<dl>
-								<dt><a href=""><img src="/Public/Home/images/crazy2.jpg" alt="" /></a></dt>
-								<dd><a href="">直降100元！TCL118升冰箱</a></dd>
-								<dd><span>售价：</span><strong> ￥800.00</strong></dd>
-							</dl>
-						</li>
-						<li>
-							<dl>
-								<dt><a href=""><img src="/Public/Home/images/crazy3.jpg" alt="" /></a></dt>
-								<dd><a href="">康佳液晶37寸电视机</a></dd>
-								<dd><span>售价：</span><strong> ￥2799.00</strong></dd>
-							</dl>
-						</li>
-						<li>
-							<dl>
-								<dt><a href=""><img src="/Public/Home/images/crazy4.jpg" alt="" /></a></dt>
-								<dd><a href="">梨子平板电脑7.9寸</a></dd>
-								<dd><span>售价：</span><strong> ￥1999.00</strong></dd>
-							</dl>
-						</li>
-						<li>
-							<dl>
-								<dt><a href=""><img src="/Public/Home/images/crazy5.jpg" alt="" /></a></dt>
-								<dd><a href="">好声音耳机</a></dd>
-								<dd><span>售价：</span><strong> ￥199.00</strong></dd>
-							</dl>
-						</li>
+						<?php endforeach; ?>
 					</ul>	
 				</div>
 				<!-- 疯狂抢购 end-->
@@ -375,27 +366,15 @@
 				<!-- 热卖商品 start -->
 				<div class="hot none">
 					<ul>
+						<?php foreach ($goodsHot as $k => $v): ?>
 						<li>
 							<dl>
-								<dt><a href=""><img src="/Public/Home/images/hot1.jpg" alt="" /></a></dt>
-								<dd><a href="">索尼双核五英寸四核手机！</a></dd>
-								<dd><span>售价：</span><strong> ￥1386.00</strong></dd>
+								<dt><a href="<?php echo U('goods?id='.$v['id']); ?>"><?php showImage($v['goods_thumb']); ?></a></dt>
+								<dd><a href="<?php echo U('goods?id='.$v['id']); ?>"><?php echo ($v["goods_name"]); ?></a></dd>
+								<dd><span>售价：</span><strong> ￥<?php echo ($v["shop_price"]); ?>元</strong></dd>
 							</dl>
 						</li>
-						<li>
-							<dl>
-								<dt><a href=""><img src="/Public/Home/images/hot2.jpg" alt="" /></a></dt>
-								<dd><a href="">华为通话平板仅需969元！</a></dd>
-								<dd><span>售价：</span><strong> ￥969.00</strong></dd>
-							</dl>
-						</li>
-						<li>
-							<dl>
-								<dt><a href=""><img src="/Public/Home/images/hot3.jpg" alt="" /></a></dt>
-								<dd><a href="">卡姿兰明星单品7件彩妆套装</a></dd>
-								<dd><span>售价：</span><strong> ￥169.00</strong></dd>
-							</dl>
-						</li>
+						<?php endforeach; ?>
 					</ul>
 				</div>
 				<!-- 热卖商品 end -->
@@ -403,27 +382,15 @@
 				<!-- 推荐商品 atart -->
 				<div class="recommend none">
 					<ul>
+						<?php foreach ($goodsBest as $k => $v): ?>
 						<li>
 							<dl>
-								<dt><a href=""><img src="/Public/Home/images/recommend1.jpg" alt="" /></a></dt>
-								<dd><a href="">黄飞红麻辣花生整箱特惠装</a></dd>
-								<dd><span>售价：</span><strong> ￥139.00</strong></dd>
+								<dt><a href="<?php echo U('goods?id='.$v['id']); ?>"><?php showImage($v['goods_thumb']); ?></a></dt>
+								<dd><a href="<?php echo U('goods?id='.$v['id']); ?>"><?php echo ($v["goods_name"]); ?></a></dd>
+								<dd><span>售价：</span><strong> ￥<?php echo ($v["shop_price"]); ?>元</strong></dd>
 							</dl>
 						</li>
-						<li>
-							<dl>
-								<dt><a href=""><img src="/Public/Home/images/recommend2.jpg" alt="" /></a></dt>
-								<dd><a href="">戴尔IN1940MW 19英寸LE</a></dd>
-								<dd><span>售价：</span><strong> ￥679.00</strong></dd>
-							</dl>
-						</li>
-						<li>
-							<dl>
-								<dt><a href=""><img src="/Public/Home/images/recommend3.jpg" alt="" /></a></dt>
-								<dd><a href="">罗辑思维音频车载CD</a></dd>
-								<dd><span>售价：</span><strong> ￥24.80</strong></dd>
-							</dl>
-						</li>
+						<?php endforeach; ?>
 					</ul>
 				</div>
 				<!-- 推荐商品 end -->
@@ -431,27 +398,15 @@
 				<!-- 新品上架 start-->
 				<div class="new none">
 					<ul>
+						<?php foreach ($goodsNew as $k => $v): ?>
 						<li>
 							<dl>
-								<dt><a href=""><img src="/Public/Home/images/new1.jpg" alt="" /></a></dt>
-								<dd><a href="">E路航T70超薄GPS 7寸大屏！</a></dd>
-								<dd><span>售价：</span><strong> ￥369.00</strong></dd>
+								<dt><a href="<?php echo U('goods?id='.$v['id']); ?>"><?php showImage($v['goods_thumb']); ?></a></dt>
+								<dd><a href="<?php echo U('goods?id='.$v['id']); ?>"><?php echo ($v["goods_name"]); ?></a></dd>
+								<dd><span>售价：</span><strong> ￥<?php echo ($v["shop_price"]); ?>元</strong></dd>
 							</dl>
 						</li>
-						<li>
-							<dl>
-								<dt><a href=""><img src="/Public/Home/images/new2.jpg" alt="" /></a></dt>
-								<dd><a href="">乐和居 爆品 特价疯狂抢</a></dd>
-								<dd><span>售价：</span><strong> ￥2799.00</strong></dd>
-							</dl>
-						</li>
-						<li>
-							<dl>
-								<dt><a href=""><img src="/Public/Home/images/new3.jpg" alt="" /></a></dt>
-								<dd><a href="">北欧 套装 抄底再续最后几小时</a></dd>
-								<dd><span>售价：</span><strong> ￥999.00</strong></dd>
-							</dl>
-						</li>
+						<?php endforeach; ?>
 					</ul>
 				</div>
 				<!-- 新品上架 end-->
@@ -806,9 +761,8 @@
 	</div>
 	<!-- 底部导航 end -->
 
-
-	<div style="clear:both;"></div>
 	<!-- 底部版权 start -->
+	<div style="clear:both;"></div>
 	<div class="footer w1210 bc mt10">
 		<p class="links">
 			<a href="">关于我们</a> |
@@ -837,3 +791,18 @@
 
 </body>
 </html>
+<script type="text/javascript">
+	$.ajax({
+		url: "<?php echo U('Home/Member/ajaxChkLogin') ?>",
+		type: 'GET',
+		dataType: 'json',
+		success:function(data)
+		{
+			if(data.ok == 1 )
+				var html = "您好，"+data.email+"[<a href='<?php echo U('Home/Member/logout'); ?>'>退出</a>] ";
+			else
+				var html = "您好，欢迎来到京西！[<a href='<?php echo U('Home/Member/login') ?>'>登录</a>] [<a href='<?php echo U('Home/Member/register') ?>'>免费注册</a>] ";
+			$("#logininfo").html(html);
+		}
+	});
+</script>

@@ -2,17 +2,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<title>首页</title>
+	<title>京西商城首页</title>
 	<meta name="keywords" content="关键字"/>
+	<meta name="description" content="描述"/>
 	<link rel="stylesheet" href="/Public/Home/style/base.css" type="text/css">
 	<link rel="stylesheet" href="/Public/Home/style/global.css" type="text/css">
 	<link rel="stylesheet" href="/Public/Home/style/header.css" type="text/css">
-		<link rel="stylesheet" href="/Public/Home/style/index.css" type="text/css">
-	<link rel="stylesheet" href="/Public/Home/style/bottomnav.css" type="text/css">
+			<link rel="stylesheet" href="/Public/Home/style/index.css" type="text/css">
+		<link rel="stylesheet" href="/Public/Home/style/bottomnav.css" type="text/css">
 	<link rel="stylesheet" href="/Public/Home/style/footer.css" type="text/css">
-
 	<script type="text/javascript" src="/Public/Home/js/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript" src="/Public/Home/js/header.js"></script>
+			<script type="text/javascript" src="/Public/Home/js/index.js"></script>
 	</head>
 <body>
 	<!-- 顶部导航 start -->
@@ -23,7 +24,7 @@
 			</div>
 			<div class="topnav_right fr">
 				<ul>
-					<li>您好，欢迎来到京西！[<a href="login.html">登录</a>] [<a href="register.html">免费注册</a>] </li>
+					<li id ="logininfo">您好，欢迎来到京西！[<a href='/Home/Member/login.html'>登录</a>] [<a href='/Home/Member/register.html'>免费注册</a>] </li>
 					<li class="line">|</li>
 					<li>我的订单</li>
 					<li class="line">|</li>
@@ -34,7 +35,7 @@
 		</div>
 	</div>
 	<!-- 顶部导航 end -->
-	
+	<div style="clear:both;"></div>
 	<!-- 内容 -->
 	
 	<div style="clear:both;"></div>
@@ -97,10 +98,7 @@
 						<div style="clear:both;"></div>
 						<div class="viewlist mt10">
 							<h3>最近浏览的商品：</h3>
-							<ul>
-								<li><a href=""><img src="/Public/Home/images/view_list1.jpg" alt="" /></a></li>
-								<li><a href=""><img src="/Public/Home/images/view_list2.jpg" alt="" /></a></li>
-								<li><a href=""><img src="/Public/Home/images/view_list3.jpg" alt="" /></a></li>
+							<ul id="recent_display_id">
 							</ul>
 						</div>
 					</dd>
@@ -166,12 +164,6 @@
 								    <!-- 循环三级分类 -->
 								    								</dd>
 							</dl>
-															<dl >
-								<dt><a href="">4G手机</a></dt>
-								<dd>
-								    <!-- 循环三级分类 -->
-								    								</dd>
-							</dl>
 														
 
 						</div>
@@ -224,18 +216,6 @@
 								    <!-- 循环三级分类 -->
 								    								</dd>
 							</dl>
-															<dl >
-								<dt><a href="">电池</a></dt>
-								<dd>
-								    <!-- 循环三级分类 -->
-								    								</dd>
-							</dl>
-															<dl >
-								<dt><a href="">读卡器和内存卡</a></dt>
-								<dd>
-								    <!-- 循环三级分类 -->
-								    								</dd>
-							</dl>
 														
 
 						</div>
@@ -250,80 +230,6 @@
 					</div>
 											<div class="cat ">
 						<h3><a href="">耳机</a> <b></b></h3>
-						<div class="cat_detail">
-							<!-- 循环二级分类 -->
-														
-
-						</div>
-					</div>
-											<div class="cat ">
-						<h3><a href="">电池</a> <b></b></h3>
-						<div class="cat_detail">
-							<!-- 循环二级分类 -->
-														
-
-						</div>
-					</div>
-											<div class="cat ">
-						<h3><a href="">读卡器和内存卡</a> <b></b></h3>
-						<div class="cat_detail">
-							<!-- 循环二级分类 -->
-														
-
-						</div>
-					</div>
-											<div class="cat ">
-						<h3><a href="">充值卡</a> <b></b></h3>
-						<div class="cat_detail">
-							<!-- 循环二级分类 -->
-															<dl class="dl_1st">
-								<dt><a href="">小灵通/固话充值卡</a></dt>
-								<dd>
-								    <!-- 循环三级分类 -->
-								    								</dd>
-							</dl>
-															<dl >
-								<dt><a href="">移动手机充值卡</a></dt>
-								<dd>
-								    <!-- 循环三级分类 -->
-								    								</dd>
-							</dl>
-															<dl >
-								<dt><a href="">联通手机充值卡</a></dt>
-								<dd>
-								    <!-- 循环三级分类 -->
-								    								</dd>
-							</dl>
-														
-
-						</div>
-					</div>
-											<div class="cat ">
-						<h3><a href="">小灵通/固话充值卡</a> <b></b></h3>
-						<div class="cat_detail">
-							<!-- 循环二级分类 -->
-														
-
-						</div>
-					</div>
-											<div class="cat ">
-						<h3><a href="">移动手机充值卡</a> <b></b></h3>
-						<div class="cat_detail">
-							<!-- 循环二级分类 -->
-														
-
-						</div>
-					</div>
-											<div class="cat ">
-						<h3><a href="">联通手机充值卡</a> <b></b></h3>
-						<div class="cat_detail">
-							<!-- 循环二级分类 -->
-														
-
-						</div>
-					</div>
-											<div class="cat ">
-						<h3><a href="">4G手机</a> <b></b></h3>
 						<div class="cat_detail">
 							<!-- 循环二级分类 -->
 														
@@ -352,6 +258,27 @@
 	</div>
 	<!-- 头部 end-->
 
+<script type="text/javascript">
+	var img_url = "/Uploads/";
+	// 获取商品最近浏览过的商品
+	$.ajax({
+		url: '/Home/Index/ajaxGetRecentDisplayGoods.html',
+		type: 'GET',
+		dataType: 'json',
+		success : function(data)
+		{
+			var str = '';
+			// 把商品的信息显示在页面中
+			$(data).each(function(k,v){
+				str += '<li><a href="/Home/Index/goods/id/'+v.id+'"><img src="'+img_url+v.goods_thumb+'" alt="'+v.goods_name+'"  title="'+v.goods_name+'" /></a></li>';
+
+			});
+			$('#recent_display_id').html(str);
+		}
+	});
+	
+	
+</script>
 <!-- 综合区域 start 包括幻灯展示，商城快报 -->
 	<div class="colligate w1210 bc mt10">
 		<!-- 幻灯区域 start -->
@@ -488,7 +415,7 @@
 			<h2>
 				<span class="on">疯狂抢购</span>
 				<span>热卖商品</span>
-				<span>推荐商品</span>
+				<span>精品推荐</span>
 				<span>新品上架</span>
 				<span class="last">猜您喜欢</span>
 			</h2>
@@ -497,126 +424,133 @@
 				<!-- 疯狂抢购 start-->
 				<div class="crazy">
 					<ul>
-						<li>
-							<dl>
-								<dt><a href=""><img src="/Public/Home/images/crazy1.jpg" alt="" /></a></dt>
-								<dd><a href="">惠普G4-1332TX 14英寸</a></dd>
-								<dd><span>售价：</span><strong> ￥2999.00</strong></dd>
-							</dl>
-						</li>
-						<li>
-							<dl>
-								<dt><a href=""><img src="/Public/Home/images/crazy2.jpg" alt="" /></a></dt>
-								<dd><a href="">直降100元！TCL118升冰箱</a></dd>
-								<dd><span>售价：</span><strong> ￥800.00</strong></dd>
-							</dl>
-						</li>
-						<li>
-							<dl>
-								<dt><a href=""><img src="/Public/Home/images/crazy3.jpg" alt="" /></a></dt>
-								<dd><a href="">康佳液晶37寸电视机</a></dd>
-								<dd><span>售价：</span><strong> ￥2799.00</strong></dd>
-							</dl>
-						</li>
-						<li>
-							<dl>
-								<dt><a href=""><img src="/Public/Home/images/crazy4.jpg" alt="" /></a></dt>
-								<dd><a href="">梨子平板电脑7.9寸</a></dd>
-								<dd><span>售价：</span><strong> ￥1999.00</strong></dd>
-							</dl>
-						</li>
-						<li>
-							<dl>
-								<dt><a href=""><img src="/Public/Home/images/crazy5.jpg" alt="" /></a></dt>
-								<dd><a href="">好声音耳机</a></dd>
-								<dd><span>售价：</span><strong> ￥199.00</strong></dd>
-							</dl>
-						</li>
-					</ul>	
+											</ul>	
 				</div>
 				<!-- 疯狂抢购 end-->
 
 				<!-- 热卖商品 start -->
 				<div class="hot none">
 					<ul>
-						<li>
+												<li>
 							<dl>
-								<dt><a href=""><img src="/Public/Home/images/hot1.jpg" alt="" /></a></dt>
-								<dd><a href="">索尼双核五英寸四核手机！</a></dd>
-								<dd><span>售价：</span><strong> ￥1386.00</strong></dd>
+								<dt><a href="/Home/Index/goods/id/42.html"><img src='/Uploads/Admin/thumb_0_56246629a17cc.jpg'   /></a></dt>
+								<dd><a href="/Home/Index/goods/id/42.html">魅族pro5</a></dd>
+								<dd><span>售价：</span><strong> ￥2799.00元</strong></dd>
 							</dl>
 						</li>
-						<li>
+												<li>
 							<dl>
-								<dt><a href=""><img src="/Public/Home/images/hot2.jpg" alt="" /></a></dt>
-								<dd><a href="">华为通话平板仅需969元！</a></dd>
-								<dd><span>售价：</span><strong> ￥969.00</strong></dd>
+								<dt><a href="/Home/Index/goods/id/12.html"><img src='/Uploads/Admin/thumb_0_561eeff513a39.png'   /></a></dt>
+								<dd><a href="/Home/Index/goods/id/12.html">oppa MAX5</a></dd>
+								<dd><span>售价：</span><strong> ￥1499.00元</strong></dd>
 							</dl>
 						</li>
-						<li>
+												<li>
 							<dl>
-								<dt><a href=""><img src="/Public/Home/images/hot3.jpg" alt="" /></a></dt>
-								<dd><a href="">卡姿兰明星单品7件彩妆套装</a></dd>
-								<dd><span>售价：</span><strong> ￥169.00</strong></dd>
+								<dt><a href="/Home/Index/goods/id/13.html"><img src='/Uploads/'   /></a></dt>
+								<dd><a href="/Home/Index/goods/id/13.html">测试商品05</a></dd>
+								<dd><span>售价：</span><strong> ￥1499.00元</strong></dd>
 							</dl>
 						</li>
-					</ul>
+												<li>
+							<dl>
+								<dt><a href="/Home/Index/goods/id/14.html"><img src='/Uploads/Admin/thumb_0_5620398227193.jpg'   /></a></dt>
+								<dd><a href="/Home/Index/goods/id/14.html">测试商品10</a></dd>
+								<dd><span>售价：</span><strong> ￥1499.00元</strong></dd>
+							</dl>
+						</li>
+												<li>
+							<dl>
+								<dt><a href="/Home/Index/goods/id/19.html"><img src='/Uploads/'   /></a></dt>
+								<dd><a href="/Home/Index/goods/id/19.html">苹果手机01</a></dd>
+								<dd><span>售价：</span><strong> ￥1499.00元</strong></dd>
+							</dl>
+						</li>
+											</ul>
 				</div>
 				<!-- 热卖商品 end -->
 
 				<!-- 推荐商品 atart -->
 				<div class="recommend none">
 					<ul>
-						<li>
+												<li>
 							<dl>
-								<dt><a href=""><img src="/Public/Home/images/recommend1.jpg" alt="" /></a></dt>
-								<dd><a href="">黄飞红麻辣花生整箱特惠装</a></dd>
-								<dd><span>售价：</span><strong> ￥139.00</strong></dd>
+								<dt><a href="/Home/Index/goods/id/42.html"><img src='/Uploads/Admin/thumb_0_56246629a17cc.jpg'   /></a></dt>
+								<dd><a href="/Home/Index/goods/id/42.html">魅族pro5</a></dd>
+								<dd><span>售价：</span><strong> ￥2799.00元</strong></dd>
 							</dl>
 						</li>
-						<li>
+												<li>
 							<dl>
-								<dt><a href=""><img src="/Public/Home/images/recommend2.jpg" alt="" /></a></dt>
-								<dd><a href="">戴尔IN1940MW 19英寸LE</a></dd>
-								<dd><span>售价：</span><strong> ￥679.00</strong></dd>
+								<dt><a href="/Home/Index/goods/id/12.html"><img src='/Uploads/Admin/thumb_0_561eeff513a39.png'   /></a></dt>
+								<dd><a href="/Home/Index/goods/id/12.html">oppa MAX5</a></dd>
+								<dd><span>售价：</span><strong> ￥1499.00元</strong></dd>
 							</dl>
 						</li>
-						<li>
+												<li>
 							<dl>
-								<dt><a href=""><img src="/Public/Home/images/recommend3.jpg" alt="" /></a></dt>
-								<dd><a href="">罗辑思维音频车载CD</a></dd>
-								<dd><span>售价：</span><strong> ￥24.80</strong></dd>
+								<dt><a href="/Home/Index/goods/id/13.html"><img src='/Uploads/'   /></a></dt>
+								<dd><a href="/Home/Index/goods/id/13.html">测试商品05</a></dd>
+								<dd><span>售价：</span><strong> ￥1499.00元</strong></dd>
 							</dl>
 						</li>
-					</ul>
+												<li>
+							<dl>
+								<dt><a href="/Home/Index/goods/id/14.html"><img src='/Uploads/Admin/thumb_0_5620398227193.jpg'   /></a></dt>
+								<dd><a href="/Home/Index/goods/id/14.html">测试商品10</a></dd>
+								<dd><span>售价：</span><strong> ￥1499.00元</strong></dd>
+							</dl>
+						</li>
+												<li>
+							<dl>
+								<dt><a href="/Home/Index/goods/id/19.html"><img src='/Uploads/'   /></a></dt>
+								<dd><a href="/Home/Index/goods/id/19.html">苹果手机01</a></dd>
+								<dd><span>售价：</span><strong> ￥1499.00元</strong></dd>
+							</dl>
+						</li>
+											</ul>
 				</div>
 				<!-- 推荐商品 end -->
 			
 				<!-- 新品上架 start-->
 				<div class="new none">
 					<ul>
-						<li>
+												<li>
 							<dl>
-								<dt><a href=""><img src="/Public/Home/images/new1.jpg" alt="" /></a></dt>
-								<dd><a href="">E路航T70超薄GPS 7寸大屏！</a></dd>
-								<dd><span>售价：</span><strong> ￥369.00</strong></dd>
+								<dt><a href="/Home/Index/goods/id/42.html"><img src='/Uploads/Admin/thumb_0_56246629a17cc.jpg'   /></a></dt>
+								<dd><a href="/Home/Index/goods/id/42.html">魅族pro5</a></dd>
+								<dd><span>售价：</span><strong> ￥2799.00元</strong></dd>
 							</dl>
 						</li>
-						<li>
+												<li>
 							<dl>
-								<dt><a href=""><img src="/Public/Home/images/new2.jpg" alt="" /></a></dt>
-								<dd><a href="">乐和居 爆品 特价疯狂抢</a></dd>
-								<dd><span>售价：</span><strong> ￥2799.00</strong></dd>
+								<dt><a href="/Home/Index/goods/id/12.html"><img src='/Uploads/Admin/thumb_0_561eeff513a39.png'   /></a></dt>
+								<dd><a href="/Home/Index/goods/id/12.html">oppa MAX5</a></dd>
+								<dd><span>售价：</span><strong> ￥1499.00元</strong></dd>
 							</dl>
 						</li>
-						<li>
+												<li>
 							<dl>
-								<dt><a href=""><img src="/Public/Home/images/new3.jpg" alt="" /></a></dt>
-								<dd><a href="">北欧 套装 抄底再续最后几小时</a></dd>
-								<dd><span>售价：</span><strong> ￥999.00</strong></dd>
+								<dt><a href="/Home/Index/goods/id/13.html"><img src='/Uploads/'   /></a></dt>
+								<dd><a href="/Home/Index/goods/id/13.html">测试商品05</a></dd>
+								<dd><span>售价：</span><strong> ￥1499.00元</strong></dd>
 							</dl>
 						</li>
-					</ul>
+												<li>
+							<dl>
+								<dt><a href="/Home/Index/goods/id/14.html"><img src='/Uploads/Admin/thumb_0_5620398227193.jpg'   /></a></dt>
+								<dd><a href="/Home/Index/goods/id/14.html">测试商品10</a></dd>
+								<dd><span>售价：</span><strong> ￥1499.00元</strong></dd>
+							</dl>
+						</li>
+												<li>
+							<dl>
+								<dt><a href="/Home/Index/goods/id/19.html"><img src='/Uploads/'   /></a></dt>
+								<dd><a href="/Home/Index/goods/id/19.html">苹果手机01</a></dd>
+								<dd><span>售价：</span><strong> ￥1499.00元</strong></dd>
+							</dl>
+						</li>
+											</ul>
 				</div>
 				<!-- 新品上架 end-->
 
@@ -970,9 +904,8 @@
 	</div>
 	<!-- 底部导航 end -->
 
-
-	<div style="clear:both;"></div>
 	<!-- 底部版权 start -->
+	<div style="clear:both;"></div>
 	<div class="footer w1210 bc mt10">
 		<p class="links">
 			<a href="">关于我们</a> |
@@ -1001,3 +934,18 @@
 
 </body>
 </html>
+<script type="text/javascript">
+	$.ajax({
+		url: "/Home/Member/ajaxChkLogin.html",
+		type: 'GET',
+		dataType: 'json',
+		success:function(data)
+		{
+			if(data.ok == 1 )
+				var html = "您好，"+data.email+"[<a href='/Home/Member/logout.html'>退出</a>] ";
+			else
+				var html = "您好，欢迎来到京西！[<a href='/Home/Member/login.html'>登录</a>] [<a href='/Home/Member/register.html'>免费注册</a>] ";
+			$("#logininfo").html(html);
+		}
+	});
+</script>

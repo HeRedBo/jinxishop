@@ -1,6 +1,40 @@
 <?php 
 	//公共的函数库
 	/**
+	 * 邮件发送函数
+	 */
+	function sendMail($to,$title,$content)
+	{
+		require_once('./Public/PHPMailer_v5.1/class.phpmailer.php');
+		$mail = new PHPMailer();
+		//设置为发送邮件
+		$mail->IsSMTP();
+		//是否允许发送html代码作为邮件的内容
+		$mail->IsHTML();
+		//是否需要身份验证
+		$mail->SMTPAuth = TRUE;
+		$mail->CharSet  = 'UTF-8';
+		/*设置邮件服务器的账号是什么*/ 
+		$mail->From 	= C('MAIL_ADDRESS');
+		$mail->FromName = C('MAIL_FROM');
+		$mail->Host = C('MAIL_SMTP');
+		$mail->Username = C('MAIL_LOGINNAME');
+
+		$mail->Password = C('MAIL_PASSWORD');
+		// 发送邮件的端口默认是25
+		$mail->Port = 25;
+		
+		//邮件标题
+		$mail->Subject = $title;
+		//收件人
+		$mail->AddAddress('1196450116@qq.com');
+		//邮件内容
+		//$mail->Body    = $content;
+		$mail->MsgHTML($content);
+		return($mail->Send());
+
+	}
+	/**
 	 * 过滤函数 防止网站受XSS 攻击 (单例模式)
 	 */
 	function removeXSS($val)

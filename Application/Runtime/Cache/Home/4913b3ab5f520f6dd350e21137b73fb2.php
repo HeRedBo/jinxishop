@@ -4,16 +4,15 @@
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 	<title><?php echo ($page_title); ?></title>
 	<meta name="keywords" content="<?php echo ($page_keywords); ?>"/>
+	<meta name="description" content="<?php echo ($page_description); ?>"/>
 	<link rel="stylesheet" href="/Public/Home/style/base.css" type="text/css">
 	<link rel="stylesheet" href="/Public/Home/style/global.css" type="text/css">
 	<link rel="stylesheet" href="/Public/Home/style/header.css" type="text/css">
 	<?php foreach ($page_css as $k => $v): ?>
 		<link rel="stylesheet" href="/Public/Home/style/<?php echo ($v); ?>.css" type="text/css">
 	<?php endforeach; ?>
-	<link rel="stylesheet" href="/Public/Home/style/index.css" type="text/css">
 	<link rel="stylesheet" href="/Public/Home/style/bottomnav.css" type="text/css">
 	<link rel="stylesheet" href="/Public/Home/style/footer.css" type="text/css">
-
 	<script type="text/javascript" src="/Public/Home/js/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript" src="/Public/Home/js/header.js"></script>
 	<?php foreach ($page_js as $k => $v): ?>
@@ -29,7 +28,7 @@
 			</div>
 			<div class="topnav_right fr">
 				<ul>
-					<li>您好，欢迎来到京西！[<a href="login.html">登录</a>] [<a href="register.html">免费注册</a>] </li>
+					<li id ="logininfo">您好，欢迎来到京西！[<a href='<?php echo U('Home/Member/login') ?>'>登录</a>] [<a href='<?php echo U('Home/Member/register') ?>'>免费注册</a>] </li>
 					<li class="line">|</li>
 					<li>我的订单</li>
 					<li class="line">|</li>
@@ -40,7 +39,7 @@
 		</div>
 	</div>
 	<!-- 顶部导航 end -->
-	
+	<div style="clear:both;"></div>
 	<!-- 内容 -->
 	
 <?php  $catModel = D('Admin/Category'); $catData = $catModel->newGetNavData() ?>
@@ -253,9 +252,8 @@
 	</div>
 	<!-- 底部导航 end -->
 
-
-	<div style="clear:both;"></div>
 	<!-- 底部版权 start -->
+	<div style="clear:both;"></div>
 	<div class="footer w1210 bc mt10">
 		<p class="links">
 			<a href="">关于我们</a> |
@@ -284,3 +282,18 @@
 
 </body>
 </html>
+<script type="text/javascript">
+	$.ajax({
+		url: "<?php echo U('Home/Member/ajaxChkLogin') ?>",
+		type: 'GET',
+		dataType: 'json',
+		success:function(data)
+		{
+			if(data.ok == 1 )
+				var html = "您好，"+data.email+"[<a href='<?php echo U('Home/Member/logout'); ?>'>退出</a>] ";
+			else
+				var html = "您好，欢迎来到京西！[<a href='<?php echo U('Home/Member/login') ?>'>登录</a>] [<a href='<?php echo U('Home/Member/register') ?>'>免费注册</a>] ";
+			$("#logininfo").html(html);
+		}
+	});
+</script>

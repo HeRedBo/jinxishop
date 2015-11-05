@@ -1,0 +1,1 @@
+SELECT a.goods_name,IFNULL(sum(b.goods_number),0) gn from shop_goods a LEFT JOIN shop_goods_number b on a.id = b.goods_id GROUP BY a.id
