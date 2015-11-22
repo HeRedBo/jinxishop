@@ -41,7 +41,7 @@ class IndexController extends BaseController {
         $goodsId  = I('get.id');
         $goodsModel = M('Goods');
         $info = $goodsModel->find($goodsId);
-
+      
         //取出商品的图片
         $gpModel = M('GoodsPics');
         $gpData = $gpModel->where(array('goods_id'=>array('eq',$goodsId)))->select();

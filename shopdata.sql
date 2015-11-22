@@ -318,3 +318,65 @@ CREATE TABLE shop_member(
 	primary key (id)
 )engine= MyISAM default charset = utf8 comment '会员表';
 
+--------------- 商品评论表
+DROP TABLE IF EXISTS `shop_comment`;
+CREATE TABLE shop_comment 
+(
+	id mediumint unsigned not null auto_increment,
+	content varchar(1000) not null comment '评论内容',
+	star tinyint unsigned not null comment '星级',
+	addtime int unsigned not null default '3' comment '打分',
+	member_id mediumint unsigned not null comment '会员的id', 
+	goods_id mediumint unsigned not null comment '商品的id',
+	used smallint unsigned not null default '0' comment '有用的数量',
+	primary key(id),
+	key goods_id(goods_id)
+)engine= MyISAM default charset = utf8 comment '评论表';
+
+-- 回复表
+DROP TABLE IF EXISTS shop_reply;
+CREATE TABLE shop_reply
+(
+	id mediumint unsigned not null auto_increment,
+	content varchar(1000) not null comment '回复的内容',
+	addtime int unsigned not null comment '回复时间',
+	member_id mediumint unsigned not null comment '会员ID',
+	comment_id mediumint unsigned not null comment '评论的ID',
+	primary key(id),
+	key comment_id(comment_id)
+)engine=MyISAM default charset=utf8 comment '回复';
+
+
+--------- 用户点击有用的评论
+DROP TABLE IF EXISTS shop_clicked_use;
+CREATE TABLE shop_clicked_use
+(
+	member_id mediumint unsigned not null comment '会员的id',
+	comment_id mediumint unsigned not null comment '评论id',
+	primary key (member_id,comment_id) #因为这两个字段查询会一起用 所以直接创建联合索引
+)engine= MyISAM default charset = utf8 comment '用户点击有用的评论';
+# 判断会员是偶点击过3这天评论
+# SELECT COUNT(*) FROM shop_clicked_use WHERE member_id = 1 and comment_id = 3;
+
+DROP TABLE IF EXISTS shop_impression;
+CREATE TABLE shop_impression
+(
+	id mediumint unsigned not null auto_increment,
+	imp_name varchar(30) not null comment '印象的标题',
+	imp_count smallint unsigned not null default '1' comment '印象出现的次数',
+	goods_id mediumint unsigned not null comment '商品id',
+	primary key (id),
+	key goods_id(goods_id)
+)engine= MyISAM default charset = utf8 comment '印象';
+
+DROP TABLE IF EXISTS shop_cart ;
+CREATE TABLE shop_cart
+(
+	id mediumint unsigned not null auto_increment,
+	goods_id mediumint unsigned not null comment '商品的id',
+	goods_attr_id varchar(30) not null default '' comment '选择商品的属性',
+	goods_number int unsigned not null comment '购买数量',
+	member_id mediumint unsigned not null comment '会员的id',
+	primary key (id),
+	key member_id(member_id)
+) engine = InnoDB default charset = utf8 comment '购物车';

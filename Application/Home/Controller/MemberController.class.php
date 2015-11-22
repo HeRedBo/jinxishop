@@ -86,7 +86,17 @@ class MemberController extends BaseController
 			if($model->validate($model->_login_validate)->create(I('post.'),9))
 			{
 				if($model->login())
-					redirect('/'); // 登陆成功跳转直接到首页
+				{
+					$returnUrl = session('returnUrl');
+					if($returnUrl)
+					{
+						//先从session总删除掉 下次登陆正常跳转到首页
+						session('returnUrl',null);
+						redirect($returnUrl);
+					}
+					else
+						redirect('/'); // 登陆成功跳转直接到首页
+				}
 				
 
 					
@@ -131,6 +141,16 @@ class MemberController extends BaseController
 	{
 		session(null);
 		redirect('/');
+	}
+
+	/**
+	 * 保存用户登陆当前页页面地址
+	 */
+	public function saveAndLogin()
+	{
+		// 获取ajax 是从哪个页面中发过来的
+		session('returnUrl',$_SERVER['HTTP_REFERER']);
+		echo $_SERVER['HTTP_REFERER'];
 	}
 }
 

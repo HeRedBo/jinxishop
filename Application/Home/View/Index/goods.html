@@ -188,7 +188,8 @@
 
 						<li class="star"><span>商品评分：</span> <strong></strong><a href="">(已有21人评价)</a></li> <!-- 此处的星级切换css即可 默认为5星 star4 表示4星 star3 表示3星 star2表示2星 star1表示1星 -->
 					</ul>
-					<form action="" method="post" class="choose">
+					<form action="<?php echo U('Home/Cart/add')  ?>" method="post" class="choose">
+						<input type="hidden" name="goods_id" value="{$info.id}">
 						<ul>
 							<?php foreach ($gaData1 as $k => $v): ?>
 								<li class="product">
@@ -196,7 +197,7 @@
 									<dt>{$k}：</dt>
 									<dd>
 										<?php foreach ($v as $k1 => $v1): ?>
-											<a <?php if($k1==0) echo 'class="selected"'; ?> href="javascript:;">{$v1.attr_value} <input type="radio" name="color" value="{$v1.attr_value}" <?php if($k1==0) echo 'checked="checked"'; ?> /></a>
+											<a <?php if($k1==0) echo 'class="selected"'; ?> href="javascript:;">{$v1.attr_value} <input type="radio" name="goods_attr_id[<?php echo $v1['attr_id'] ?>]" value="{$v1.id}" <?php if($k1==0) echo 'checked="checked"'; ?> /></a>
 										<?php endforeach; ?>
 									</dd>
 								</dl>
@@ -439,16 +440,8 @@
 						</div>
 
 						<!-- 分页信息 start -->
-						<div class="page mt20">
-							<a href="">首页</a>
-							<a href="">上一页</a>
-							<a href="">1</a>
-							<a href="">2</a>
-							<a href="" class="cur">3</a>
-							<a href="">4</a>
-							<a href="">5</a>
-							<a href="">下一页</a>
-							<a href="">尾页</a>
+						<div id="comment_page" class="page mt20">
+							 <a style="widht:100px;margin:0 auto;" id="a_load_more" onclick ="ajaxGetCommentByPageNum()" href="javascript:void(0);">加载更多...</a>
 						</div>
 						<!-- 分页信息 end -->
 
@@ -521,9 +514,112 @@
  		{
  			if(data.login ==1)
  			{
- 				$('#comment_form').html('<form action=""><ul><li><label for=""> 评分：</label><input type="radio" name="grade"/> <strong class="star star5"></strong><input type="radio" name="grade"/> <strong class="star star4"></strong><input type="radio" name="grade"/> <strong class="star star3"></strong><input type="radio" name="grade"/> <strong class="star star2"></strong><input type="radio" name="grade"/> <strong class="star star1"></strong></li><li><label for="">评价内容：</label><textarea name="" id="" cols="" rows=""></textarea></li><li><label for="">&nbsp;</label><input type="submit" value="提交评论"  class="comment_btn"/></li></ul></form>');
+ 				$('#comment_form').html('<form id="comment_form_data" action=""><input type="hidden" name="goods_id" value="<?php echo $info['id']; ?>"id="" /><ul><li><label for=""> 评分：</label><input type="radio" name="grade" value="5"/> <strong class="star star5"></strong><input type="radio" name="grade" value="4"/> <strong class="star star4"></strong><input type="radio" name="grade" value="3" checked="checked"/> <strong class="star star3"></strong><input type="radio" name="grade" value="2"/> <strong class="star star2"></strong><input type="radio" name="grade" value="1"/> <strong class="star star1"></strong></li><li><label for="">评价内容：</label><textarea name="content" id="" cols="" rows=""></textarea></li><li><label for="">印象：</label><input type="text" name="yx" value="" />多个印象用,隔开</li><li><label for="">&nbsp;</label><input type="buuton" value="提交评论"  class="comment_btn"/></li></ul></form>');
+
+ 				// 为提交表单的按牛逼绑定一个点击事件
+ 				$('.comment_btn').click(function() 
+ 				{
+ 					var formData = $('#comment_form_data').serialize(); //序列换表单
+ 					// AJAX 的提交表单
+ 					$.ajax({
+ 						url: "<?php echo U('Home/Comment/add'); ?>",
+ 						type: 'POST',
+ 						dataType: 'json',
+ 						data: formData,
+ 						success:function(data)
+ 						{
+ 							if(data.ok=1)
+ 							{
+ 								
+ 								//先拼出评论的内容
+ 								var html = $('<div style="display:none;" class="comment_items mt10"> <div class="user_pic"> <dl> <dt><a href=""><img src="'+data.face+'" alt="" /></a></dt> <dd><a href="">'+data.email+'</a></dd> </dl> </div> <div class="item"> <div class="title"> <span>'+data.addtime+'</span> <strong class="star star'+data.star+'"></strong> <!-- star5表示5星级 start4表示4星级，以此类推 --> </div> <div class="comment_content"> '+data.content+'</div><div class="btns"><a href="" class="reply">回复(0)</a><a href="" class="useful">有用(0)</a></div></div><div class="cornor"></div></div>');
+ 						
+ 								$(".comment_summary").after(html);
+ 								// 清空表单
+ 								document.getElementById('comment_form_data').reset();
+ 								$("body").animate({scrollTop:"710px"},300,'linear',function(){html.fadeIn('slow');})
+
+ 							 }
+ 							else
+ 								alert(data.error);
+ 						}
+ 					});
+ 					
+ 					
+ 				});
  			}
  		}	
  	});
  	
+ 	// 点击登录时 先执行ajax 把当前的地址存放到session中
+ 	$('#login_a').click(function() {
+ 		$.ajax({
+ 			url: "<?php echo U('Home/Member/saveAndLogin'); ?>",
+ 			type: 'GET',
+ 			success:function(data)
+ 			{
+
+ 				location.href="<?php echo U('Home/Member/login');?>";
+ 			}
+ 		});
+ 	});
+ 	
+ 	// 发送请求的开头
+ 	var pending = 0; //当前是否正在发送请求
+ 	// 先获取加载更多按钮的指针
+ 	var a_load_more = $('#a_load_more');
+ 	// ajax 获取评论的数据 每页显示五条 当滚动条到最后一条评论是，在自动加载5条评论
+ 	var current_comment_page = 1; // 应该加载第几页的评论
+ 	// ajax获取莫一页的评论
+ 	function ajaxGetCommentByPageNum()
+ 	{
+ 		$.ajax({
+ 			url: "<?php echo U('Home/Comment/ajaxGetComment','',FALSE); ?>/p/"+current_comment_page+"/goods_id/"+<?php echo $info['id'] ?>,
+ 			type: 'GET',
+ 			dataType: "json",
+ 			success : function(data)
+ 			{
+ 				//循环服务器返回的数据拼成html字符
+ 				var html = '<div style="display:none;">';
+ 				$.each(data,function(k,v){
+
+ 					html += '<div class="comment_items mt10"> <div class="user_pic"> <dl> <dt><a href=""><img src="'+v.face+'" alt="" /></a></dt> <dd><a href="">'+v.email+'</a></dd> </dl> </div> <div class="item"> <div class="title"> <span>'+v.addtime+'</span> <strong class="star star'+v.star+'"></strong> <!-- star5表示5星级 start4表示4星级，以此类推 --> </div> <div class="comment_content">'+v['content']+'</div> <div class="btns"> <a href="" class="reply">回复('+v.reply_count+')</a> <a href="" class="useful">有用('+v.used+')</a> </div> </div> <div class="cornor"></div> </div>';
+ 				});
+ 				html += "</div>";
+ 				html = $(html);
+ 				//将数据放到页面中
+ 				$('#comment_page').before(html);
+ 				//效果显示评论的内容
+ 				html.fadeIn('slow');
+ 				current_comment_page ++; //下一次去下一页
+ 				if(data == null)
+ 				{
+ 					//如果没有评论数据
+ 					$(window).unbind('scroll');
+ 					a_load_more.remove();
+ 				}
+ 				pending = 0; //可以发下一次请求
+ 			}
+ 		});
+ 	}
+
+ 	 //先获取窗口的高度
+ 	 var wp = $(window).height();
+ 	 $(window).scroll(function(){
+ 	 	// 如果当前正在发送请求中就不再响应事件
+ 	 	if(pending == 1)
+ 	 		return;
+ 	 	// 获取家中更多按钮的所在的位置
+ 	 	var p = a_load_more.offset();
+ 	 	if( p == 0)
+ 	 		return ;
+ 	 	// 获取滚动了多高
+ 	 	var sh = $(window).scrollTop();
+ 	 	//如果窗口的高度加上滚动条的高度大于按钮上面的距离就说明出现在屏幕上
+ 	 	if((sh + wp - 400) > p.top) 
+ 	 	{
+ 	 		pending = 1; // 标志当前正在发送ajax请求
+ 	 		a_load_more.trigger("click");
+ 	 	}
+ 	 })
  </script>
