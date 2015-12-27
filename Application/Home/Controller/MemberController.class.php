@@ -150,7 +150,44 @@ class MemberController extends BaseController
 	{
 		// 获取ajax 是从哪个页面中发过来的
 		session('returnUrl',$_SERVER['HTTP_REFERER']);
-		echo $_SERVER['HTTP_REFERER'];
+		//echo $_SERVER['HTTP_REFERER'];
+	}
+
+	/**
+	 * QQ登陆方法
+	 * @author Red-Bo
+	 * @date 2015-12-28 00:16:53
+	 */
+	public function qqlogin()
+	{
+		// 调用QQ 的两个接口获取openid
+		include_once("./Public/QQ/oauth/qq_callback.php");
+
+		$member = D("Admin/Member");
+		$user = $member->field("email")->where(array("openid" => array("eq" => $_SESSION['openid'])))->find();
+
+		if($user)
+		{
+			// 如果有这个会员就让这个会员为登陆状态
+			$member->email = $user['email'];
+			if($member->login(FALSE) == FALSE)
+			{
+				header("Content-type:text/html;charset=utf8");
+				die($member->getError());
+			}
+			echo <<<JS
+			<script>
+				opener.window.location.href='/';
+				window.close();
+			</script>
+JS;
+		}
+		else
+		{
+			// 如果是第一次用QQ登陆那么应该显示一个表单引导用户关联一个账号
+			redirect(U('login'));
+		}
+
 	}
 }
 

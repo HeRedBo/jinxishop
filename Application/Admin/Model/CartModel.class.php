@@ -148,7 +148,7 @@ class CartModel extends Model
 					'goods_id' 		=> array('eq',$gid),
 					'goods_attr_id' => array('eq',$gaid),
 					'member_id' 	=> array('eq',$mid)
-				))->setFiled('goods_number',$n);
+				))->setField('goods_number',$gn);
 			}
 		}
 		else
@@ -168,4 +168,8 @@ class CartModel extends Model
  
 		}
 	}
+
+	/**
+	 * 
+	 */
 }

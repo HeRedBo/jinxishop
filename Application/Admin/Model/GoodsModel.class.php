@@ -76,6 +76,7 @@ class GoodsModel extends Model
 			$where['addtime'] = array('egt', strtotime("$addtimefrom 00:00:00"));
 		elseif($addtimeto)
 			$where['addtime'] = array('elt', strtotime("$addtimeto 23:59:59"));
+		
 		/************************************* 翻页 ****************************************/
 		$count = $this->alias('a')->where($where)->count();
 		$page = new \Think\Page($count, $pageSize);
@@ -83,6 +84,7 @@ class GoodsModel extends Model
 		$page->setConfig('prev', '上一页');
 		$page->setConfig('next', '下一页');
 		$data['page'] = $page->show();
+
 		/************************************** 取数据 ******************************************/
 		$data['data'] = $this->field('a.*,IFNULL(sum(b.goods_number),0) gn')->alias('a')->join('left join shop_goods_number b on a.id = b.goods_id')->where($where)->group('a.id')->limit($page->firstRow.','.$page->listRows)->select();
 		return $data;
@@ -467,6 +469,7 @@ class GoodsModel extends Model
 	 */
 	public function getMemberPrice($goodsId)
 	{
+		
 		$now = time();
 		//先判断是否有促销
 		$price = $this->field('shop_price,is_promote,promote_price,promote_start_time,promote_end_time')->find($goodsId);
@@ -479,8 +482,9 @@ class GoodsModel extends Model
 		if(!$memberId)
 			return $price['shop_price'];
 		//就算会员价格
-		$mpModel = M('MemberPirce');
+		$mpModel = M('MemberPrice');
 		$mprice = $mpModel->field('price')->where(array('goods_id'=>array('eq',$goodsId),'level_id'=>array('eq',session('mid'))))->find();
+
 		// 如果会员有会员价格就直接使用会员价格
 		if($mprice)
 			return $mprice['price'];

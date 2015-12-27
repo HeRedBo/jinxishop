@@ -10,7 +10,11 @@
 	<!-- 登录主体部分start -->
 	<div class="login w990 bc mt10">
 		<div class="login_hd">
-			<h2>用户登录</h2>
+			<h2>用户登录
+			<?php 
+				if(isset($_SERSSION['openid']))
+					echo "请手动登陆一次，把QQ绑定到你的登陆的账号上";
+			 ?>	</h2>
 			<b></b>
 		</div>
 		<div class="login_bd">
@@ -43,18 +47,18 @@
 					</ul>
 				</form>
 
-				<!-- <div class="coagent mt15">
+				<div class="coagent mt15">
 					<dl>
 						<dt>使用合作网站登录商城：</dt>
-						<dd class="qq"><a href=""><span></span>QQ</a></dd>
-						<dd class="weibo"><a href=""><span></span>新浪微博</a></dd>
+						<dd class="qq"><a href="javascript:void(0);" onclick="toQQlogin"><span></span>QQ</a></dd>
+						<!-- <dd class="weibo"><a href=""><span></span>新浪微博</a></dd>
 						<dd class="yi"><a href=""><span></span>网易</a></dd>
 						<dd class="renren"><a href=""><span></span>人人</a></dd>
 						<dd class="qihu"><a href=""><span></span>奇虎360</a></dd>
 						<dd class=""><a href=""><span></span>百度</a></dd>
-						<dd class="douban"><a href=""><span></span>豆瓣</a></dd>
+						<dd class="douban"><a href=""><span></span>豆瓣</a></dd> -->
 					</dl>
-				</div> -->
+				</div>
 			</div>
 			
 			<div class="guide fl">
@@ -67,3 +71,9 @@
 		</div>
 	</div>
 	<!-- 登录主体部分end -->
+<script type=""text/javascript>
+	function toQQlogin()
+	{
+		window.open("/Publc/QQ/oauth/qq_login.php","TencentLogin","width=450,height=320,munubar=0,scrollbars =1,resizable=1,status=1,titlebar=0,toolbar=0,location=1");
+	}
+</script>

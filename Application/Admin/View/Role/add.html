@@ -38,7 +38,7 @@ $(":submit").click(function() {
     var _this = $(this);
     setInterval(function(){
         if(--sec == 0)
-            $("form['name=main_form']").submit();
+            $("form[name=main_form]").submit();
         else
             _this.val(sec + "秒后提交");
         _this.val();

@@ -59,39 +59,55 @@ HTML;
 	}
 
 	/**
-	 * 模型登陆方法
+	 * 模型登陆方法 | 设置登陆方法没有密码也可以登陆 QQ登陆需要用到
 	 * @author Red-Bo
 	 * @data 2015-10-29 00:08:12
 	 */
-	public function login()
+	public function login($usePassword = TRUE)
 	{
 		$email 		= $this->email;
-		$password 	= $this->password;
+		if($usePassword)
+			$password 	= $this->password;
 		$user = $this->where(array('email' => array('eq',$email)))->find();
+
 		if($user)
 		{
 			// 判断是否已经通过邮件验证
 			if(empty($user['email_code']))
 			{
-				//判断密码是否正确
-				if(md5($password.C('MD5_KEY')) == $user['password'])
+				if($usePassword)
 				{
+					if(md5($password.C('MD5_KEY')) != $user['password'])
+					{
+						$this->error = "密码错误！";
+						return FALSE;
+					}
+					
+				}
+			
 					session('mid',$user['id']);
 					session('email',$user['email']);
 					session('jyz',$user['jyz']);
 					//取出当前登陆会员所在的这个级别id和这个级别的折扣
 					$mlModel = M('MemberLevel');
 					$ml = $mlModel->field('id,rate')->where("{$user['jyz']} BETWEEN bottom_num AND top_num")->find();
+					
+					//$ml = $mlModel->field('id,rate')->where("{$user['jyz']} BETWEEN bottom_num AND top_num")->find();
+					
 					session('level_id',$ml['id']);
 					session('rate',$ml['rate']/100);
+
+					// 用户登录需要把购物车数据从cookie 移动到数据库
+					$cartModel = D("Admin/Cart");
+					$cartModel->moveDataToDb();
+					// 如果有openid 就绑定到这个账号上
+					if(isset($_SERVER['openid']))
+					{
+						$this->where(array('id' => array('eq',$user['id'])))->setField('openid',$_SERVER['openid']);
+					}
 					return TRUE;
 
-				}
-				else
-				{
-					$this->error = "密码错误！";
-					return FALSE;
-				}
+				
 			}
 			else
 			{
