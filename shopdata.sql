@@ -86,7 +86,8 @@ CREATE TABLE shop_admin
 )charset =utf8 engine = MyISAM comment '管理员';;
 
 -- 初始化管理账号
-INSERT INTO shop_admin VALUES(1,'root','45ffe91760ba14341a052575efffc9b6',1);
+INSERT INTO shop_admin VALUES(1,'root','0192023a7bbd73250516f069df18b500',1);
+admin
 -- 权限表
 DROP TABLE IF EXISTS shop_privilege;
 CREATE TABLE shop_privilege 
@@ -136,9 +137,9 @@ SELECT pri_id FROM shop_role_privilege WHERE role_id (1的结果)
 SELECT * FROM shop_privilege wnere id IN (2的结果)
 
 -- 最终
-SELECT * FROM shop_privilege wnere id IN (
+SELECT * FROM shop_privilege where id IN (
 	SELECT pri_id FROM shop_role_privilege WHERE role_id in 
-		SELECT role_id FROM shop_admin_role WHERE admin_id = 3
+		(SELECT role_id FROM shop_admin_role WHERE admin_id = 3)
 )
 
 -- 写法二 
@@ -315,9 +316,14 @@ CREATE TABLE shop_member(
 	face varchar(150) not null default '' comment '头像',
 	addtime int unsigned not null comment '注册时间',
 	email_code char(32) not null default '' comment '邮件验证的验证码 会员验证通过之后 会把这个字段清空 如果这个字段为空说明会员已经通过email验证',
+	jifen int unsigned not null default '0' comment '积分',
+	jyz int unsigned not null default '0' comment '经验值',
+	openid char(64) not null defaut '' comment '对应的QQ的openid',
 	primary key (id)
 )engine= MyISAM default charset = utf8 comment '会员表';
-
+alter table shop_member add jifen int unsigned not null default '0' comment '积分';
+alter table shop_member add jyz int unsigned not null default '0' comment '经验值';
+alter table shop_member add openid char(64) not null default '' comment '对应的QQ的openid';
 --------------- 商品评论表
 DROP TABLE IF EXISTS `shop_comment`;
 CREATE TABLE shop_comment 
@@ -380,3 +386,39 @@ CREATE TABLE shop_cart
 	primary key (id),
 	key member_id(member_id)
 ) engine = InnoDB default charset = utf8 comment '购物车';
+
+# 商城订单表
+DROP TABLE IF EXISTS shop_order;
+CREATE TABLE shop_order(
+	id mediumint unsigned not null auto_increment comment '主键id',
+	member_id mediumint unsigned not null comment '会员id',
+	addtime int unsigned not null comment '下单时间',
+	# 收货人信息
+	shr_name varchar(30) not null comment '收获人',
+	shr_province varchar(30) not null comment '省',
+	shr_city varchar(30) not null comment '市',
+	shr_area varchar(30) not null comment '地区',
+	shr_tel varchar(30) not null comment '联系方式',
+	shr_address varchar(100) not null comment '收货人详细地址',
+	total_price decimal(10,2) not null comment '订单总价',
+	post_method varchar(30) not null comment '发货方式',
+	pay_status tinyint not null default '0' comment '支付状态, 0:未支付,1:已支付', 
+	post_status tinyint unsigned not null default '0' comment '发货状态 0:未发货 1:已发货 2:已经到货',
+	primary key (`id`),
+	key member_id(`member_id`)
+)engine = InnoDB default charset = utf8 comment '订单表';
+
+# 订单商品表
+DROP TABLE IF EXISTS shop_order_goods;
+CREATE TABLE shop_order_goods
+(
+	order_id mediumint unsigned not null comment '订单的id',
+	member_id mediumint unsigned not null comment '会员的id',
+	goods_id mediumint unsigned not null comment '商品的id',
+	goods_attr_id varchar(30) not null default '' comment '选择的属性的id,如果有用，隔开',
+	goods_attr_str varchar(150) not null default '' comment '选择的属性的字符串',
+	goods_price decimal(10,2) not null comment '商品的价格',
+	goods_number int unsigned not null comment '购买商品的数量',
+	key order_id(`order_id`),
+	key goods_id(`goods_id`)
+)engine = InnoDB default charset = utf8 comment '订单商品';

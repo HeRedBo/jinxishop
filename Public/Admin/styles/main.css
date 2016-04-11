@@ -847,3 +847,8 @@ em, cite, th {
 .cloud_close a{}
 .cloud_close img{ position:absolute; right:10px; top:8px; border:none}
 .Start315{border: 1px solid #CC0000; background: #ffffcc; padding: 10px; margin-bottom: 5px;}
+
+
+/**** 翻页的样式 ****/
+span.current{padding:5px;margin:3px;background:#F00;color:#FFF;font-weight:bold;}
+a.num{padding:5px;border:1px solid #F00;margin:3px;}

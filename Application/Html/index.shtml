@@ -110,7 +110,7 @@
 			<div class="cart fl">
 				<dl>
 					<dt>
-						<a href="">去购物车结算</a>
+						<a href="/Home/Cart/lst.html">去购物车结算</a>
 						<b></b>
 					</dt>
 					<dd>
@@ -129,37 +129,40 @@
 		<!-- 导航条部分 start -->
 		<div class="nav w1210 bc mt10">
 			<!--  商品分类部分 start-->
-			<div class="category fl "> <!-- 非首页，需要添加cat1类 -->
-				<div class="cat_hd ">  <!-- 注意，首页在此div上只需要添加cat_hd类，非首页，默认收缩分类时添加上off类，鼠标滑过时展开菜单则将off类换成on类 -->
+			<div class="category fl "> 
+				<!-- 非首页，需要添加cat1类 -->
+				<div class="cat_hd ">  
+				<!-- 注意，首页在此div上只需要添加cat_hd类，非首页，默认收缩分类时添加上off类，鼠标滑过时展开菜单则将off类换成on类 -->
 					<h2>全部商品分类</h2>
 					<em></em>
 				</div>
 				
 				<div class="cat_bd ">
+				<!-- 循环顶级分类 -->
 											<div class="cat item1">
-						<h3><a href="">手机类型</a> <b></b></h3>
+						<h3><a href="/Home/Search/search/cid/1.html">手机类型</a> <b></b></h3>
 						<div class="cat_detail">
 							<!-- 循环二级分类 -->
 															<dl class="dl_1st">
-								<dt><a href="">CDMA手机</a></dt>
+								<dt><a href="/Home/Search/search/cid/1.html">CDMA手机</a></dt>
 								<dd>
 								    <!-- 循环三级分类 -->
 								    								</dd>
 							</dl>
 															<dl >
-								<dt><a href="">GSM手机</a></dt>
+								<dt><a href="/Home/Search/search/cid/1.html">GSM手机</a></dt>
 								<dd>
 								    <!-- 循环三级分类 -->
 								    								</dd>
 							</dl>
 															<dl >
-								<dt><a href="">3G手机</a></dt>
+								<dt><a href="/Home/Search/search/cid/1.html">3G手机</a></dt>
 								<dd>
 								    <!-- 循环三级分类 -->
 								    								</dd>
 							</dl>
 															<dl >
-								<dt><a href="">双模手机</a></dt>
+								<dt><a href="/Home/Search/search/cid/1.html">双模手机</a></dt>
 								<dd>
 								    <!-- 循环三级分类 -->
 								    								</dd>
@@ -169,7 +172,7 @@
 						</div>
 					</div>
 											<div class="cat ">
-						<h3><a href="">CDMA手机</a> <b></b></h3>
+						<h3><a href="/Home/Search/search/cid/2.html">CDMA手机</a> <b></b></h3>
 						<div class="cat_detail">
 							<!-- 循环二级分类 -->
 														
@@ -177,7 +180,7 @@
 						</div>
 					</div>
 											<div class="cat ">
-						<h3><a href="">GSM手机</a> <b></b></h3>
+						<h3><a href="/Home/Search/search/cid/3.html">GSM手机</a> <b></b></h3>
 						<div class="cat_detail">
 							<!-- 循环二级分类 -->
 														
@@ -185,7 +188,7 @@
 						</div>
 					</div>
 											<div class="cat ">
-						<h3><a href="">3G手机</a> <b></b></h3>
+						<h3><a href="/Home/Search/search/cid/4.html">3G手机</a> <b></b></h3>
 						<div class="cat_detail">
 							<!-- 循环二级分类 -->
 														
@@ -193,7 +196,7 @@
 						</div>
 					</div>
 											<div class="cat ">
-						<h3><a href="">双模手机</a> <b></b></h3>
+						<h3><a href="/Home/Search/search/cid/5.html">双模手机</a> <b></b></h3>
 						<div class="cat_detail">
 							<!-- 循环二级分类 -->
 														
@@ -201,17 +204,29 @@
 						</div>
 					</div>
 											<div class="cat ">
-						<h3><a href="">手机配件</a> <b></b></h3>
+						<h3><a href="/Home/Search/search/cid/6.html">手机配件</a> <b></b></h3>
 						<div class="cat_detail">
 							<!-- 循环二级分类 -->
 															<dl class="dl_1st">
-								<dt><a href="">充电器</a></dt>
+								<dt><a href="/Home/Search/search/cid/6.html">充电器</a></dt>
 								<dd>
 								    <!-- 循环三级分类 -->
 								    								</dd>
 							</dl>
 															<dl >
-								<dt><a href="">耳机</a></dt>
+								<dt><a href="/Home/Search/search/cid/6.html">耳机</a></dt>
+								<dd>
+								    <!-- 循环三级分类 -->
+								    								</dd>
+							</dl>
+															<dl >
+								<dt><a href="/Home/Search/search/cid/6.html">电池</a></dt>
+								<dd>
+								    <!-- 循环三级分类 -->
+								    								</dd>
+							</dl>
+															<dl >
+								<dt><a href="/Home/Search/search/cid/6.html">读卡器和内存卡</a></dt>
 								<dd>
 								    <!-- 循环三级分类 -->
 								    								</dd>
@@ -221,7 +236,7 @@
 						</div>
 					</div>
 											<div class="cat ">
-						<h3><a href="">充电器</a> <b></b></h3>
+						<h3><a href="/Home/Search/search/cid/7.html">充电器</a> <b></b></h3>
 						<div class="cat_detail">
 							<!-- 循环二级分类 -->
 														
@@ -229,7 +244,59 @@
 						</div>
 					</div>
 											<div class="cat ">
-						<h3><a href="">耳机</a> <b></b></h3>
+						<h3><a href="/Home/Search/search/cid/8.html">耳机</a> <b></b></h3>
+						<div class="cat_detail">
+							<!-- 循环二级分类 -->
+														
+
+						</div>
+					</div>
+											<div class="cat ">
+						<h3><a href="/Home/Search/search/cid/9.html">电池</a> <b></b></h3>
+						<div class="cat_detail">
+							<!-- 循环二级分类 -->
+														
+
+						</div>
+					</div>
+											<div class="cat ">
+						<h3><a href="/Home/Search/search/cid/11.html">读卡器和内存卡</a> <b></b></h3>
+						<div class="cat_detail">
+							<!-- 循环二级分类 -->
+														
+
+						</div>
+					</div>
+											<div class="cat ">
+						<h3><a href="/Home/Search/search/cid/12.html">充值卡</a> <b></b></h3>
+						<div class="cat_detail">
+							<!-- 循环二级分类 -->
+															<dl class="dl_1st">
+								<dt><a href="/Home/Search/search/cid/12.html">小灵通/固话充值卡</a></dt>
+								<dd>
+								    <!-- 循环三级分类 -->
+								    								</dd>
+							</dl>
+															<dl >
+								<dt><a href="/Home/Search/search/cid/12.html">移动手机充值卡</a></dt>
+								<dd>
+								    <!-- 循环三级分类 -->
+								    								</dd>
+							</dl>
+														
+
+						</div>
+					</div>
+											<div class="cat ">
+						<h3><a href="/Home/Search/search/cid/13.html">小灵通/固话充值卡</a> <b></b></h3>
+						<div class="cat_detail">
+							<!-- 循环二级分类 -->
+														
+
+						</div>
+					</div>
+											<div class="cat ">
+						<h3><a href="/Home/Search/search/cid/14.html">移动手机充值卡</a> <b></b></h3>
 						<div class="cat_detail">
 							<!-- 循环二级分类 -->
 														
@@ -431,41 +498,6 @@
 				<!-- 热卖商品 start -->
 				<div class="hot none">
 					<ul>
-												<li>
-							<dl>
-								<dt><a href="/Home/Index/goods/id/42.html"><img src='/Uploads/Admin/thumb_0_56246629a17cc.jpg'   /></a></dt>
-								<dd><a href="/Home/Index/goods/id/42.html">魅族pro5</a></dd>
-								<dd><span>售价：</span><strong> ￥2799.00元</strong></dd>
-							</dl>
-						</li>
-												<li>
-							<dl>
-								<dt><a href="/Home/Index/goods/id/12.html"><img src='/Uploads/Admin/thumb_0_561eeff513a39.png'   /></a></dt>
-								<dd><a href="/Home/Index/goods/id/12.html">oppa MAX5</a></dd>
-								<dd><span>售价：</span><strong> ￥1499.00元</strong></dd>
-							</dl>
-						</li>
-												<li>
-							<dl>
-								<dt><a href="/Home/Index/goods/id/13.html"><img src='/Uploads/'   /></a></dt>
-								<dd><a href="/Home/Index/goods/id/13.html">测试商品05</a></dd>
-								<dd><span>售价：</span><strong> ￥1499.00元</strong></dd>
-							</dl>
-						</li>
-												<li>
-							<dl>
-								<dt><a href="/Home/Index/goods/id/14.html"><img src='/Uploads/Admin/thumb_0_5620398227193.jpg'   /></a></dt>
-								<dd><a href="/Home/Index/goods/id/14.html">测试商品10</a></dd>
-								<dd><span>售价：</span><strong> ￥1499.00元</strong></dd>
-							</dl>
-						</li>
-												<li>
-							<dl>
-								<dt><a href="/Home/Index/goods/id/19.html"><img src='/Uploads/'   /></a></dt>
-								<dd><a href="/Home/Index/goods/id/19.html">苹果手机01</a></dd>
-								<dd><span>售价：</span><strong> ￥1499.00元</strong></dd>
-							</dl>
-						</li>
 											</ul>
 				</div>
 				<!-- 热卖商品 end -->
@@ -473,41 +505,6 @@
 				<!-- 推荐商品 atart -->
 				<div class="recommend none">
 					<ul>
-												<li>
-							<dl>
-								<dt><a href="/Home/Index/goods/id/42.html"><img src='/Uploads/Admin/thumb_0_56246629a17cc.jpg'   /></a></dt>
-								<dd><a href="/Home/Index/goods/id/42.html">魅族pro5</a></dd>
-								<dd><span>售价：</span><strong> ￥2799.00元</strong></dd>
-							</dl>
-						</li>
-												<li>
-							<dl>
-								<dt><a href="/Home/Index/goods/id/12.html"><img src='/Uploads/Admin/thumb_0_561eeff513a39.png'   /></a></dt>
-								<dd><a href="/Home/Index/goods/id/12.html">oppa MAX5</a></dd>
-								<dd><span>售价：</span><strong> ￥1499.00元</strong></dd>
-							</dl>
-						</li>
-												<li>
-							<dl>
-								<dt><a href="/Home/Index/goods/id/13.html"><img src='/Uploads/'   /></a></dt>
-								<dd><a href="/Home/Index/goods/id/13.html">测试商品05</a></dd>
-								<dd><span>售价：</span><strong> ￥1499.00元</strong></dd>
-							</dl>
-						</li>
-												<li>
-							<dl>
-								<dt><a href="/Home/Index/goods/id/14.html"><img src='/Uploads/Admin/thumb_0_5620398227193.jpg'   /></a></dt>
-								<dd><a href="/Home/Index/goods/id/14.html">测试商品10</a></dd>
-								<dd><span>售价：</span><strong> ￥1499.00元</strong></dd>
-							</dl>
-						</li>
-												<li>
-							<dl>
-								<dt><a href="/Home/Index/goods/id/19.html"><img src='/Uploads/'   /></a></dt>
-								<dd><a href="/Home/Index/goods/id/19.html">苹果手机01</a></dd>
-								<dd><span>售价：</span><strong> ￥1499.00元</strong></dd>
-							</dl>
-						</li>
 											</ul>
 				</div>
 				<!-- 推荐商品 end -->
@@ -515,41 +512,6 @@
 				<!-- 新品上架 start-->
 				<div class="new none">
 					<ul>
-												<li>
-							<dl>
-								<dt><a href="/Home/Index/goods/id/42.html"><img src='/Uploads/Admin/thumb_0_56246629a17cc.jpg'   /></a></dt>
-								<dd><a href="/Home/Index/goods/id/42.html">魅族pro5</a></dd>
-								<dd><span>售价：</span><strong> ￥2799.00元</strong></dd>
-							</dl>
-						</li>
-												<li>
-							<dl>
-								<dt><a href="/Home/Index/goods/id/12.html"><img src='/Uploads/Admin/thumb_0_561eeff513a39.png'   /></a></dt>
-								<dd><a href="/Home/Index/goods/id/12.html">oppa MAX5</a></dd>
-								<dd><span>售价：</span><strong> ￥1499.00元</strong></dd>
-							</dl>
-						</li>
-												<li>
-							<dl>
-								<dt><a href="/Home/Index/goods/id/13.html"><img src='/Uploads/'   /></a></dt>
-								<dd><a href="/Home/Index/goods/id/13.html">测试商品05</a></dd>
-								<dd><span>售价：</span><strong> ￥1499.00元</strong></dd>
-							</dl>
-						</li>
-												<li>
-							<dl>
-								<dt><a href="/Home/Index/goods/id/14.html"><img src='/Uploads/Admin/thumb_0_5620398227193.jpg'   /></a></dt>
-								<dd><a href="/Home/Index/goods/id/14.html">测试商品10</a></dd>
-								<dd><span>售价：</span><strong> ￥1499.00元</strong></dd>
-							</dl>
-						</li>
-												<li>
-							<dl>
-								<dt><a href="/Home/Index/goods/id/19.html"><img src='/Uploads/'   /></a></dt>
-								<dd><a href="/Home/Index/goods/id/19.html">苹果手机01</a></dd>
-								<dd><span>售价：</span><strong> ￥1499.00元</strong></dd>
-							</dl>
-						</li>
 											</ul>
 				</div>
 				<!-- 新品上架 end-->

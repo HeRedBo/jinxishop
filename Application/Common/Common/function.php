@@ -108,7 +108,8 @@
 					
 					$image = new \Think\Image();
 					//循环生成缩略图
-					foreach ($thumb as $k => $v) {
+					foreach ($thumb as $k => $v) 
+					{
 						$ret['images'][$k + 1] = $info[$imgName]['savepath'] . 'thumb_'.$k.'_'.$info[$imgName]['savename'];
 						//打开要处理的图片
 						$image->open($rootPath.$orimgname);
@@ -120,8 +121,15 @@
 		}
 	}
 
+
 	/**
 	 * 显示图片
+	 * @param string $url 商品的路径
+	 * @param int $width 图片显示的宽度
+	 * @paran int $height 商品的显示高度	
+	 * @return string商品的html标签
+	 * @author Red-Bo
+	 * @date 2016-01-22 15:33:09
 	 */
 	function showImage($url,$width='',$height ='')
 	{
@@ -135,6 +143,8 @@
 
 	/**
 	 * 删除图片
+	 * @param array $images 图片数据数组
+	 * @author Red-Bo
 	 * date 2015-10-06 13:01
 	 */
 	function deleteImage($images)
@@ -142,13 +152,18 @@
 		
 		//先取出图片的所在目录
 		$irp = C('IMG_rootPath');
-		foreach ($images as  $v) {
+		foreach ($images as  $v) 
+		{
 			@unlink($irp.$v);
 		}
 	}
 
 	/**
 	 * 判断批量上传的数组中有没有上传至少一张图片
+	 * @param stirng $imgNmame 图片上传的表单名称
+	 * @return boolen 
+	 * @author Red-Bo
+	 * @date 2016-01-22 15:38:48
 	 */
 	function hasImage($imgName)
 	{
@@ -156,7 +171,6 @@
 		{
 			if($v == 0)
 				return true;
-
 		}
 		return FALSE;
 	}

@@ -1,10 +1,19 @@
 <?php
 namespace Admin\Model;
 use Think\Model;
+/**
+ * 商品的模型
+ * 处理对商品的增删改查操作
+ */
 class GoodsModel extends Model 
 {
+
+	//在添加是调用create 方法运行接收的字段
 	protected $insertFields = array('goods_name','goods_sn','cat_id','brand_id','shop_price','market_price','goods_ori','goods_thumb','jifen','jyz','jifen_price','promote_price','promote_start_time','promote_end_time','goods_number','market_num','goods_desc','seo_keyword','seo_description','type_id','sort_num','is_on_sale','is_new','is_hot','is_best','is_delete','is_promote');
+
+	//在修改时候表单中可以有哪些字段
 	protected $updateFields = array('id','goods_name','goods_sn','cat_id','brand_id','shop_price','market_price','goods_ori','goods_thumb','jifen','jyz','jifen_price','promote_price','promote_start_time','promote_end_time','goods_number','market_num','goods_desc','seo_keyword','seo_description','type_id','sort_num','is_on_sale','is_new','is_hot','is_best','is_delete','is_promote');
+	//数据自动验证 控制器中creat方法时自动调用
 	protected $_validate = array(
 		array('goods_name', 'require', '商品名称不能为空！', 1, 'regex', 3),
 		array('goods_name', '1,45', '商品名称的值最长不能超过 45 个字符！', 1, 'length', 3),
@@ -86,7 +95,12 @@ class GoodsModel extends Model
 		$data['page'] = $page->show();
 
 		/************************************** 取数据 ******************************************/
-		$data['data'] = $this->field('a.*,IFNULL(sum(b.goods_number),0) gn')->alias('a')->join('left join shop_goods_number b on a.id = b.goods_id')->where($where)->group('a.id')->limit($page->firstRow.','.$page->listRows)->select();
+		$data['data'] = $this->field('a.*,IFNULL(sum(b.goods_number),0) gn')
+		                     ->alias('a')->join('left join shop_goods_number b on a.id = b.goods_id')
+		                     ->where($where)
+		                     ->group('a.id')
+		                     ->limit($page->firstRow.','.$page->listRows)
+		                     ->select();
 		return $data;
 	}
 	// 添加前
@@ -97,8 +111,9 @@ class GoodsModel extends Model
 		if($data['is_promote'] == 1)
 		{
 			$data['promote_start_time'] = strtotime($data['promote_start_time']);
-			$data['promote_end_time'] = strtotime($data['promote_end_time']);
+			$data['promote_end_time'] 	= strtotime($data['promote_end_time']);
 		}
+		
 		if(isset($_FILES['goods_ori']) && $_FILES['goods_ori']['error'] == 0)
 		{
 			$ret = uploadOne('goods_ori', 'Admin', array(
@@ -106,8 +121,8 @@ class GoodsModel extends Model
 			));
 			if($ret['ok'] == 1)
 			{
-				$data['goods_ori'] = $ret['images'][0];
-				$data['goods_thumb'] = $ret['images'][1];
+				$data['goods_ori'] 		= $ret['images'][0];
+				$data['goods_thumb'] 	= $ret['images'][1];
 			}
 			else 
 			{
@@ -510,5 +525,144 @@ class GoodsModel extends Model
 		}
 		else
 			return '';
+	}
+
+	/**
+	 * 前台商品搜索功能使用的方法
+	 * @return array 数据查询结果
+	 * @author Red-Bo
+	 * @date 2016-02-16 08:06:40
+	 */
+	public function search_goods()
+	{
+		/************** 搜索 ***********/
+		$where = array(
+			'a.is_on_sale' => array('eq',1),
+			'a.is_delete'  => array('eq',0),
+		);
+
+		$catId = I('get.cid');
+		if($catId)
+		{
+			// 取出这个扩展分类下的商品的ID并转化成字符串 1,2,3,4,5
+			$gcModel = M('GoodsCat');
+			$extGoodsId = $gcModel->field('GROUP_CONCAT(DISTINCT goods_id)')
+			                      ->where(array(
+			                      	'cat_id' => array('eq',$catId),
+			                      ))
+			                      ->find();
+
+			if($extGoodsid['goods_id'])
+				$extGoodsid = "OR a.id IN ({$extGoodsid['goods_id']})";
+			else
+				$extGoodsid = "";
+
+			// 主分类和扩展分类下的商品都搜索出来
+			$where['a.cat_id'] = array('exp' ,"=$catId $extGoodsid");
+
+			// 价格搜索 
+			$price = I('get.price');
+			if($price)
+			{
+				$pirce = explode('-',$pirce);
+				$where['a.shop_price'] = array('between',array($price[0],$price[1]));
+			}
+
+			// 商品的属性的搜索
+			$sa = I('get.search_attr');
+
+			if($sa)
+			{
+				$gaModel = M('GoodsAttr');
+				$sa = explode('.',$sa);
+				// 先定义一个数值: 第一个满足条件的属性ID
+				$_attr1 = null;
+				// 循环每个属性
+				/**
+				 * 找个每个属性条件 的商品的ID列表
+				 * 12 寸： 2,3,4,5,6
+				 * 独立显卡 : 3,5,9,8,76
+				 * 35G : 3,5
+				 * $arr = array('2,3,4,5,6','3,5,9,8,76','3,5');
+				 */
+				// 现在要找出满足所有条件的商品的ID就把上面的ID字符串去交集
+				foreach ($sa as $k => $v) 
+				{
+					if($v != '0')
+					{
+						$_v = explode('-', $v);
+						// 到商品属性表中搜索有这个属性已经值得商品的ID 并返回字符串 1,2,3,4,5
+						$_attrGoodsId = $gaModel->field('GROUP_CONCAT(goods_id) goods_id')->where(array( 
+							'attr_id' => $_v[1],
+							'attr_value' => $v[0],
+						))->find();
+						$_attrGoodsId = $_attrGoodsId['goods_id'];
+						// 如果第一个就先保存起来
+						if($_attr1 === null)
+							$_attr1 = explode(',', $_attrGoodsId);
+						else
+						{
+							//如$_artr1 不为空 保存的就是上一次满足条件的商品的ID 那么久和这个取交集
+							$_attrGoodsId = explode(',',$_attrGoodsId);
+							$_attr1 = array_intersect($_attr1, $_attrGoodsId);
+							// 如果已经是空了 就直接退出不在比较了 肯定没交集 
+							if(empty($_attr1))
+								break;
+						}
+					}
+				}
+
+				// $_attr1 保存的就是满所有的条件 的商品的ID 
+				if($_attr1)
+					$where['a.id'] = array('in',$_attr1);
+				else
+					$where['a.id'] = array('eq',0);
+					// 如果没有满足条件的商品 就直接设置一个搜索不出来的条件
+			}
+
+			/************************** 排序 ****************************/
+			$orderBy  = 'xl'; // 排序字段 # 销量
+			$orderWay = "DESC"; // 排序方式
+
+			// 接收用户的排序参数
+			$ob = I('get.db');
+			$ow = I('get.ow');
+
+			if($ob && in_array($ob , array('xl','shop_pirce','pl','addtime')))
+			{
+				$orderBy = $ob;
+				// 如果是根据价格排序 才可以就收 ow变量
+				if($ob == 'shop_pirce' && $ow && in_array($ow , array('asc','desc')))
+					$orderWay = $ow;
+			}
+
+			/************************** 翻页 ****************************/
+			// 取出总的记录数
+			$count = $this->alias('a')->where($where)->count();
+			$page  = new \Think\Page($count,24);
+			// 配置翻页的样式
+			$page->setConfig('prev', '上一页');
+			$page->setConfig('next', '下一页');
+
+			/************************** 取商品 *************************/
+			/**
+			 * SELECT a.id, a.goods_name, IFNULL(SUM(b.goods_number),0) xl , (SELECT count(id) FROM shop_comment c WHERE c.goods_id = a.id ) pl
+			 * FROM shop_goods a LEFT JOIN shop_order_goods b ON (a.id = b.goods_id AND b.order_id IN (SELECT id FROM shop_order WHERE pay_status =1)) GROUP BY a.id ORDER BY xl ASC  
+			 * 总结: 因为如果使用两个外链 (left join ) 那么取出的结构会相互影响 所以销量用LEFT JOIN 而评论数用子查询
+			 * 这样子就没有相互影响
+			 */
+			$data['data'] = $this->field('a.id, a.goods_name, IFNULL(SUM(b.goods_number),0) xl , (SELECT count(id) FROM 
+											shop_comment c WHERE c.goods_id = a.id ) pl')
+								 ->alias('a')
+								 ->join('LEFT JOIN shop_order_goods b ON (a.id = b.goods_id AND b.order_id IN (SELECT id FROM shop_order WHERE pay_status =1))')
+								 ->where($where)	
+								 ->group('a.id')
+								 ->order("$orderBy $orderWay")
+								 ->limit($page->firstRow.','.$page->listRows)
+								 ->select();
+
+			return $data ;
+
+		}
 	}
 }

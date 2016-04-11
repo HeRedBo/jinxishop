@@ -25,6 +25,7 @@ class PrivilegeController extends CommonController
 		$this->setPageBtn('添加权限表', '权限表列表', U('lst?p='.I('get.p')));
 		$this->display();
     }
+
     public function edit()
     {
     	$id = I('get.id');
@@ -68,6 +69,7 @@ class PrivilegeController extends CommonController
     		$this->error($model->getError());
     	}
     }
+    
     public function lst()
     {
     	$model = D('Admin/Privilege');

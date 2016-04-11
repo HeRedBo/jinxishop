@@ -1,10 +1,17 @@
 <?php
 namespace Admin\Controller;
 use \Admin\Controller\IndexController;
+
 header("Content-type:text/html;charset=utf8");
+
 class GoodsController extends IndexController 
 {
     
+    /**
+     * [商品新增方法]
+     * @author Red-Bo
+     * @date 2016-01-22 14:09:24
+     */
     public function add()
     {
         set_time_limit(0);
@@ -42,6 +49,13 @@ class GoodsController extends IndexController
 		$this->setPageBtn('添加商品', '商品列表', U('lst?p='.I('get.p')));
 		$this->display();
     }
+
+    /**
+     * 商品编辑
+     * @author Red-Bo
+     * @date 2016-01-22
+     * @return [type] [description]
+     */
     public function edit()
     {
     	$id = I('get.id');
@@ -103,7 +117,13 @@ class GoodsController extends IndexController
         //取出当前商品的相关属性
         $gaModel = M('GoodsAttr');
         //select a.*,b.attrname from shop_goods_attr a left join shop_attribute b on a.attr_id = b.id;
-        $gaData = $gaModel->field('a.*,b.attr_name,b.attr_type,b.attr_option_values')->alias('a')->join('left join shop_attribute b on a .attr_id = b.id')->where(array('a.goods_id'=>array('eq',$id)))->order('a.attr_id ASC')->select();
+        $gaData = $gaModel
+                ->field('a.*,b.attr_name,b.attr_type,b.attr_option_values')->alias('a')
+                ->join('left join shop_attribute b on a .attr_id = b.id')
+                ->where(array('a.goods_id'=>array('eq',$id)))
+                ->order('a.attr_id ASC')
+                ->select();
+
         /******** 取出当前商品属性不存在的后添加新的属性 *********/
       
         //循环属性数组取出当前商品已经拥有的属性的id
@@ -115,7 +135,10 @@ class GoodsController extends IndexController
         $attr_id = array_unique($attr_id);
         //取出当前类型下的后添加的新属性
         $attrModel = M('Attribute');
-        $otherAttr = $allAttrId = $attrModel->field('id attr_id,attr_name,attr_type,attr_option_values')->where(array('type_id'=>array('eq',$data['type_id']),'id'=>array('not in',$attr_id)))->select();
+        $otherAttr = $allAttrId = $attrModel
+                                 ->field('id attr_id,attr_name,attr_type,attr_option_values')
+                                 ->where(array('type_id'=>array('eq',$data['type_id']),'id'=>array('not in',$attr_id)))
+                                 ->select();
        
         if($otherAttr)
         {
@@ -174,6 +197,11 @@ class GoodsController extends IndexController
         $this->display();
     }
 
+    /**
+     * @author Red-Bo
+     * @date 2016-01-22 14:14:51
+     * @return [type] [description]
+     */
     public function delete()
     {
     	$model = D('Admin/Goods');
@@ -187,6 +215,12 @@ class GoodsController extends IndexController
     		$this->error($model->getError());
     	}
     }
+
+    /**
+     * 商品列表
+     * @author Red-Bo
+     * @date 2016-01-22 14:16:27
+     */
     public function lst()
     {
     	$model = D('Admin/Goods');
@@ -195,7 +229,7 @@ class GoodsController extends IndexController
     		'data' => $data['data'],
     		'page' => $data['page'],
     	));
-
+        
 		$this->setPageBtn('商品列表', '添加商品', U('add'));
     	$this->display();
     }

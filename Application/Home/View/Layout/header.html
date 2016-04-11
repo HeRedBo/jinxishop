@@ -74,7 +74,7 @@ $catData  = $catModel->newGetNavData()
 			<div class="cart fl">
 				<dl>
 					<dt>
-						<a href="">去购物车结算</a>
+						<a href="<?php echo U('Home/Cart/lst') ?>">去购物车结算</a>
 						<b></b>
 					</dt>
 					<dd>
@@ -93,25 +93,28 @@ $catData  = $catModel->newGetNavData()
 		<!-- 导航条部分 start -->
 		<div class="nav w1210 bc mt10">
 			<!--  商品分类部分 start-->
-			<div class="category fl <?php if($show_nav!=1) echo 'cat1'; ?>"> <!-- 非首页，需要添加cat1类 -->
-				<div class="cat_hd <?php if($show_nav!=1) echo 'off'; ?>">  <!-- 注意，首页在此div上只需要添加cat_hd类，非首页，默认收缩分类时添加上off类，鼠标滑过时展开菜单则将off类换成on类 -->
+			<div class="category fl <?php if($show_nav!=1) echo 'cat1'; ?>"> 
+				<!-- 非首页，需要添加cat1类 -->
+				<div class="cat_hd <?php if($show_nav!=1) echo 'off'; ?>">  
+				<!-- 注意，首页在此div上只需要添加cat_hd类，非首页，默认收缩分类时添加上off类，鼠标滑过时展开菜单则将off类换成on类 -->
 					<h2>全部商品分类</h2>
 					<em></em>
 				</div>
 				
 				<div class="cat_bd <?php if($show_nav!=1) echo 'none'; ?>">
+				<!-- 循环顶级分类 -->
 					<?php foreach ($catData as $k => $v): ?>
 						<div class="cat <?php if($k==0) echo 'item1' ?>">
-						<h3><a href="">{$v.cat_name}</a> <b></b></h3>
+						<h3><a href="<?php echo U('Home/Search/search?cid='.$v['id']); ?>">{$v.cat_name}</a> <b></b></h3>
 						<div class="cat_detail">
 							<!-- 循环二级分类 -->
 							<?php foreach ($v['children'] as $k1 => $v1): ?>
 								<dl <?php if($k1 ==0) echo 'class="dl_1st"'; ?>>
-								<dt><a href="">{$v1.cat_name}</a></dt>
+								<dt><a href="<?php echo U('Home/Search/search?cid='.$v['id']); ?>">{$v1.cat_name}</a></dt>
 								<dd>
 								    <!-- 循环三级分类 -->
 								    <?php foreach ($v1['children'] as $k2 => $v2): ?>
-								    	<a href="">{$v2.cat_name}</a>		
+								    	<a href="<?php echo U('Home/Search/search?cid='.$v['id']); ?>">{$v2.cat_name}</a>		
 								    <?php endforeach; ?>
 								</dd>
 							</dl>

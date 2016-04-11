@@ -22,6 +22,11 @@ class CategoryController extends CommonController
 		$parentData = $parentModel->getTree();
 		$this->assign('parentData', $parentData);
 
+        // 取出所有的商品分类的制作下拉框
+        $typeModel = M('type');
+        $typeData = $typeModel->select();
+
+        $this->assign('typeData',$typeData);
 		$this->setPageBtn('添加商品分类', '商品分类列表', U('lst?p='.I('get.p')));
 		$this->display();
     }

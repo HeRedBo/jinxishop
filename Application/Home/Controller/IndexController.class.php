@@ -149,8 +149,9 @@ class IndexController extends BaseController {
     //测试方法
     public function Test()
     {
-    	$catModel = D('Admin/Category');
-    	$catData = $catModel->newGetNavData();
-    	$this->display();
+    	$image = new \Think\Image(); 
+        $image->open('./wallbg.jpg');
+        // 生成一个缩放后填充大小150*150的缩略图并保存为thumb.jpg
+        $image->thumb(150, 150,\Think\Image::IMAGE_THUMB_FILLED)->save('./thumb.jpg');
     }
 }

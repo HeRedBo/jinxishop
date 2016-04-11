@@ -49,6 +49,5 @@ class LoginController extends Controller
 
 		//验证码的生成
 		$Verify->entry();
-
 	}
 }

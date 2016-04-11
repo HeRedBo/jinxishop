@@ -94,6 +94,7 @@ class CartModel extends Model
 			$_cart[$k]['goods_thumb']= $ginfo['goods_thumb'];
 			// 计算会员的价格 
 			$_cart[$k]['price'] = $goodsModel->getMemberPrice($v['goods_id']);
+			
 			//把上的属性的id转化为商品属性的字符串
 			$_cart[$k]['goods_attr_str'] = $goodsModel->converGoodsAttrIdToGoodsAttrStr($v['goods_attr_id']);
 

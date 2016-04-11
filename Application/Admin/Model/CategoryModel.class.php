@@ -62,6 +62,10 @@ class CategoryModel extends Model
 		if($children)
 		{
 			$children = implode(',', $children);
+			/**
+			 * 执行 _before_delete 直接后就要商品数据 
+			 * 原因： 如果不这样子 在调用delete 方法的时候回自动调用 _before_delete 钩子函数 这样子会陷入死循环
+			 */
 			$this->execute("DELETE FROM shop_category WHERE id IN($children)");
 		}
 	}
@@ -103,13 +107,14 @@ class CategoryModel extends Model
 	{
 		//
 		$data = S('catData');
+
 		if($data)
 			return $data;
 		else
 		{
 			$data = array();
 			//先取出所有的分类
-			$allCat = $this->limit(8)->select();
+			$allCat = $this->limit(13)->select();
 			//在从所有的分类中取出顶级分类
 			foreach ($allCat as $k => $v) 
 			{	
@@ -137,7 +142,7 @@ class CategoryModel extends Model
 			}
 		}
 		//将数据加入缓存
-		S('catData',$cat);
+		S('catData',$data);
 		return $data;
 	}
     
