@@ -12,7 +12,6 @@ class AdminModel extends Model
 		array('username', '', '用户账号已存在！', 1, 'unique', 3),
 		array('username', '1,30', '用户账号的值最长不能超过 30 个字符！', 1, 'length', 3),
 		// 下面的规则只有添加时生效，修改时不生效，第六个参数代表什么时候验证：1：添加时验证 2：修改时 3：所有情况都验证
-		
 		array('password', 'require', '密码不能为空！', 1, 'regex', 1),
 		array('cpassword', 'password', '两次密码输入不一样', 1, 'confirm', 3),
 		array('is_use', 'number', '是否启用 1 启用 0：禁用必须是一个整数！', 2, 'regex', 3),
@@ -91,9 +90,9 @@ class AdminModel extends Model
 		$where = array();
 		if($username = I('get.username'))
 			$where['username'] = array('like', "%$username%");
-		if($password = I('get.password'))
-			$where['password'] = array('like', "%$password%");
-		if($is_use = I('get.is_use'))
+		 
+		$is_use = I('get.is_use');
+		if($is_use != '' && $is_use != '-1')
 			$where['is_use'] = array('eq', $is_use);
 		/************************************* 翻页 ****************************************/
 		$count = $this->alias('a')->where($where)->count();

@@ -30,6 +30,7 @@ class AdminController extends IndexController
     	$id = I('get.id');
         //先判断是否有权修改
         $adminId = session('id'); //取出管理员的ID
+       
         if($adminId > 1 && $adminId != $id)
             $this->error('无权修改！');
     	if(IS_POST)

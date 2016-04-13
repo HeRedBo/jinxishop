@@ -487,7 +487,8 @@ class GoodsModel extends Model
 		
 		$now = time();
 		//先判断是否有促销
-		$price = $this->field('shop_price,is_promote,promote_price,promote_start_time,promote_end_time')->find($goodsId);
+		$price = $this->field('shop_price,is_promote,promote_price,promote_start_time,promote_end_time')
+					 ->find($goodsId);
 		if($price['is_promote'] ==1 && ($price['promote_start_time'] < $now && $price['promote_end_time'] > $now ))
 		{
 			return $price['promote_price'];
@@ -498,7 +499,12 @@ class GoodsModel extends Model
 			return $price['shop_price'];
 		//就算会员价格
 		$mpModel = M('MemberPrice');
-		$mprice = $mpModel->field('price')->where(array('goods_id'=>array('eq',$goodsId),'level_id'=>array('eq',session('mid'))))->find();
+		$mprice = $mpModel->field('price')
+						  ->where(array(
+						  		'goods_id'=>array('eq',$goodsId),
+						  		'level_id'=>array('eq',session('mid')))
+						  )
+						  ->find();
 
 		// 如果会员有会员价格就直接使用会员价格
 		if($mprice)

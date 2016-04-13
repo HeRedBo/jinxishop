@@ -35,7 +35,11 @@ class BrandModel extends Model
 		$page->setConfig('next', '下一页');
 		$data['page'] = $page->show();
 		/************************************** 取数据 ******************************************/
-		$data['data'] = $this->alias('a')->where($where)->group('a.id')->limit($page->firstRow.','.$page->listRows)->select();
+		$data['data'] = $this->alias('a')
+							 ->where($where)
+							 ->group('a.id')
+							 ->limit($page->firstRow.','.$page->listRows)
+							 ->select();
 		return $data;
 	}
 	// 添加前
@@ -50,10 +54,10 @@ class BrandModel extends Model
 			));
 			if($ret['ok'] == 1)
 			{
-				$data['brand_logo'] = $ret['images'][0];
+				$data['brand_logo']     = $ret['images'][0];
 				$data['big_brand_logo'] = $ret['images'][1];
 				$data['mid_brand_logo'] = $ret['images'][2];
-				$data['sm_brand_logo'] = $ret['images'][3];
+				$data['sm_brand_logo']  = $ret['images'][3];
 			}
 			else 
 			{
@@ -74,10 +78,10 @@ class BrandModel extends Model
 			));
 			if($ret['ok'] == 1)
 			{
-				$data['brand_logo'] = $ret['images'][0];
+				$data['brand_logo']     = $ret['images'][0];
 				$data['big_brand_logo'] = $ret['images'][1];
 				$data['mid_brand_logo'] = $ret['images'][2];
-				$data['sm_brand_logo'] = $ret['images'][3];
+				$data['sm_brand_logo']  = $ret['images'][3];
 			}
 			else 
 			{

@@ -128,11 +128,11 @@ body {
     <li class="explode" key="0{$k+1}_cat_and_goods" name="menu">
       {$v.pri_name}    
         <ul>
+        
           <?php foreach ($v['children'] as $k1 => $v1): ?>
             <li class="menu-item"><a href="<?php echo U($v1['module_name'].'/'.$v1['controller_name'].'/'.$v1['action_name']) ?>" target="main-frame">{$v1.pri_name}</a></li>
           <?php endforeach ?>
-         
-         
+        
         </ul>
       </li>
   <?php endforeach ?>

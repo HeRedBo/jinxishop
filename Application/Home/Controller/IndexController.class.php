@@ -103,7 +103,7 @@ class IndexController extends BaseController {
         $aMonth = 30 * 86400;
         $data = serialize($recentDisplay);
         setcookie('recentDisplay',$data,time() + $aMonth,'/','myshop.com');
-
+        # 将获取会员价格的函数封装到后台的商品模型中区
         echo $goodsModel->getMemberPrice($goodsId);
 
     }

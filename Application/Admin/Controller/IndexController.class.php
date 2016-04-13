@@ -45,6 +45,7 @@ class IndexController extends CommonController
 				$btn[] = $v;
 			}
 		}
+		
 		$this->assign('btn',$btn);
 		$this->display();
 	}
