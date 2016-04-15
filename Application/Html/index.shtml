@@ -498,6 +498,13 @@
 				<!-- 热卖商品 start -->
 				<div class="hot none">
 					<ul>
+												<li>
+							<dl>
+								<dt><a href="/Home/Index/goods/id/1.html"><img src='/Uploads/Admin/thumb_0_570bd9c19e8fc.jpg'   /></a></dt>
+								<dd><a href="/Home/Index/goods/id/1.html">Ipone5S</a></dd>
+								<dd><span>售价：</span><strong> ￥3900.00元</strong></dd>
+							</dl>
+						</li>
 											</ul>
 				</div>
 				<!-- 热卖商品 end -->
@@ -505,6 +512,13 @@
 				<!-- 推荐商品 atart -->
 				<div class="recommend none">
 					<ul>
+												<li>
+							<dl>
+								<dt><a href="/Home/Index/goods/id/1.html"><img src='/Uploads/Admin/thumb_0_570bd9c19e8fc.jpg'   /></a></dt>
+								<dd><a href="/Home/Index/goods/id/1.html">Ipone5S</a></dd>
+								<dd><span>售价：</span><strong> ￥3900.00元</strong></dd>
+							</dl>
+						</li>
 											</ul>
 				</div>
 				<!-- 推荐商品 end -->
@@ -512,6 +526,13 @@
 				<!-- 新品上架 start-->
 				<div class="new none">
 					<ul>
+												<li>
+							<dl>
+								<dt><a href="/Home/Index/goods/id/1.html"><img src='/Uploads/Admin/thumb_0_570bd9c19e8fc.jpg'   /></a></dt>
+								<dd><a href="/Home/Index/goods/id/1.html">Ipone5S</a></dd>
+								<dd><span>售价：</span><strong> ￥3900.00元</strong></dd>
+							</dl>
+						</li>
 											</ul>
 				</div>
 				<!-- 新品上架 end-->

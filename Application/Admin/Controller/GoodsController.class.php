@@ -33,8 +33,7 @@ class GoodsController extends IndexController
         $typeModel = M('type');
         $typeData = $typeModel->select();
         $this->assign('typeData',$typeData);
-        //取出所有的分裂
-        
+        //取出所有分类
         $cateModel = D('Category');
         $catData = $cateModel->getTree();
         $this->assign('catData',$catData);
@@ -105,6 +104,7 @@ class GoodsController extends IndexController
         //取出有修改的商品基本信息
         $model = M('Goods');
     	$data = $model->find($id);
+       
     	$this->assign('data', $data);
        
         //取出当前商品的扩展分类

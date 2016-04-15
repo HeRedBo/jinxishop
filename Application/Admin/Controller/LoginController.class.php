@@ -50,4 +50,20 @@ class LoginController extends Controller
 		//验证码的生成
 		$Verify->entry();
 	}
+
+	/**
+	 * 
+	 * @param  void
+	 * @return void
+	 * @author Red-Bo
+	 * @date 2016-04-15 07:57:24
+	 */
+	public function layout()
+	{
+		#情况session 跳转会登录页面
+		session('id',null);
+		session('username',null);
+		# 跳转到系统首页
+		$this->success('退出成功','login');
+	}
 }

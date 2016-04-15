@@ -61,13 +61,13 @@
 <script>
     $(document).ready(function() {
         //先让可选列表输入状态为禁用状态
-        $("textarea[name='attr_value']").attr('disabled', true);
+        $("textarea[name='attr_option_values']").attr('disabled', true);
         $("input[name='attr_input_type']").click(function() {
            var ipType = $(this).val();
            if(ipType==1)
-                $("textarea[name='attr_value']").attr('disabled', false);
+                $("textarea[name='attr_option_values']").attr('disabled', false);
             else
-                $("textarea[name='attr_value']").attr('disabled', true);
+                $("textarea[name='attr_option_values']").attr('disabled', true);
 
 
         });

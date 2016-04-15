@@ -121,7 +121,9 @@
             <tr>
                 <td class="label"> 商品原图的路径：</td>
                 <td>
-                   <?php echo $v['goods_thumb'] ? showImage($v['goods_thumb'],80) : showImage('no_picture.gif',80) ?>
+
+                    <?php echo $data['goods_thumb'] ? showImage($data['goods_thumb'],80) : showImage('no_picture.gif',80) ?>
+                   
                 	<input type="file" name="goods_ori" /> 
                 </td>
             </tr>

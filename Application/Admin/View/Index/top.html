@@ -110,7 +110,7 @@
   <div id="submenu-div">
     <div style="padding: 5px 10px 0 0; clear:right;text-align: right; color: #FF9900;width:40%;float: right;" id="send_info">
             <a class="fix-submenu" target="main-frame" href="index.php?act=clear_cache">清除缓存</a>
-      <a class="fix-submenu" target="_top" href="">退出</a>
+      <a class="fix-submenu" target="_top" href="<?php echo U('Login/layout'); ?>">退出</a>
     </div>
         <div style="padding: 5px 10px 0pt 0pt; text-align: right; color: rgb(255, 153, 0); display: none; width: 40%; float: right;" id="load-div"><img width="16" height="16" style="vertical-align: middle" alt="正在处理您的请求..." src="__ADMIN_IMG__/top_loader.gif"> 正在处理您的请求...</div>
   </div>
@@ -118,10 +118,26 @@
 <div id="menu-div">
   <ul>
     <li class="fix-spacel">&nbsp;</li>
-        <li class="fix-spacer">你好， 你上次的登录时间是：</li>
+        <li class="fix-spacer"><!-- 你好 --> <span id="timenow"></span> <?php echo  session('username') ?  session('username') : '';?>， <!-- 你上次的登录时间是： -->
+         当前登录的ip地址是: <?php echo $_SERVER["REMOTE_ADDR"]; ?>
+        </li>
         <li class="fix-spacer">&nbsp;</li>
   </ul>
   <br class="clear">
 </div>
 
-</body></html>
+</body>
+<script type="text/javascript">
+  now = new Date(),hour = now.getHours();
+  var timestr;
+  if(hour < 6){"凌晨好！"} 
+  else if (hour < 9){ timestr = "早上好！";} 
+  else if (hour < 12){ timestr = "上午好！";} 
+  else if (hour < 14){ timestr = "中午好！";} 
+  else if (hour < 17){ timestr = "下午好！";} 
+  else if (hour < 19){ timestr = "傍晚好！";} 
+  else if (hour < 22){ timestr = "晚上好！";} 
+  else { timestr = "夜里好！" ;}
+  document.getElementById('timenow').innerHTML= timestr;
+</script>
+</html>
