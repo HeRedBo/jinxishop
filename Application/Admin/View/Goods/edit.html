@@ -486,6 +486,7 @@ $('.delimage').click(function(){
         });
     }
 });
+
 //判断如果没有属性就直接出发AJAX事件获取属性的数据
 <?php if(empty($gaData)): ?>
     $("select[name=type_id]").trigger("change")

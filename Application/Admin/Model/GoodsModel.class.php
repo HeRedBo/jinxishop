@@ -197,7 +197,6 @@ class GoodsModel extends Model
 			$gpModel = M('GoodsPics');
 			//批量上传商品的图片数组，改造成每一个图片一个以为数组的形式
 			$pics = array();
-		
 			foreach($_FILES['pics']['name'] as $k => $v)
 			{
 				if($_FILES['pics']['size'][$k] ==0)
@@ -218,8 +217,7 @@ class GoodsModel extends Model
 			$_FILES = $pics;
 			foreach ($pics as $k => $v) {
 				$ret = uploadOne($k,'Goods',array(array(150,150)));
-				if($ret['ok'] ==1)
-				{
+				if($ret['ok'] ==1) {
 
 					$gpModel->add(array(
 						'goods_id'=>$data['id'],
@@ -342,8 +340,8 @@ class GoodsModel extends Model
 				{
 					$gpModel->add(array(
 						'goods_id'=>$data['id'],
-						'pic'     =>$ret['image'][0],
-						'sm_pic'  => $ret['image'][1],
+						'pic'     =>$ret['images'][0],
+						'sm_pic'  => $ret['images'][1],
 					));
 				}
 			}

@@ -60,7 +60,6 @@ class GoodsController extends IndexController
     	$id = I('get.id');
     	if(IS_POST)
     	{
-            
     		$model = D('Admin/Goods');
     		if($model->create(I('post.'), 2))
     		{
@@ -261,7 +260,7 @@ class GoodsController extends IndexController
         //把图片从硬盘删除
         deleteImage($pic);
         //在从数据库中把图片的数据也删除掉
-        return$gpModel->delete($picId);
+        echo $gpModel->delete($picId);
     } 
 
     /**

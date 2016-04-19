@@ -2,15 +2,13 @@
 <!-- 搜索 -->
 <div class="form-div search_form_div">
     <form method="GET" name="search_form">
-		<p>
+		
 			商品名称：
-	   		<input type="text" name="goods_name" size="30" value="<?php echo I('get.goods_name'); ?>" />
-		</p>
-		<p>
+	   		<input type="text" name="goods_name" size="30" value="<?php echo I('get.goods_name'); ?>" />&nbsp;&nbsp;&nbsp;&nbsp;
 			商品价格：
 	   		从 <input id="shop_pricefrom" type="text" name="shop_pricefrom" size="15" value="<?php echo I('get.shop_pricefrom'); ?>" /> 
 		    到 <input id="shop_priceto" type="text" name="shop_priceto" size="15" value="<?php echo I('get.shop_priceto'); ?>" />
-		</p>
+		
 		<p>
 			是否热卖：
 			<input type="radio" value="-1" name="is_hot" <?php if(I('get.is_hot', -1) == -1) echo 'checked="checked"'; ?> /> 全部 
