@@ -3,9 +3,7 @@
     <form name="main_form" method="POST" action="__SELF__" enctype="multipart/form-data" >
     	<input type="hidden" name="id" value="<?php echo $data['id']; ?>" />
 		<input type="hidden" name="old_brand_logo" value="<?php echo $data['brand_logo']; ?>" />
-		<input type="hidden" name="old_big_brand_logo" value="<?php echo $data['big_brand_logo']; ?>" />
-		<input type="hidden" name="old_mid_brand_logo" value="<?php echo $data['mid_brand_logo']; ?>" />
-		<input type="hidden" name="old_sm_brand_logo" value="<?php echo $data['sm_brand_logo']; ?>" />
+
         <table cellspacing="1" cellpadding="3" width="100%">
             <tr>
                 <td class="label">品牌名称：</td>
@@ -23,7 +21,7 @@
                 <td class="label">品牌logo：</td>
                 <td>
                 	<input type="file" name="brand_logo" /><br /> 
-                	<?php showImage($data['brand_logo'], 100); ?>                </td>
+                  <?php echo $data['brand_logo'] ? showImage($data['brand_logo'],80) : showImage('no_picture.gif',80) ?>              </td>
             </tr>
             <tr>
                 <td class="label">商品描述：</td>

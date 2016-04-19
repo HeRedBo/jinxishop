@@ -81,16 +81,15 @@
 		{
 			$rootPath 	= C('IMG_rootPath');
 			$upload  	= new \Think\Upload(array(
-				'rootPath'=>$rootPath
+				'rootPath'=>$rootPath //设置文件上传的根目录
 			));//实例化文件上传类
 			$upload->maxSize 	= (int)C('IMG_maxSize') * 1024 * 1024 ;//设置附件上传大小
-			 //$upload->exts      =  array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
-			//$upload->rootPath = $rootPath;//设置文件上传的根目录
+			 $upload->exts      =  array('jpg', 'gif', 'png', 'jpeg');// 
 			$upload->savePath 	= $dirname.'/';//设置二级目录的名称
 			$upload->autoSub 	= false;
 			//上传文件
 			//上传文件时指定一个要上传的图片的名称,否则会把表单中所有的图片都处理，
-			$info = $upload->upload(array($imgName=>$_FILES[$imgName]));
+			$info = $upload->upload(array( $imgName=>$_FILES[$imgName]) );
 			if(!$info)
 			{
 				return array(

@@ -21,6 +21,7 @@ return array(
 	'DEFAULT_FILTER'=>'trim,removeXSS',
 	/***********MD5 时复杂化加密***********/
 	'MD5_KEY'  => 'asdf1234&_123!#asd889',
+	
 	/* URL设置 */
 	'URL_CASE_INSENSITIVE'	=>	true,	//默认false表示区分大小写 true表示不区分大小写
 	'URL_MODEL'				=>	2,	//URL访问模式

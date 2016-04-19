@@ -29,7 +29,8 @@ class BrandController extends IndexController
     	{
     		$model = D('Admin/Brand');
     		if($model->create(I('post.'), 2))
-    		{
+    		{     
+               
     			if($model->save() !== FALSE)
     			{
     				$this->success('修改成功！', U('lst', array('p' => I('get.p', 1))));
@@ -45,6 +46,8 @@ class BrandController extends IndexController
 		$this->setPageBtn('修改品牌', '品牌列表', U('lst?p='.I('get.p')));
 		$this->display();
     }
+
+
     public function delete()
     {
     	$model = D('Admin/Brand');

@@ -2,27 +2,10 @@
 <!-- 搜索 -->
 <div class="form-div search_form_div">
     <form method="GET" name="search_form">
-		<p>
+	
 			品牌名称：
-	   		<input type="text" name="brand_name" size="30" value="<?php echo I('get.brand_name'); ?>" />
-		</p>
-		<p>
-			品牌网站地址：
-	   		<input type="text" name="site_url" size="30" value="<?php echo I('get.site_url'); ?>" />
-		</p>
-		<p>
-			商品描述：
-	   		<input type="text" name="goods_desc" size="30" value="<?php echo I('get.goods_desc'); ?>" />
-		</p>
-		<p>
-			商品排序：
-	   		<input type="text" name="sort" size="30" value="<?php echo I('get.sort'); ?>" />
-		</p>
-		<p>
-			是否显示 0:不显示 1:显示：
-	   		<input type="text" name="is_show" size="30" value="<?php echo I('get.is_show'); ?>" />
-		</p>
-		<p><input type="submit" value=" 搜索 " class="button" /></p>
+	   		<input type="text" name="brand_name" size="20" value="<?php echo I('get.brand_name'); ?>" />
+		<input type="submit" value=" 搜索 " class="button" />
     </form>
 </div>
 <!-- 列表 -->
@@ -32,7 +15,6 @@
             <th >品牌名称</th>
             <th >品牌网站地址</th>
             <th >品牌logo</th>
-            <th >商品描述</th>
             <th >商品排序</th>
             <th >是否显示 0:不显示 1:显示</th>
 			<th width="60">操作</th>
@@ -41,8 +23,7 @@
 			<tr class="tron">
 				<td><?php echo $v['brand_name']; ?></td>
 				<td><?php echo $v['site_url']; ?></td>
-				<td><?php echo $v['brand_logo']; ?></td>
-				<td><?php echo $v['goods_desc']; ?></td>
+				<td><?php echo $v['brand_logo'] ? showImage($v['brand_logo'],80) : showImage('no_picture.gif',80) ?></td>
 				<td><?php echo $v['sort']; ?></td>
 				<td><?php echo $v['is_show']; ?></td>
 		        <td align="center">
