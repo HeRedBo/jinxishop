@@ -169,6 +169,7 @@ class GoodsModel extends Model
 		/********* 处理商品的属性 ********/
 		$ga = I('post.ga');
 		$ap = I('post.attr_price');
+
 		if($ga)
 		{
 			$gaModel = D('GoodsAttr');
@@ -352,7 +353,6 @@ class GoodsModel extends Model
 		$ga = I('post.ga');
 		$ap = I('post.attr_price');
 
-		
 		$gaModel = M('GoodsAttr');
 		foreach ($ga as $k => $v)
 		{
@@ -382,7 +382,7 @@ class GoodsModel extends Model
 				$oldField = array('attr_value'=> $v1);
 				# 如果有对应的价格就把价格也修改
 				if(isset($oldap[$k]))
-					$oldField['attr_pirce'] = $oldap[$k][$k1];
+					$oldField['attr_price'] = $oldap[$k][$k1];
 				$gaModel->where(array('id'=>array('eq',$k1 )))->save($oldField);
 			}
 		}

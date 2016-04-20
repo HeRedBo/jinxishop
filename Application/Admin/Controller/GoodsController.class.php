@@ -314,7 +314,7 @@ class GoodsController extends IndexController
                     'goods_attr_id'=>$_arr, //升序拍好的id的字符串
                 ));
            }
-            $this->success('设置成功！');exit;
+            $this->success('设置成功！',U('lst', array('p' => I('get.p', 1))));exit;
         }
         /**
          * 根据商品的id取出这件商品同一个属性有多个值的属性
@@ -323,21 +323,25 @@ class GoodsController extends IndexController
          * ②在套用sql只取出这些属性的值的记录
          * ③连接属性表 取出属性的名称 (表单要用)
          */
-        $sql = 'SELECT a.*,b.attr_name FROM shop_goods_attr a LEFT JOIN shop_attribute b on a.attr_id = b.id WHERE attr_id IN(SELECT attr_id FROM shop_goods_attr WHERE goods_id ='.$goodsId.' GROUP BY attr_id HAVING count(*) >1) AND a.goods_id ='.$goodsId;
+        $sql = 'SELECT a.*,b.attr_name 
+                FROM shop_goods_attr a 
+                LEFT JOIN shop_attribute b on a.attr_id = b.id 
+                WHERE attr_id IN(SELECT attr_id FROM shop_goods_attr WHERE goods_id ='.$goodsId.' GROUP BY attr_id HAVING count(*) >1) AND a.goods_id ='.$goodsId;
         $DB = M();
         $_attr = $DB->query($sql);
+
         $attr = array();
         foreach ($_attr as $k => $v) {
             $attr[$v['attr_id']][] =$v;
         }
-
+        
         $this->assign('attr',$attr);
 
         //先取出已经当前当前商品已经设置过商品库存的数据
         $gnModel =M('GoodsNumber');
         $gnData = $gnModel->where(array('goods_id' =>array('eq',$goodsId)))->select();
         $this->assign('gnData',$gnData);
-
+       
         $this->setPageBtn('库存管理', '商品列表', U('lst'));
         $this->display();
     }
