@@ -346,4 +346,26 @@ class GoodsController extends IndexController
         $this->display();
     }
     
+
+    /**
+     * 
+     * @param  void
+     * @return void
+     * @author Red-Bo
+     * @date 2016-04-20 23:24:54
+     */
+    public function ajaxChangeGStatus()
+    {
+        $action = I('post.action');
+        $id     = I('post.id');
+        $val    = I('post.val');
+        $model = D('Admin/Goods');
+        $res   = $model->changeGoodsStatus($id,$action,$val);
+        if($res !== false) {
+           echo 1;
+        } else {
+            echo "服务器错误,数据更新失败";
+        }
+
+    }
 }

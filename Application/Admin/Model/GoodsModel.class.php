@@ -669,4 +669,27 @@ class GoodsModel extends Model
 
 		}
 	}
+
+	/**
+	 * 修改商品的状态
+	 * 
+	 * @param int  $id 商品的id 
+	 * @param string $action 要处理的字段的内容
+	 * @param string $val 需要设置的值
+	 * @return int 返回受影响的行数
+	 * @author Red-Bo
+	 * @date 2016-04-20 23:30:14
+	 */
+	public function changeGoodsStatus($id,$action,$val)
+	{
+		/**
+		 * tp 使用setField 有 bug  使用 save 进行测试
+		 */
+		return $this->where(array('id' => array('eq',$id)))
+			 	    ->setField(array($action => $val));
+		// $this->where(array('id' => array('eq',$id)))
+		// 	 ->save(array($action => $val));
+
+			
+	}
 }

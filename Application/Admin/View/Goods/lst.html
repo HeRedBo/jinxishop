@@ -61,17 +61,17 @@
         </tr>
 		<?php foreach ($data as $k => $v): ?>            
 			<tr class="tron">
-               
+           
 				<td><?php echo $v['goods_name']; ?></td>
 				<td><?php echo $v['goods_sn']; ?></td>
 				<td><?php echo $v['gn'] ?></td>
 				<td><?php echo $v['shop_price']; ?></td>
 				<td><?php echo $v['market_price']; ?></td>
 				<td> <?php echo $v['goods_thumb'] ? showImage($v['goods_thumb'],80) : showImage('no_picture.gif',80) ?></td>
-				<td><img src="__ADMIN_IMG__/<?php echo $v['is_on_sale'] ? 'yes':'no';  ?>.gif"></td>
-				<td><img src="__ADMIN_IMG__/<?php echo $v['is_new'] ? 'yes':'no';  ?>.gif"></td>
-				<td><img src="__ADMIN_IMG__/<?php echo $v['is_hot'] ? 'yes':'no';  ?>.gif"></td>
-				<td><img src="__ADMIN_IMG__/<?php echo $v['is_best'] ? 'yes':'no';  ?>.gif"></td>
+				<td><img src="__ADMIN_IMG__/<?php echo $v['is_on_sale'] ? 'yes':'no';  ?>.gif" onclick ="list_Table_toggle(this,'is_on_sale',<?php echo $v['id']; ?>)" ></td>
+				<td><img src="__ADMIN_IMG__/<?php echo $v['is_new'] ? 'yes':'no';  ?>.gif" onclick ="list_Table_toggle(this,'is_new',<?php echo $v['id']; ?>)"></td>
+				<td><img src="__ADMIN_IMG__/<?php echo $v['is_hot'] ? 'yes':'no';  ?>.gif" onclick ="list_Table_toggle(this,'is_hot',<?php echo $v['id']; ?>)"></td>
+				<td><img src="__ADMIN_IMG__/<?php echo $v['is_best'] ? 'yes':'no';  ?>.gif" onclick ="list_Table_toggle(this,'is_best',<?php echo $v['id']; ?>)"></td>
 				<td><?php echo $v['sort_num']; ?></td>
 		        <td align="center" width=150;>
 		        	<a href="<?php echo U('edit?id='.$v['id'].'&p='.I('get.p')); ?>" title="编辑">编辑</a> |
@@ -88,4 +88,43 @@
 <script>
 $('#addtimefrom').datepicker({ dateFormat: "yy-mm-dd" }); 
 $('#addtimeto').datepicker({ dateFormat: "yy-mm-dd" }); 
+
+function list_Table_toggle(_this,event,index)
+{
+   var src = $(_this).attr('src');
+   var i = 1;
+   if(src.indexOf('yes') > 0) {
+         i = 0;
+   }
+   // 发送ajax 修改商品的状态
+   $.ajax({
+       url: "<?php echo U('ajaxChangeGStatus','',false); ?>",
+       type: 'POST',
+       dataType: 'json',
+       data: {
+        'action': event,
+        'val'   : i,
+        'id'    : index,
+
+    },
+   success: function(data){
+       if(data == 1) {
+            if(i == 1) {
+                src = src.replace('no','yes');
+            } else {
+                src = src.replace('yes','no');
+            }
+           
+            $(_this).attr('src',src);
+       }else
+           alert(data);
+   },
+   error: function() {
+       alert("请求失败...");
+   },
+   });
+   
+   
+}
+
 </script>
