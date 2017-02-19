@@ -91,9 +91,7 @@ HTML;
 					//取出当前登陆会员所在的这个级别id和这个级别的折扣
 					$mlModel = M('MemberLevel');
 					$ml = $mlModel->field('id,rate')->where("{$user['jyz']} BETWEEN bottom_num AND top_num")->find();
-					
-					//$ml = $mlModel->field('id,rate')->where("{$user['jyz']} BETWEEN bottom_num AND top_num")->find();
-					
+
 					session('level_id',$ml['id']);
 					session('rate',$ml['rate']/100);
 
@@ -106,8 +104,6 @@ HTML;
 						$this->where(array('id' => array('eq',$user['id'])))->setField('openid',$_SERVER['openid']);
 					}
 					return TRUE;
-
-				
 			}
 			else
 			{

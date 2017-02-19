@@ -51,24 +51,18 @@ CREATE TABLE IF NOT EXISTS shop_goods
 )engine= MyISAM default charset =utf8;
 
 --- 2015-10-11 新增商品市场价格 积分值 经验值字段
-
-
-
-
-
 -- 从ecshop 复制数据
 INSERT INTO shop_goods (goods_name,goods_sn,shop_price,goods_ori,goods_img,goods_thumb,goods_number,goods_desc,is_on_sale,is_delete,addtime) SELECT goods_name,goods_sn,shop_price,original_img,goods_img,goods_thumb,goods_number,goods_desc,is_on_sale,is_delete,add_time FROM ecshop.ecs_goods;
 sc create mysvn binpath= "D:\SVN\SVN Server\bin\svnserve.exe --service -r D:/SVN/myApp" start= auto
-
-
 
 -- 商品栏目表的创建
 DROP TABLE IF EXISTS shop_category;
 CREATE TABLE shop_category
 (
 	id smallint unsigned primary key not null auto_increment,
-	cat_name varchar(30) not null comment '栏目名称',
-	parent_id smallint unsigned not null comment '父级栏目id'
+	cat_name varchar(30) not null comment '分类名称',
+	parent_id smallint unsigned not null comment '上级分类ID，0：代表顶级',
+	search_attr_id varchar(100) not null default '' comment '筛选属性ID，多个用逗号隔开'
 )charset = utf8 engine = MyISAM;
 
 -- 插入数据
@@ -361,7 +355,7 @@ CREATE TABLE shop_clicked_use
 	comment_id mediumint unsigned not null comment '评论id',
 	primary key (member_id,comment_id) #因为这两个字段查询会一起用 所以直接创建联合索引
 )engine= MyISAM default charset = utf8 comment '用户点击有用的评论';
-# 判断会员是偶点击过3这天评论
+# 判断会员是否点击过3这天评论
 # SELECT COUNT(*) FROM shop_clicked_use WHERE member_id = 1 and comment_id = 3;
 
 DROP TABLE IF EXISTS shop_impression;

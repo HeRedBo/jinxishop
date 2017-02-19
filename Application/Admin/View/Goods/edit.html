@@ -25,6 +25,8 @@
     <form name="main_form" method="POST" action="__SELF__" enctype="multipart/form-data">
         <input type="hidden" name="id" value="{$data.id}">
         <input type="hidden" name="old_type_id" value="{$data.type_id}" >
+        <input type="hidden" name="old_goods_ori" value="{$data.goods_ori}">
+        <input type="hidden" name="old_goods_thumb" value="{$data.goods_thumb}">
        <!--  基本信息 -->
         <table cellspacing="1" class="table_content" cellpadding="3" width="100%">
             <tr>
@@ -256,7 +258,7 @@
             </tr>
             <tr><td id="attr_container" style='width:500px'>
                 <?php 
-                    //所有出现过的属性都iD 都放在这个数组中里
+                    //所有出现过的属性都ID 都放在这个数组中里
                     $attrId = array();
                     //循环所有的属性
                     foreach ($gaData as $k => $v): ?>

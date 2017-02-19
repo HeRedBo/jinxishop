@@ -33,6 +33,7 @@ class CategoryModel extends Model
 		}
 		return $ret;
 	}
+	
 	public function getChildren($id)
 	{
 		$data = $this->select();
@@ -143,6 +144,7 @@ class CategoryModel extends Model
 		}
 		//将数据加入缓存
 		S('catData',$data);
+		var_dump($data);exit;
 		return $data;
 	}
     

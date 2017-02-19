@@ -52,6 +52,7 @@ class LoginController extends Controller
 	}
 
 	/**
+	 * 系统退出方法
 	 * 
 	 * @param  void
 	 * @return void

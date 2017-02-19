@@ -22,7 +22,6 @@ class CartController extends BaseController
 	{
 		$cartModel = D('Admin/Cart');
 		$data = $cartModel->cartList();
-
 		$this->assign('data',$data);
 		$this->setPageInfo('购物车','购物车','购物车',1,array('cart'),array('cart1'));
 		$this->display();

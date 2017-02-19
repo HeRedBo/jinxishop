@@ -29,19 +29,19 @@ class GoodsController extends IndexController
     		}
     		$this->error($model->getError());
     	}
-         //取出所有的商品类型
+         //取出所有的商品类型 | 商品的属性添加需要用到
         $typeModel = M('type');
         $typeData = $typeModel->select();
         $this->assign('typeData',$typeData);
-        //取出所有分类
+        //取出所有分类 | 商品的分类业务逻辑需要用到
         $cateModel = D('Category');
         $catData = $cateModel->getTree();
         $this->assign('catData',$catData);
-        //取出所有的品牌
+        //取出所有的品牌 | 设置商品的品牌逻辑需要用到
         $brandModel = D('Brand');
         $brandData = $brandModel->field('id,brand_name')->select();
         $this->assign('brandData',$brandData);
-        //取出会员级别
+        //取出会员级别 | 会员级别价格需要用到的数据
         $mlModel = D('MemberLevel');
         $mlData  = $mlModel->select();
         $this->assign('mlData',$mlData);
@@ -103,7 +103,6 @@ class GoodsController extends IndexController
         //取出有修改的商品基本信息
         $model = M('Goods');
     	$data = $model->find($id);
-       
     	$this->assign('data', $data);
        
         //取出当前商品的扩展分类
@@ -136,9 +135,12 @@ class GoodsController extends IndexController
         $attrModel = M('Attribute');
         $otherAttr = $allAttrId = $attrModel
                                  ->field('id attr_id,attr_name,attr_type,attr_option_values')
-                                 ->where(array('type_id'=>array('eq',$data['type_id']),'id'=>array('not in',$attr_id)))
+                                 ->where(array(
+                                    'type_id'=>array('eq',$data['type_id']),
+                                    'id'=>array('not in',$attr_id)
+                                    )
+                                 )
                                  ->select();
-       
         if($otherAttr)
         {
             //将新的属性和原属性合并起来
@@ -146,6 +148,7 @@ class GoodsController extends IndexController
             //重新根据attr_id 字段重新排序这个合并之后的二维数组
             usort($gaData, 'attr_id_sort');
         }
+
         $this->assign('gaData',$gaData);
         //取出当前商品的图片
         $gpModel = M('GoodsPics');
@@ -286,21 +289,22 @@ class GoodsController extends IndexController
         $goodsId = I('get.id');
         if(IS_POST)
         {
-           $gai = I('post.goods_attr_id');
-           $gn = I('post.goods_number');
-           $gnModel = M('GoodsNumber');
+            $gai     = I('post.goods_attr_id');
+            $gn      = I('post.goods_number');
+            $gnModel = M('GoodsNumber');
 
-           //先清空设置原本设置的数据
-           $gnModel->where(array('goods_id'=>array('eq',$goodsId)))->delete();
-           //先计算两个数组的比例是多少
-           $rate = count($gai) / count($gn);
-           $_i = 0 ; // 从第ID数组中的第几个开始那数据
-           foreach ($gn as $k => $v) 
-           {
+            //先清空设置原本设置的数据
+            $gnModel->where(array('goods_id'=>array('eq',$goodsId)))->delete();
+            //先计算两个数组的比例是多少
+            $rate = count($gai) / count($gn);
+            $_i = 0 ; // 从第ID数组中的第几个开始那数据
+            foreach ($gn as $k => $v) 
+            {
                //把每次拿过来的ID
                 $_arr = array();
                 //从id的数组拿到第 rate个
-                for ($i=0; $i < $rate ; $i++) { 
+                for ($i=0; $i < $rate ; $i++) 
+                { 
                     $_arr[] = $gai[$_i];
                     $_i++;
                 }
@@ -309,11 +313,11 @@ class GoodsController extends IndexController
                 //拼接字符串
                 $_arr = implode(',',$_arr);
                 $gnModel->add(array(
-                    'goods_id'=>$goodsId,
-                    'goods_number'=>$v,
-                    'goods_attr_id'=>$_arr, //升序拍好的id的字符串
+                    'goods_id'      => $goodsId,
+                    'goods_number'  => $v,
+                    'goods_attr_id' => $_arr, //升序拍好的id的字符串
                 ));
-           }
+            }
             $this->success('设置成功！',U('lst', array('p' => I('get.p', 1))));exit;
         }
         /**
@@ -326,17 +330,21 @@ class GoodsController extends IndexController
         $sql = 'SELECT a.*,b.attr_name 
                 FROM shop_goods_attr a 
                 LEFT JOIN shop_attribute b on a.attr_id = b.id 
-                WHERE attr_id IN(SELECT attr_id FROM shop_goods_attr WHERE goods_id ='.$goodsId.' GROUP BY attr_id HAVING count(*) >1) AND a.goods_id ='.$goodsId;
+                WHERE attr_id IN(
+                    SELECT attr_id FROM shop_goods_attr WHERE goods_id ='.$goodsId.' 
+                    GROUP BY attr_id HAVING count(*) >1
+                ) AND a.goods_id ='.$goodsId;
+
         $DB = M();
         $_attr = $DB->query($sql);
 
         $attr = array();
-        foreach ($_attr as $k => $v) {
+        foreach ($_attr as $k => $v) 
+        {
             $attr[$v['attr_id']][] =$v;
         }
-        
-        $this->assign('attr',$attr);
 
+        $this->assign('attr',$attr);
         //先取出已经当前当前商品已经设置过商品库存的数据
         $gnModel =M('GoodsNumber');
         $gnData = $gnModel->where(array('goods_id' =>array('eq',$goodsId)))->select();
@@ -359,7 +367,7 @@ class GoodsController extends IndexController
         $action = I('post.action');
         $id     = I('post.id');
         $val    = I('post.val');
-        $model = D('Admin/Goods');
+        $model  = D('Admin/Goods');
         $res   = $model->changeGoodsStatus($id,$action,$val);
         if($res !== false) {
            echo 1;

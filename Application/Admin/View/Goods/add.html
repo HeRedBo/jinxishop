@@ -105,7 +105,9 @@
                 </td>
             </tr>
             <tr>
-                <td class="label"><input type="checkbox" value="1"  name="is_promote" id="is_promote" onclick="if($(this).attr('checked')) $('.promote_price').removeAttr('disabled'); else $('.promote_price').attr('disabled','disabled');"><label for="is_promote">促销价：</label></td>
+                <!-- 有促销下面的出校图标输入框可用 如果不可以则下面的文本框不可用  -->
+                <td class="label">
+                <input type="checkbox" value="1"  name="is_promote" id="is_promote" onclick="if($(this).attr('checked')) $('.promote_price').removeAttr('disabled'); else $('.promote_price').attr('disabled','disabled');"><label for="is_promote">促销价：</label></td>
                 <td>
                     <input class="promote_price" type="text" name="promote_price" value="0.00" disabled="disabled" />
                 </td>

@@ -11,7 +11,7 @@ class SearchController extends BaseController
 	 */
 	public function search()
 	{
-		$cateId = I('get.cid');
+		$catId = I('get.cid');
 		$goodsModel = D('Admin/Goods');
 		
 		/******************** 计算这个分类下的七个价格区间的范围 ******************/
@@ -20,7 +20,7 @@ class SearchController extends BaseController
 		$gcMmodel = M('GoodsCat');
 		$extGoodsId = $gcMmodel
 					->field('GROUP_CONCAT(DISTINCT goods_id) as goods_id')
-					->where(array('cat_id' => array('eq' => $cateId)))
+					->where(array('cat_id' => array('eq' => $catId)))
 					->find();
 
 		if($extGoodsId['goods_id'])
@@ -35,21 +35,18 @@ class SearchController extends BaseController
 		$price = $goodsModel->field('MIN(shop_price) minpirce, MAX(shop_price) maxpirce')
 							->where(array('cat_id' => array('exp' ," = $catId $extGoodsId")))
 							->find();
-		
 		// 最低价和最高价分七段
 		$_price = array();
-
 		// 计算每个段位的价格区间
 		$sprice = ($price['maxprice'] = $price['maxpirce']) / $priceSection;
-
-		$firstPirce = $price['minpirce'];
+		$firstPrice = $price['minpirce'];
 
 		for ($i=0; $i < $priceSection ; $i++) 
 		{ 
 			if($i < ($priceSection -1))
 			{
 				$start = floor($firstPrice /10) * 10 ;
-				$end = (floor(($firstPirce + $sprice) / 10) * 10 -1);
+				$end = (floor(($firstPrice + $sprice) / 10) * 10 -1);
 
 				// 先判断这个分类下这个价格段有是否有商品
 				$goodsCount = $goodsModel->where(array(
@@ -58,7 +55,7 @@ class SearchController extends BaseController
 					'is_on_sale' => array('eq' ,1),
 					'is_delete'  => array('eq' , 0),
 				))->count();
-				$firstPrice += $price;
+				$firstPrice += $sprice;
 				if($goodsCount == 0)
 					continue;
 				$_price[] = $start . '-' . $end;
@@ -66,7 +63,7 @@ class SearchController extends BaseController
 			}
 			else
 			{
-				$start 	= floor($firstPirce / 10 ) * 10;
+				$start 	= floor($firstPrice / 10 ) * 10;
 				$end 	= ceil($price['maxprice'] / 10) * 10;
 				$goodsCount = $goodsModel->where(array(
 					'shop_price' => array('between',array()),
@@ -83,14 +80,16 @@ class SearchController extends BaseController
 				S('price_'.$catId,$_price,3600);
 			}
 
-			$attrData = S('attr_'.$catId);
+			#$attrData = S('attr_'.$catId);
 			if(!$attrData)
 			{
 				/**************************( 可以搜索的的属性 )*************************/
 				// 取出这个分类下的筛选属性的数据
 				$catModel = M('Category');
-				$sai = $catMode->field('search_attr_id')->find($catId);
+				$sai = $catModel->field('search_attr_id')->find($catId);
+				echo $catModel->getLastSql();exit;
 				// 根据筛选的属性ID取出这个属性的名称已经每个属性所拥有的值
+				$attrModel = M('Attribute');
 				$attrData = $attrModel->field('id,attr_name')->where(array(
 					'id' => array('in',$sai['search_attr_id'])
 				))->select();
@@ -110,12 +109,11 @@ class SearchController extends BaseController
 					else
 						$attrData[$k]['attr_value'] = $attrValues;
 
-					S('attr_'.$catId,$attrData,3600);
+					#S('attr_'.$catId,$attrData,3600);
 				}
-
+				var_dump($attrData);exit;
 				// 取出商品
 				$goods = $goodsModel->search_goods();
-
 				$this->assign(array(
 					'price' => $_price,
 					'attrData' => $attrData,

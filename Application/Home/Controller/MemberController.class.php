@@ -81,7 +81,6 @@ class MemberController extends BaseController
 	{
 		if(IS_POST)
 		{
-
 			$model = D('Admin/Member');
 			if($model->validate($model->_login_validate)->create(I('post.'),9))
 			{
@@ -97,9 +96,6 @@ class MemberController extends BaseController
 					else
 						redirect('/'); // 登陆成功跳转直接到首页
 				}
-				
-
-					
 			}
 			$this->error($model->getError());
 		}

@@ -29,12 +29,12 @@ class IndexController extends BaseController {
 
     /**
      * 商品详情
+     * 
      * @param int $goodsId;
      * @return array
      * @author Red-Bo
      * @data 2015-11-03 00:43:01
      */
-    
     public function goods()
     {
         // 接收商品的ID
@@ -44,28 +44,34 @@ class IndexController extends BaseController {
         
         //取出商品的图片
         $gpModel = M('GoodsPics');
-        $gpData = $gpModel->where(array('goods_id'=>array('eq',$goodsId)))->select();
+        $gpData = $gpModel->where(array('goods_id'=>array('eq',$goodsId)))
+                          ->select();
 
         /****************** 取出商品的属性 *****************/
         //取出商品的单选属性
         $gaModel = M('GoodsAttr');
-        $_gaData1= $gaModel->field('a.*,b.attr_name')->alias('a')->join('LEFT JOIN shop_attribute b on a.attr_id = b.id')->where(array('a.goods_id'=>array('eq',$goodsId),'b.attr_type'=> array('eq',1)))->select();
+        $_gaData1= $gaModel->field('a.*,b.attr_name')
+                           ->alias('a')->join('LEFT JOIN shop_attribute b on a.attr_id = b.id')
+                           ->where(array('a.goods_id'=>array('eq',$goodsId),'b.attr_type'=> array('eq',1)))
+                           ->select();
         $gaData1 = array();
         foreach ($_gaData1 as $k => $v) 
         {
             $gaData1[$v['attr_name']][] =$v;
         }
-       
        //取出商品的唯一属性 
-       $gaData2 = $gaModel->field('a.*,b.attr_name')->alias('a')->join('LEFT JOIN shop_attribute b on a.attr_id = b.id')->where(array('a.goods_id'=>array('eq',$goodsId),'b.attr_type'=> array('eq',0)))->select();
-       
+       $gaData2 = $gaModel->field('a.*,b.attr_name')
+                          ->alias('a')
+                          ->join('LEFT JOIN shop_attribute b on a.attr_id = b.id')
+                          ->where(array('a.goods_id'=>array('eq',$goodsId),'b.attr_type'=> array('eq',0)))
+                          ->select();
+
        //把取出的数据assign到页面中
        $this->assign(array(
             'info'      => $info,
             'gpData'    => $gpData,
             'gaData1'   => $gaData1,
             'gaData2'   => $gaData2
-
         ));
 
         //设置页面信息、关键字、描述、是否展开、CSS信息

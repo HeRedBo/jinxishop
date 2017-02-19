@@ -1,6 +1,6 @@
 <?php 
 $catModel = D('Admin/Category');
-$catData  = $catModel->newGetNavData()
+$catData  = $catModel->newGetNavData();
  ?>
 	<div style="clear:both;"></div>
 
@@ -157,9 +157,8 @@ $catData  = $catModel->newGetNavData()
 		{
 			var str = '';
 			// 把商品的信息显示在页面中
-			$(data).each(function(k,v){
+			$(data).each(function(k, v) {
 				str += '<li><a href="<?php echo U('Home/Index/goods/','',FALSE); ?>/id/'+v.id+'"><img src="'+img_url+v.goods_thumb+'" alt="'+v.goods_name+'"  title="'+v.goods_name+'" /></a></li>';
-
 			});
 			$('#recent_display_id').html(str);
 		}

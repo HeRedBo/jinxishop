@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Admin\Controller;
 use Think\Controller;
 class CommonController extends Controller
@@ -7,7 +7,7 @@ class CommonController extends Controller
 	 * 登录验证 (_initialize)
 	 */
 	public function __construct()
-	{	
+	{
 		//先调用父类的构造函数
 		parent::__construct();
 		//获取当前管理员的ID
@@ -24,25 +24,23 @@ class CommonController extends Controller
 		if($adminId ==1)
 			$sql ='SELECT COUNT(*) has FROM shop_privilege';
 		else
-			$sql ='SELECT COUNT(a.role_id) has 
-					FROM shop_role_privilege a 
-						LEFT JOIN shop_privilege b ON a.pri_id = b.id 
+			$sql ='SELECT COUNT(a.role_id) has
+					FROM shop_role_privilege a
+						LEFT JOIN shop_privilege b ON a.pri_id = b.id
 						LEFT JOIN shop_admin_role c ON a.role_id = c.role_id
 							WHERE c.admin_id = '.$adminId.' AND '.$where;
 		$db = M();
 		$pri = $db->query($sql);
 		if($pri[0]['has'] < 1)
 			$this->error('你无权访问！');
-		
-		
 		//验证登陆
 	}
 
 	/**
 	 * 布局页面赋值
-	 * @param [string] $title   [description]
-	 * @param [string] $btnName [description]
-	 * @param [string] $btnLink [description]
+	 * @param string $title   页面标题
+	 * @param string $btnName 按键名称
+	 * @param string $btnLink 按键链接
 	 * @author RedBo
 	 * date 2015-10-06 10:51
 	 */

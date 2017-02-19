@@ -188,7 +188,6 @@ class GoodsModel extends Model
 						'attr_price'=>$price
 					));
 				}
-
 			}
 		}
 		
@@ -209,9 +208,7 @@ class GoodsModel extends Model
 					'error' => $_FILES['pics']['error'][$k],
 					'size'  => $_FILES['pics']['size'][$k]
 				);
-
 			}
-			
 			// 使用我们原本定义好的上传文件的函数uploadOne 函数进行文件的上传
 			//循环每一张图片一个一个的上传
 			
@@ -270,7 +267,6 @@ class GoodsModel extends Model
 			deleteImage(array(
 				I('post.old_goods_ori'),
 				I('post.old_goods_thumb'),
-	
 			));
 		}
 	}
@@ -482,7 +478,6 @@ class GoodsModel extends Model
 	 */
 	public function getMemberPrice($goodsId)
 	{
-		
 		$now = time();
 		//先判断是否有促销
 		$price = $this->field('shop_price,is_promote,promote_price,promote_start_time,promote_end_time')
@@ -574,7 +569,6 @@ class GoodsModel extends Model
 
 			// 商品的属性的搜索
 			$sa = I('get.search_attr');
-
 			if($sa)
 			{
 				$gaModel = M('GoodsAttr');
@@ -655,7 +649,7 @@ class GoodsModel extends Model
 			 * 总结: 因为如果使用两个外链 (left join ) 那么取出的结构会相互影响 所以销量用LEFT JOIN 而评论数用子查询
 			 * 这样子就没有相互影响
 			 */
-			$data['data'] = $this->field('a.id, a.goods_name, IFNULL(SUM(b.goods_number),0) xl , (SELECT count(id) FROM 
+			$data['data'] = $this->field('a.id, a.goods_name,a.goods_thumb, a.shop_price,IFNULL(SUM(b.goods_number),0) xl , (SELECT count(id) FROM 
 											shop_comment c WHERE c.goods_id = a.id ) pl')
 								 ->alias('a')
 								 ->join('LEFT JOIN shop_order_goods b ON (a.id = b.goods_id AND b.order_id IN (SELECT id FROM shop_order WHERE pay_status =1))')
@@ -664,7 +658,6 @@ class GoodsModel extends Model
 								 ->order("$orderBy $orderWay")
 								 ->limit($page->firstRow.','.$page->listRows)
 								 ->select();
-
 			return $data ;
 
 		}

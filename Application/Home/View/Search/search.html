@@ -212,7 +212,6 @@
 						<dt>价格：</dt>
 					<dd <?php if(!I('get.price')) ?>><a href="<?php echo U('search?cid='.I('get.cid')) ?>">不限</a></dd>
 						<?php foreach ($pricce as  $v): ?>
-
 						<dd><a <?php if(I('get.price') == $v) echo 'class="cur"'?>href="<?php echo U('search?cid='.I('get.cid').'&price='.$v); ?>#search">{$v}</a></dd>
 						<?php endforeach ?>
 						
@@ -281,10 +280,8 @@
 						<a href="<?php echo U('search?cid='.I('get.cid')).'&price='.I('get.price').'&ob=xl'?>#search">销量</a>
 					</dd>
 
-					<dd <?php if(I('get.ob') == 'shop_price') echo 'class="cur"'; ?> >
-						<a href="<?php 
-							echo U('search?cid='.I('get.cid').'&price='.I('get.price').'&ob=shop_price&ow='.(I('get.ow')== 'asc') ? 'desc':'asc');
-						 ?>#search">价格 <?php if(I('get.ow') == '' ||I('get.ow') == 'desc') echo "【降】"; else echo "【升】" ?></a>
+					<dd <?php if(I('get.ob') == 'shop_price') echo 'class="cur"'; ?>>
+						<a href="<?php echo U('search?cid='.I('get.cid').'&price='.I('get.price').'&ob=shop_price&ow='.(I('get.ow')=='asc'?'desc':'asc')); ?>#search">价格<?php if(I('get.ow') == '' || I('get.ow') == 'desc') echo '【降】';else echo '【升】'; ?></a>
 					</dd>
 					
 
@@ -307,10 +304,10 @@
 					<?php foreach ($goods['data'] as $k => $v): ?>
 						<li>
 							<dl>
-								<dt><a href=""><?php showImg($v['sm_logo']) ?></a></dt>
-								<dd><a href="">{$v.goods_name}</a></dt>
-								<dd><strong>￥{$v.shop_price}</strong></dt>
-								<dd><a href=""><em>已有{$v.pl}价</em><em>销量: {$v.xl}</em></a></dt>
+								<dt><a href=""><?php showImage($v['goods_thumb']) ?></a></dt>
+								<dd><a href=""> {$v.goods_name}</a></dt>
+								<dd><strong> ￥{$v.shop_price} </strong></dt>
+								<dd><a href=""><em>已有{$v.pl}人评价</em><em> 销量: {$v.xl}</em></a></dt>
 							</dl>
 						</li>
 					<?php endforeach ?>
