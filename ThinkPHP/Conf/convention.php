@@ -48,7 +48,7 @@ return  array(
     'DEFAULT_TIMEZONE'      =>  'PRC',	// 默认时区
     'DEFAULT_AJAX_RETURN'   =>  'JSON',  // 默认AJAX 数据返回格式,可选JSON XML ...
     'DEFAULT_JSONP_HANDLER' =>  'jsonpReturn', // 默认JSONP格式返回的处理方法
-    'DEFAULT_FILTER'        =>  'htmlspecialchars', // 默认参数过滤方法 用于I函数...
+    'DEFAULT_FILTER'        =>  'htmlspecialchars', // 默认参数过滤方法 用于I函数... 这个函数后期会重写
 
     /* 数据库设置 */
     'DB_TYPE'               =>  '',     // 数据库类型
@@ -70,6 +70,7 @@ return  array(
     'DB_SQL_BUILD_LENGTH'   =>  20, // SQL缓存的队列长度
     'DB_SQL_LOG'            =>  false, // SQL执行日志记录
     'DB_BIND_PARAM'         =>  false, // 数据库写入数据自动参数绑定
+
 
     /* 数据缓存设置 */
     'DATA_CACHE_TIME'       =>  0,      // 数据缓存有效期 0表示永久缓存
