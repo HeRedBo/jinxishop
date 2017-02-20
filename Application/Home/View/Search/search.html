@@ -193,109 +193,64 @@
 				<h2><a href="">重置筛选条件</a> <strong>商品筛选</strong></h2>
 				<div class="filter_wrap">
 					<dl>
-						<dt>品牌：</dt>
-						<dd class="cur"><a href="">不限</a></dd>
-						<dd><a href="">联想（ThinkPad）</a></dd>
-						<dd><a href="">联想（Lenovo）</a></dd>
-						<dd><a href="">宏碁（acer）</a></dd>
-						<dd><a href="">华硕（ASUS）</a></dd>
-						<dd><a href="">戴尔（DELL）</a></dd>
-						<dd><a href="">索尼（SONY）</a></dd>
-						<dd><a href="">惠普（HP）</a></dd>
-						<dd><a href="">三星（SAMSUNG）</a></dd>
-						<dd><a href="">优派（ViewSonic）</a></dd>
-						<dd><a href="">苹果（Apple）</a></dd>
-						<dd><a href="">富士通（Fujitsu）</a></dd>
-					</dl>
-
-					<dl>
 						<dt>价格：</dt>
-					<dd <?php if(!I('get.price')) ?>><a href="<?php echo U('search?cid='.I('get.cid')) ?>">不限</a></dd>
-						<?php foreach ($pricce as  $v): ?>
-						<dd><a <?php if(I('get.price') == $v) echo 'class="cur"'?>href="<?php echo U('search?cid='.I('get.cid').'&price='.$v); ?>#search">{$v}</a></dd>
+					<dd <?php if(!I('get.price')) echo 'class="cur"';?>><a href="<?php echo U('search?cid='.I('get.cid')) ?>">不限</a></dd>
+						<?php foreach ($price as $v): ?>
+						<dd <?php if(I('get.price') == $v) echo 'class="cur"';?>><a href="<?php echo U('search?cid='.I('get.cid').'&price='.$v); ?>#search">{$v}</a></dd>
 						<?php endforeach ?>
-						
 					</dl>
-					
 					<!-- 属性 -->
 					<?php
 						$attrDataCount = count($attrData);
 						$sa = I('get.search_attr');
 						if($sa)
-							$_attr_arr = explode(0, $sa);
+							$_attr_arr = explode('.', $sa);
 						else
 							$_attr_arr = array_fill(0, $attrDataCount, 0);
-
 						foreach ($attrData as $k => $v): ?>
-						<dl>
-							<dt>{$v.attr_name}：</dt>
-
-							<dd 'class="cur"'<a href="<?php $_tmp_attr_arr = $_attr_arr;
-							$_tmp_attr_arr[$k]=0; echo U('search?cid='.I('get.cid').'&search_attr='.implode('.',$_tmp_attr_arr))?>">不限</a></dd>
-
+							<dl>
+								<dt>{$v.attr_name}：</dt>
+								<dd class="cur" >
+								<a href="<?php 
+									$_tmp_attr_arr = $_attr_arr;
+									$_tmp_attr_arr[$k]= 0; 
+									echo U('search?cid='.I('get.cid').'&search_attr='.implode('.',$_tmp_attr_arr))?>">不限</a>
+							</dd>
 							<?php foreach ($v['attr_value'] as $k1 => $v1):
-								// 用全零 的数值开始的数值只修改当前这个属性的值
+								// 用全零的数值开始的数值只修改当前这个属性的值
 								$_tmp_attr_arr = $_attr_arr; // 初始化这个数组
 								// 把这个属性的值放到相应的位置
-								$_tmp_attr_arr[$k] = $v1['attr_value'].'-'.$v1['id'];
+								$_tmp_attr_arr[$k] = $v1['attr_value'].'-'.$v['id'];
 							 ?>
-
-								<dd><a href="<?php echo U('search?cid='.I('get.cid').'&search_attr='.implode('.', $_tmp_attr_arr)) ?>">{$v1.attr_values}</a></dd>
+							<dd>
+								<a href="<?php echo U('search?cid='.I('get.cid').'&search_attr='.implode('.', $_tmp_attr_arr)) ?>">{$v1.attr_value}</a>
+							</dd>
 							<?php endforeach ?>
-						</dl>
+							</dl>
 						<?php endforeach ?>
-					<!-- <dl>
-						<dt>尺寸：</dt>
-						<dd'class="cur"'<a href="">不限</a></dd>
-						<dd><a href="">10.1英寸及以下</a></dd>
-						<dd><a href="">11英寸</a></dd>
-						<dd><a href="">12英寸</a></dd>
-						<dd><a href="">13英寸</a></dd>
-						<dd><a href="">14英寸</a></dd>
-						<dd><a href="">15英寸</a></dd>
-					</dl>
-					
-					<dl class="last">
-						<dt>处理器：</dt>
-						<dd class="cur"><a href="">不限</a></dd>
-						<dd><a href="">intel i3</a></dd>
-						<dd><a href="">intel i5</a></dd>
-						<dd><a href="">intel i7</a></dd>
-						<dd><a href="">AMD A6</a></dd>
-						<dd><a href="">AMD A8</a></dd>
-						<dd><a href="">AMD A10</a></dd>
-						<dd><a href="">其它intel平台</a></dd>
-					</dl> -->
 				</div>
 			</div>
 			<!-- 商品筛选 end -->
-			
 			<div style="clear:both;"></div>
-
 			<!-- 排序 start -->
 			<div class="sort mt10">
 				<dl>
 					<dt>排序：</dt>
 					<dd <?php if(I('get.ob','xl') == 'xl') echo 'class="cur"'; ?>>
-						<a href="<?php echo U('search?cid='.I('get.cid')).'&price='.I('get.price').'&ob=xl'?>#search">销量</a>
+						<a href="<?php echo U('search?cid='.I('get.cid').'&price='.I('get.price').'&ob=xl')?>#search">销量</a>
 					</dd>
-
 					<dd <?php if(I('get.ob') == 'shop_price') echo 'class="cur"'; ?>>
 						<a href="<?php echo U('search?cid='.I('get.cid').'&price='.I('get.price').'&ob=shop_price&ow='.(I('get.ow')=='asc'?'desc':'asc')); ?>#search">价格<?php if(I('get.ow') == '' || I('get.ow') == 'desc') echo '【降】';else echo '【升】'; ?></a>
 					</dd>
-					
-
 					<dd <?php if(I('get.ob') == 'pl') echo 'class="cur"'; ?> >
 						<a href="<?php echo U('search?cid='.I('get.cid').'&price='.I('get.price').'&ob=pl');?>#search">评论数</a>
 					</dd>
-
 					<dd <?php if(I('get.ob') == 'addtime') echo 'class="cur"'; ?>>
 						<a href="<?php echo U('search?cid='.I('get.cid').'&price='.I('get.price').'&ob=addtime');?>#search">上架时间</a>
 					</dd>
 				</dl>
 			</div>
 			<!-- 排序 end -->
-			
 			<div style="clear:both;"></div>
 
 			<!-- 商品列表 start-->
@@ -317,7 +272,7 @@
 
 			<!-- 分页信息 start -->
 			<div class="page mt20">
-				<a href="">首页</a>
+				<!-- <a href="">首页</a>
 				<a href="">上一页</a>
 				<a href="">1</a>
 				<a href="">2</a>
@@ -329,7 +284,7 @@
 				<span>
 					<em>共8页&nbsp;&nbsp;到第 <input type="text" class="page_num" value="3"/> 页</em>
 					<a href="" class="skipsearch" href="javascript:;">确定</a>
-				</span>
+				</span> -->
 				{$data.page}
 			</div>
 			<!-- 分页信息 end -->

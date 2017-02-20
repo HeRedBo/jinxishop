@@ -542,34 +542,32 @@ class GoodsModel extends Model
 			'a.is_on_sale' => array('eq',1),
 			'a.is_delete'  => array('eq',0),
 		);
-
 		$catId = I('get.cid');
 		if($catId)
 		{
 			// 取出这个扩展分类下的商品的ID并转化成字符串 1,2,3,4,5
 			$gcModel = M('GoodsCat');
-			$extGoodsId = $gcModel->field('GROUP_CONCAT(DISTINCT goods_id)')
+			$extGoodsId = $gcModel->field('GROUP_CONCAT(DISTINCT goods_id) goods_id')
 			                      ->where(array(
 			                      	'cat_id' => array('eq',$catId),
 			                      ))
 			                      ->find();
-
-			if($extGoodsid['goods_id'])
-				$extGoodsid = "OR a.id IN ({$extGoodsid['goods_id']})";
+			if($extGoodsId['goods_id'])
+				$extGoodsId = "OR a.id IN ({$extGoodsId['goods_id']})";
 			else
-				$extGoodsid = "";
+				$extGoodsId = "";
 
 			// 主分类和扩展分类下的商品都搜索出来
-			$where['a.cat_id'] = array('exp' ,"=$catId $extGoodsid");
+			$where['a.cat_id'] = array('exp' ,"=$catId $extGoodsId");
 
 			// 价格搜索 
 			$price = I('get.price');
 			if($price)
 			{
-				$pirce = explode('-',$pirce);
+				$price = explode('-',$price);
 				$where['a.shop_price'] = array('between',array($price[0],$price[1]));
 			}
-
+			
 			// 商品的属性的搜索
 			$sa = I('get.search_attr');
 			if($sa)
@@ -594,8 +592,8 @@ class GoodsModel extends Model
 						$_v = explode('-', $v);
 						// 到商品属性表中搜索有这个属性已经值得商品的ID 并返回字符串 1,2,3,4,5
 						$_attrGoodsId = $gaModel->field('GROUP_CONCAT(goods_id) goods_id')->where(array( 
-							'attr_id' => $_v[1],
-							'attr_value' => $v[0],
+							'attr_id'    => $_v[1],
+							'attr_value' => $_v[0],
 						))->find();
 						$_attrGoodsId = $_attrGoodsId['goods_id'];
 						// 如果第一个就先保存起来
@@ -620,22 +618,21 @@ class GoodsModel extends Model
 					$where['a.id'] = array('eq',0);
 					// 如果没有满足条件的商品 就直接设置一个搜索不出来的条件
 			}
-
 			/************************** 排序 ****************************/
 			$orderBy  = 'xl'; // 排序字段 # 销量
 			$orderWay = "DESC"; // 排序方式
 
 			// 接收用户的排序参数
-			$ob = I('get.db');
+			$ob = I('get.ob');
 			$ow = I('get.ow');
-
-			if($ob && in_array($ob , array('xl','shop_pirce','pl','addtime')))
+			if($ob && in_array($ob , array('xl','shop_price','pl','addtime')))
 			{
 				$orderBy = $ob;
 				// 如果是根据价格排序 才可以就收 ow变量
-				if($ob == 'shop_pirce' && $ow && in_array($ow , array('asc','desc')))
+				if($ob == 'shop_price' && $ow && in_array($ow , array('asc','desc')))
 					$orderWay = $ow;
 			}
+
 
 			/************************** 翻页 ****************************/
 			// 取出总的记录数
