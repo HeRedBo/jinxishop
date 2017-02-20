@@ -33,7 +33,10 @@
 			<tbody>
 				<?php $tp = 0; foreach ($data as $k => $v): ?>
 					<tr goods_id = "{$v.goods_id}" goods_attr_id ="{$v.goods_attr_id}">
-					<td class="col1"><a href=""><?php echo showImage($v['goods_thumb']) ;?></a>  <strong><a href="">{$v.goods_name}</a></strong></td>
+					<td class="col1">
+						<a href=""><?php echo showImage($v['goods_thumb']) ;?></a>  
+						<strong><a href="">{$v.goods_name}</a></strong>
+					</td>
 					<td class="col2">{$v.goods_attr_str}</td>
 					<td class="col3">￥<span>{$v.price}</span></td>
 					<td class="col4"> 

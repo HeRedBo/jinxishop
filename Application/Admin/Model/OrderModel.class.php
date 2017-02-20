@@ -54,7 +54,6 @@ class OrderModel extends Model
 		$data['member_id'] = session('mid');
 		$data['addtime']   = time();
 		$data['total_price'] = $tp;
-
 		//启用事务
 		mysql_query('START TRANSACTION');
 	}
@@ -79,7 +78,7 @@ class OrderModel extends Model
 		{
 			// 减少库存量
 			$rs = $gnModel->where(array(
-				'goods_id' => array('eq',$v['goods_id']),
+				'goods_id' 		=> array('eq',$v['goods_id']),
 				'goods_attr_id' => array('eq',$v['goods_attr_id']),
 			))->setDec('goods_number',$v['goods_number']);
 
@@ -90,13 +89,14 @@ class OrderModel extends Model
 			}
 			// 将商品插入订单商品表
 			$rs = $ogModel->add(array(
-				'order_id' 	=> $data['id'],
-				'mumber_id' => session('mid'),
-				'goods_id' 	=> $v['goods_attr_id'],
-				'goods_attr_id' => $v['goods_attr_id'],
-				'goods_attr_str'=> $v['price'],
-				'goods_number'  => $v['goods_number']
+				'order_id'       => $data['id'],
+				'mumber_id'      => session('mid'),
+				'goods_id'       => $v['goods_attr_id'],
+				'goods_attr_id'  => $v['goods_attr_id'],
+				'goods_attr_str' => $v['price'],
+				'goods_number'   => $v['goods_number']
 			));
+
 			if($rs === FALSE)
 			{
 				mysql_query('ROLLBACK');
@@ -119,7 +119,7 @@ class OrderModel extends Model
 	{
 		// 更新订单的支付状态为已支付
 		$this->where(array('id' => array('eq',$id)))->setField('pay_status',1);
-		// 总价会员点的积分制 -- 订单的总价是多少就增加多少的经验值
+		// 增加会员点的经验值和积分 -- 订单的总价是多少就增加多少的经验值
 		$info = $this->field('total_price,member_id')->find($id);
 		$this->execute('UPDATE shop_member SET jyz =jyz +'.$info['total_price'],'jifen = jifen +'.$info['total_price'].' WHERE id = '.$info['member_id']);
 	}

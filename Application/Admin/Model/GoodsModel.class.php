@@ -509,16 +509,19 @@ class GoodsModel extends Model
 
 	/**
 	 * 根据商品属性id找出对已的属性名称
-	 * @param string $gaIds 
+	 * 
+	 * @param string $gaIDs 
 	 * @return string 
 	 * @author Red-Bo
-	 * @date 2015-11-15 23:13:53
-	 */
-	public function converGoodsAttrIdToGoodsAttrStr($gaIds)
+	 */ 
+	public function converGoodsAttrIdToGoodsAttrStr($gaIDs)
 	{
-		if($gaids)
+		if($gaIDs)
 		{
-			$sql = 'SELECT GROUP_CONCAT( CONCAT( b.attr_name,":" a.attr_value) SEPARATOR "<br />") gastr FROM shop_goods_attr a LEFT JOIN shop_attribute b on a.attr_id = b.id WHERE a.id in ('.$gaids.')';
+			$sql = 'SELECT GROUP_CONCAT( CONCAT( b.attr_name," : ", a.attr_value) SEPARATOR "<br />") gastr 
+					FROM shop_goods_attr a 
+					LEFT JOIN shop_attribute b on a.attr_id = b.id 
+					WHERE a.id in ('.$gaIDs.')';
 			$ret = $this->query($sql);
 			return $ret[0]['gastr'];
 		}

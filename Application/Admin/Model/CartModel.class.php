@@ -3,23 +3,33 @@ namespace Admin\Model;
 use Think\Model;
 class CartModel extends Model
 {
-	// 商品加入购物车
+	/**
+	 * 商品加入购物车
+	 * 
+	 * @param int     $goods_id  商品的ID
+	 * @param string  $goods_attr_id 商品的属性ID
+	 * @param integer $goods_number  商品的数量
+	 */
 	public function addToCart($goods_id,$goods_attr_id,$goods_number = 1)
 	{
 		$mid = session('mid');
-		// 如果登陆了加入到购物车 如果未登录就报错到cookie;
+		// 如果登陆了加入到购物车 如果未登录就加入到cookie中;
 		if($mid)
 		{
 			$cartModel = M('Cart');
+			// 判断购物车中是否已经存在
 			$has = $cartModel->where(array(
-				'member_id' => array('eq',$mid),
-				'goods_id'  => array('eq',$goods_id),
-				'goods_attr_id' =>array('eq',$goods_attr_id),
+				'member_id' 	=> array('eq',$mid),
+				'goods_id'  	=> array('eq',$goods_id),
+				'goods_attr_id' => array('eq',$goods_attr_id),
 			))->find();
 			if($has)
 			{
-				$cartModel->where(array('id = '.$has['id']))->setInc(array(
-					'goods_number' => $goods_number));
+				// 加1操作
+				$cartModel->where(array('id = '.$has['id']))
+						  ->setInc(array(
+							'goods_number' => $goods_number
+							));
 			}
 			else
 			{
@@ -33,19 +43,15 @@ class CartModel extends Model
 		}
 		else
 		{
-
 			// 先从cookie 中取出数据
 			$cart = isset($_COOKIE['cart']) ? unserialize($_COOKIE['cart']) : array();
-
 			// 把商品加入到这个数值中 
-			$key = $goods_id .'-'. $goods_attr_id;
-
+			$key = $goods_id .'-'. $goods_attr_id;  
 			if(isset($cart[$key]))
 				$cart[$key] += $goods_number;
 			else
 				$cart[$key] = $goods_number;
 			// 把这个数值保存到cookie中
-			
 			$aMonth = 30 * 86400;
 			setcookie('cart',serialize($cart), time() + $aMonth,'/','myshop.com');
 		}
@@ -53,24 +59,22 @@ class CartModel extends Model
 	
 	/**
 	 * 购物车列表
+	 * 
 	 * @return array
 	 * @author Red-Bo
 	 * @date 2015-11-15 22:28:36
 	 */
 	public function cartList()
 	{
-		
 		$mid = session('mid');
 		if($mid)
 		{
 			$cartModel = M('Cart');
 			$_cart = $cartModel->where(array('member_id'=> array('eq',$mid)))->select();
-			
 		}
 		else
 		{
 			$_cart_ = isset($_COOKIE['cart']) ? unserialize($_COOKIE['cart']) : array();
-			
 			// 转化这个数组结构和从数据库重的数组结构一样 都是二维数组
 			$_cart = array();
 			foreach ($_cart_ as $k => $v) 
@@ -86,7 +90,6 @@ class CartModel extends Model
 		}
 		// 循环购物车的每件商品 根据id取出商品详情页面信息 
 		$goodsModel = D('Admin/Goods');
-	
 		foreach ($_cart as $k => $v) 
 		{
 			$ginfo = $goodsModel->field('goods_thumb,goods_name')->find($v['goods_id']);
@@ -94,11 +97,8 @@ class CartModel extends Model
 			$_cart[$k]['goods_thumb']= $ginfo['goods_thumb'];
 			// 计算会员的价格 
 			$_cart[$k]['price'] = $goodsModel->getMemberPrice($v['goods_id']);
-			
 			//把上的属性的id转化为商品属性的字符串
-			$_cart[$k]['goods_attr_str'] = $goodsModel->converGoodsAttrIdToGoodsAttrStr($v['goods_attr_id']);
-
-			
+			$_cart[$k]['goods_attr_str'] = $goodsModel->converGoodsAttrIdToGoodsAttrStr($v['goods_attr_id']);			
  		}
  		return $_cart;
 	}
@@ -127,10 +127,15 @@ class CartModel extends Model
 		}
 	}
 
-	// 更新数据
+	/**
+	 * 更新购物车数据
+	 * @param  int    $gid  商品的ID
+	 * @param  string $gaid 商品属性ID
+	 * @param  int    $gn   商品数量
+	 * @return  
+	 */
 	public function updateData($gid,$gaid,$gn)
 	{
-
 		$mid = session('mid');
 		if($mid)
 		{
@@ -157,20 +162,12 @@ class CartModel extends Model
 			// 先从cookie 取出数据
 			$cart = isset($_COOKIE['cart']) ? unserialize( $_COOKIE['cart']) : array();
 			$key = $gid .'-'. $gaid;
-
 			if($gn == 0)
 				unset($cart[$key]);
 			else
 				$cart[$key] = $gn;
 			$aMonth = 30 * 86400;
-
 			setcookie('cart',serialize($cart),time() + $aMonth, '/','myshop.com');
-
- 
 		}
 	}
-
-	/**
-	 * 
-	 */
 }
