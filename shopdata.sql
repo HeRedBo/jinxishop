@@ -367,7 +367,7 @@ CREATE TABLE shop_impression
 	goods_id mediumint unsigned not null comment '商品id',
 	primary key (id),
 	key goods_id(goods_id)
-)engine= MyISAM default charset = utf8 comment '印象';
+)engine= MyISAM default charset = utf8 comment '商品印象表';
 
 DROP TABLE IF EXISTS shop_cart ;
 CREATE TABLE shop_cart

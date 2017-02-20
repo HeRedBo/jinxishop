@@ -485,8 +485,6 @@
 			
 		</div>
 		<!-- 商品信息内容 end -->
-		
-
 	</div>
 	<!-- 商品页面主体 end -->
 
@@ -514,7 +512,6 @@
  			if(data.login ==1)
  			{
  				$('#comment_form').html('<form id="comment_form_data" action=""><input type="hidden" name="goods_id" value="<?php echo $info['id']; ?>"id="" /><ul><li><label for=""> 评分：</label><input type="radio" name="grade" value="5"/> <strong class="star star5"></strong><input type="radio" name="grade" value="4"/> <strong class="star star4"></strong><input type="radio" name="grade" value="3" checked="checked"/> <strong class="star star3"></strong><input type="radio" name="grade" value="2"/> <strong class="star star2"></strong><input type="radio" name="grade" value="1"/> <strong class="star star1"></strong></li><li><label for="">评价内容：</label><textarea name="content" id="" cols="" rows=""></textarea></li><li><label for="">印象：</label><input type="text" name="yx" value="" />多个印象用,隔开</li><li><label for="">&nbsp;</label><input type="buuton" value="提交评论"  class="comment_btn"/></li></ul></form>');
-
  				// 为提交表单的按牛逼绑定一个点击事件
  				$('.comment_btn').click(function() 
  				{
@@ -529,21 +526,19 @@
  						{
  							if(data.ok=1)
  							{
- 								
  								//先拼出评论的内容
  								var html = $('<div style="display:none;" class="comment_items mt10"> <div class="user_pic"> <dl> <dt><a href=""><img src="'+data.face+'" alt="" /></a></dt> <dd><a href="">'+data.email+'</a></dd> </dl> </div> <div class="item"> <div class="title"> <span>'+data.addtime+'</span> <strong class="star star'+data.star+'"></strong> <!-- star5表示5星级 start4表示4星级，以此类推 --> </div> <div class="comment_content"> '+data.content+'</div><div class="btns"><a href="" class="reply">回复(0)</a><a href="" class="useful">有用(0)</a></div></div><div class="cornor"></div></div>');
- 						
  								$(".comment_summary").after(html);
  								// 清空表单
  								document.getElementById('comment_form_data').reset();
  								$("body").animate({scrollTop:"710px"},300,'linear',function(){html.fadeIn('slow');})
  							 }
  							else
+ 							{
  								alert(data.error);
+ 							}
  						}
  					});
- 					
- 					
  				});
  			}
  		}	
@@ -556,12 +551,11 @@
  			type: 'GET',
  			success:function(data)
  			{
-
  				location.href="<?php echo U('Home/Member/login');?>";
  			}
  		});
  	});
- 	
+
  	// 发送请求的开头
  	var pending = 0; //当前是否正在发送请求
  	// 先获取加载更多按钮的指针
@@ -579,8 +573,7 @@
  			{
  				//循环服务器返回的数据拼成html字符
  				var html = '<div style="display:none;">';
- 				$.each(data,function(k,v){
-
+ 				$.each(data,function(k, v) {
  					html += '<div class="comment_items mt10"> <div class="user_pic"> <dl> <dt><a href=""><img src="'+v.face+'" alt="" /></a></dt> <dd><a href="">'+v.email+'</a></dd> </dl> </div> <div class="item"> <div class="title"> <span>'+v.addtime+'</span> <strong class="star star'+v.star+'"></strong> <!-- star5表示5星级 start4表示4星级，以此类推 --> </div> <div class="comment_content">'+v['content']+'</div> <div class="btns"> <a href="" class="reply">回复('+v.reply_count+')</a> <a href="" class="useful">有用('+v.used+')</a> </div> </div> <div class="cornor"></div> </div>';
  				});
  				html += "</div>";
@@ -600,10 +593,9 @@
  			}
  		});
  	}
-
  	 //先获取窗口的高度
  	 var wp = $(window).height();
- 	 $(window).scroll(function(){
+ 	 $(window).scroll(function() {
  	 	// 如果当前正在发送请求中就不再响应事件
  	 	if(pending == 1)
  	 		return;
